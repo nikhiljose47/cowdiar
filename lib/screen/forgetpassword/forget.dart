@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io' show? Platform;
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:cowdiar/util/appinfo.dart';
 import 'package:http/http.dart' as http;
@@ -24,7 +24,7 @@ class _forgetpassState extends State<forgetpass> {
   var loading = false;
   check() {
     final form = _key.currentState;
-    if (form.validate()) {
+    if (form!.validate()) {
       form.save();
       forgetpass();
     }
@@ -55,7 +55,7 @@ class _forgetpassState extends State<forgetpass> {
       var datalist = jsonDecode(dataapinfo)['content']['app_info'] as List;
       setState(() {
         for (Map i in datalist) {
-          apiinforlist.add(AppInfo.fromMap(i));
+          apiinforlist.add(AppInfo.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });
@@ -63,7 +63,7 @@ class _forgetpassState extends State<forgetpass> {
   }
 
   bool validateEmail(String email) {
-    Pattern pattern =
+    String pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
     return regex.hasMatch(email);
@@ -142,7 +142,7 @@ class _forgetpassState extends State<forgetpass> {
                     padding: EdgeInsets.symmetric(horizontal: 32),
                     child: TextFormField(
                       validator: (e) {
-                        if (e.isEmpty || !validateEmail(e)) {
+                        if (e!.isEmpty || !validateEmail(e)) {
                           return "Please enter email";
                         }
                         return null;
