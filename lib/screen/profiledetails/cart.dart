@@ -109,10 +109,10 @@ class cartPage extends State<cart> {
       print(listsCArr);
       setState(() {
         for (Map i in listsCArr) {
-          datacart.add(CartDetail.fromMap(i));
+          datacart.add(CartDetail.fromMap(i as Map<String, dynamic>));
         }
         for (Map i in listsCArrs) {
-          directcontent.add(Payment.fromMap(i));
+          directcontent.add(Payment.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });

@@ -111,7 +111,7 @@ class _postarequestState extends State<postarequest> {
 
       setState(() {
         for (Map i in listservices) {
-          listService.add(CArr.fromMap(i));
+          listService.add(CArr.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });
@@ -127,7 +127,7 @@ class _postarequestState extends State<postarequest> {
       datacurrenct = jsonDecode(datas)['content']['currencyArr'][0]['symbol'];
       setState(() {
         for (Map i in datedeli) {
-          datarime.add(DeliveryArr.fromMap(i));
+          datarime.add(DeliveryArr.fromMap(i as Map<String, dynamic>));
         }
 
       });
@@ -141,7 +141,7 @@ class _postarequestState extends State<postarequest> {
     print(subcat);
     setState(() {
       for (Map i in subcat) {
-        listsubcat.add(SCArr.fromMap(i));
+        listsubcat.add(SCArr.fromMap(i as Map<String, dynamic>));
       }
     });
     }

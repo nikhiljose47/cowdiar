@@ -41,7 +41,7 @@ class _invitePage extends State<invitePage> {
       linkdata=jsonDecode(dataapinfo)['content']['app_info'][0]['app_link'];
       setState(() {
         for (Map i in datalist) {
-          apiinforlist.add(AppInfo.fromMap(i));
+          apiinforlist.add(AppInfo.fromMap(i as Map<String, dynamic>));
         }
       });
     }

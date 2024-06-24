@@ -40,7 +40,7 @@ class _NotificationspageState extends State<Notifications> {
 
       setState(() {
         for (Map i in listsCArr) {
-          listSCArr.add(NotificationsArr.fromMap(i));
+          listSCArr.add(NotificationsArr.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });

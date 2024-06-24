@@ -43,7 +43,7 @@ class _SellingOrderState extends State<SellingOrder> {
 
       setState(() {
         for (Map i in listvalue) {
-          listvalues.add(MOrdersArr.fromMap(i));
+          listvalues.add(MOrdersArr.fromMap(i as Map<String, dynamic>));
         }
         loading2 = false;
 
@@ -72,10 +72,10 @@ class _SellingOrderState extends State<SellingOrder> {
       var listdeafult = jsonDecode(data)['content']['mOrdersArr'] as List;
       setState(() {
         for (Map i in listsCArr) {
-          listSCArr.add(StatusArr.fromMap(i));
+          listSCArr.add(StatusArr.fromMap(i as Map<String, dynamic>));
         }
         for (Map i in listdeafult) {
-          listdeafultval.add(MOrdersArr.fromMap(i));
+          listdeafultval.add(MOrdersArr.fromMap(i as Map<String, dynamic>));
         }
         loading2 = false;
         loading = false;

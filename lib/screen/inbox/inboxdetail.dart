@@ -183,7 +183,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
       setState(() {
         _file = null;
         for (Map i in friendsList) {
-          friendsLists.add(ConversationArr.fromMap(i));
+          friendsLists.add(ConversationArr.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });

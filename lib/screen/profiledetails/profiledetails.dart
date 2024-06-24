@@ -122,7 +122,7 @@ print(response);
       var recents = jsonDecode(data)['content']['rViews'] as List;
       setState(() {
         for (Map i in recents) {
-          listreviews.add(RView.fromMap(i));
+          listreviews.add(RView.fromMap(i as Map<String, dynamic>));
         }
 
         loading = false;
@@ -150,7 +150,7 @@ print(response);
       var listsCArr = jsonDecode(data)['content']['pDetails'] as List;
       setState(() {
         for (Map i in listsCArr) {
-          listdata.add(PDetail.fromMap(i));
+          listdata.add(PDetail.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });

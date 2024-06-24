@@ -45,7 +45,7 @@ class _OthersState extends State<Others> {
       linkdata = jsonDecode(dataapinfo)['content']['app_info'][0]['app_link'];
       setState(() {
         for (Map i in datalist) {
-          apiinforlist.add(AppInfo.fromMap(i));
+          apiinforlist.add(AppInfo.fromMap(i as Map<String, dynamic>));
         }
       });
     }
@@ -70,7 +70,7 @@ class _OthersState extends State<Others> {
       print(listservices);
       setState(() {
         for (Map i in listservices) {
-          listService.add(MProfile.fromMap(i));
+          listService.add(MProfile.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });

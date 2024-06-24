@@ -20,7 +20,7 @@ class _manageeqState extends State<manageeq> {
   List<StatusArr> listSCArr = [];
   List<MRequestsArr> listvalues = [];
   List<MRequestsArr> listdeafultval = [];
-  String items;
+  String? items;
   var loading = false;
   var loading2= false;
   Future<Null> getListViewItems(String items) async{
@@ -37,7 +37,7 @@ class _manageeqState extends State<manageeq> {
     print(listvalue);
     setState(() {
       for (Map i in listvalue) {
-        listvalues.add(MRequestsArr.fromMap(i));
+        listvalues.add(MRequestsArr.fromMap(i as Map<String, dynamic>));
       }
       loading2 = false;
     });
@@ -47,7 +47,7 @@ class _manageeqState extends State<manageeq> {
   Future<Null> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print(token);
     setState(() {
@@ -64,10 +64,10 @@ class _manageeqState extends State<manageeq> {
 print(listdeafult);
       setState(() {
         for (Map i in listsCArr) {
-          listSCArr.add(StatusArr.fromMap(i));
+          listSCArr.add(StatusArr.fromMap(i as Map<String, dynamic>));
         }
         for (Map i in listdeafult) {
-          listdeafultval.add(MRequestsArr.fromMap(i));
+          listdeafultval.add(MRequestsArr.fromMap(i as Map<String, dynamic>));
         }
 
         loading2 = false;
@@ -82,7 +82,7 @@ print(listdeafult);
     print(requestId);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print(baseurl + version  + manage);
     final responseData = await http.post(Uri.parse(baseurl + version  + requestlink),
@@ -120,7 +120,7 @@ print(listdeafult);
     // TODO: implement initState
     super.initState();
     getData();
-    getListViewItems(items);
+    getListViewItems(items!);
   }
 
   _onSelected(int index) {
@@ -175,7 +175,7 @@ print(listdeafult);
                             height: 80,
                             alignment: const Alignment(0.0, 1.0),
                             child: Text(
-                              "${nDataList.requestStatus.substring(0,1).toUpperCase()}${nDataList.requestStatus.substring(1)} (${nDataList.count})",
+                              "${nDataList.requestStatus!.substring(0,1).toUpperCase()}${nDataList.requestStatus!.substring(1)} (${nDataList.count})",
                               style: TextStyle(
                                 color: _selectedIndex == i
                                     ? primarycolor
@@ -188,7 +188,7 @@ print(listdeafult);
                         ),
                       ),
                       onTap: () {
-                        getListViewItems(nDataList.requestStatus);
+                        getListViewItems(nDataList.requestStatus!);
 
                         _onSelected(i);
                       },
@@ -244,14 +244,14 @@ print(listdeafult);
                                                       Container(
                                                           width: MediaQuery.of(context).size.width/2.5,
                                                           margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
-                                                          child: Text(datacard2.requestDate)),
+                                                          child: Text(datacard2.requestDate!)),
                                                       Container(
 
                                                           width: MediaQuery.of(context).size.width/3,
                                                           margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
                                                           child: Container( color: primarycolor[500],
                                                               padding: const EdgeInsets.all(3),
-                                                              child: Text(datacard2.requestStatus.toUpperCase(),style: const TextStyle(
+                                                              child: Text(datacard2.requestStatus!.toUpperCase(),style: const TextStyle(
                                                                 color: Colors.white,
 
                                                                 fontSize: 14,
@@ -263,7 +263,7 @@ print(listdeafult);
                                                             icon: const Icon(Icons.clear),
                                                             color: Colors.grey,
                                                             onPressed: () {
-                                                              active(datacard2.requestId,"delete");
+                                                              active(datacard2.requestId!,"delete");
 
                                                               getListViewItems("active");
                                                             },
@@ -279,7 +279,7 @@ print(listdeafult);
                                                       color: Colors.grey[200],
                                                         margin:  const EdgeInsets.only(bottom: 8),
                                                         width: MediaQuery.of(context).size.width/1.2,
-                                                        child: Text(datacard2.requestDescription)),
+                                                        child: Text(datacard2.requestDescription!)),
                                                     ],
                                                   ),
                                                   datacard2.deliveryDuration != null  ? Row(
@@ -299,7 +299,7 @@ print(listdeafult);
 
                                                                   fontSize: 16,
                                                                 ),),
-                                                                Text(datacard2.deliveryDuration,style: const TextStyle(
+                                                                Text(datacard2.deliveryDuration!,style: const TextStyle(
                                                                   color: Colors.black,
 
                                                                   fontSize: 16,
@@ -316,7 +316,7 @@ print(listdeafult);
                                                         child:  TextButton(
                                                           child: const Center (child: Text('NO OFFER YET')),
                                                           onPressed: () {
-                                                            active(datacard2.requestId,"pause");
+                                                            active(datacard2.requestId!,"pause");
                                                             getData();
                                                             getListViewItems("active");
                                                           },
@@ -334,7 +334,7 @@ print(listdeafult);
                                                               child: Text('Active')
                                                           ),
                                                           onPressed: () {
-                                                            active(datacard2.requestId, "active");
+                                                            active(datacard2.requestId!, "active");
                                                             getData();
                                                             getListViewItems("active");
                                                           },
@@ -344,7 +344,7 @@ print(listdeafult);
                                                         child: TextButton(
                                                           child: const Center (child: Text('Dalete')),
                                                           onPressed: () {
-                                                            active(datacard2.requestId,"delete");
+                                                            active(datacard2.requestId!,"delete");
                                                             getData();
                                                             getListViewItems("active");
                                                           },
@@ -358,7 +358,7 @@ print(listdeafult);
                                                         child: TextButton(
                                                           child: const Center (child: Text('Dalete')),
                                                           onPressed: () {
-                                                            active(datacard2.requestId,"delete");
+                                                            active(datacard2.requestId!,"delete");
                                                             getData();
                                                             getListViewItems("active");
                                                           },
@@ -372,7 +372,7 @@ print(listdeafult);
                                                         child: TextButton(
                                                           child: const Center (child: Text('Dalete')),
                                                           onPressed: () {
-                                                            active(datacard2.requestId,"delete");
+                                                            active(datacard2.requestId!,"delete");
                                                             getData();
                                                             getListViewItems("active");
                                                           },
@@ -424,14 +424,14 @@ print(listdeafult);
                                                       Container(
                                                           width: MediaQuery.of(context).size.width/2.5,
                                                           margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
-                                                          child: Text(datacard.requestDate)),
+                                                          child: Text(datacard.requestDate!)),
                                                       Container(
 
                                                           width: MediaQuery.of(context).size.width/3,
                                                           margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
                                                           child: Container( color: primarycolor[500],
                                                               padding: const EdgeInsets.all(3),
-                                                              child: Text(datacard.requestStatus.toUpperCase(),style: const TextStyle(
+                                                              child: Text(datacard.requestStatus!.toUpperCase(),style: const TextStyle(
                                                                 color: Colors.white,
 
                                                                 fontSize: 14,
@@ -443,7 +443,7 @@ print(listdeafult);
                                                             icon: const Icon(Icons.clear),
                                                             color: Colors.grey,
                                                             onPressed: () {
-                                                              active(datacard.requestId,"delete");
+                                                              active(datacard.requestId!,"delete");
 
                                                               getListViewItems("active");
                                                             },
@@ -459,7 +459,7 @@ print(listdeafult);
                                                           color: Colors.grey[200],
                                                           margin:  const EdgeInsets.only(bottom: 8),
                                                           width: MediaQuery.of(context).size.width/1.2,
-                                                          child: Text(datacard.requestDescription)),
+                                                          child: Text(datacard.requestDescription!)),
                                                     ],
                                                   ),
                                                   datacard.deliveryDuration != null  ? Row(
@@ -479,7 +479,7 @@ print(listdeafult);
 
                                                                   fontSize: 16,
                                                                 ),),
-                                                                Text(datacard.deliveryDuration,style: const TextStyle(
+                                                                Text(datacard.deliveryDuration!,style: const TextStyle(
                                                                   color: Colors.black,
 
                                                                   fontSize: 16,
@@ -496,7 +496,7 @@ print(listdeafult);
                                                         child:  TextButton(
                                                           child: const Center (child: Text('NO OFFER YET')),
                                                           onPressed: () {
-                                                            active(datacard.requestId,"pause");
+                                                            active(datacard.requestId!,"pause");
                                                             getListViewItems("active");
                                                           },
                                                         ),),
@@ -512,7 +512,7 @@ print(listdeafult);
                                                           child: const Center (
                                                               child: Text('Active')),
                                                           onPressed: () {
-                                                            active(datacard.requestId, "active");
+                                                            active(datacard.requestId!, "active");
                                                             getListViewItems("active");
                                                           },
                                                         ),),
@@ -529,7 +529,7 @@ print(listdeafult);
                                                               child: Text('Active')
                                                           ),
                                                           onPressed: () {
-                                                            active(datacard.requestId, "active");
+                                                            active(datacard.requestId!, "active");
                                                             getListViewItems("active");
                                                           },
                                                         ),),
@@ -543,7 +543,7 @@ print(listdeafult);
                                                         child: TextButton(
                                                           child: const Center (child: Text('Dalete')),
                                                           onPressed: () {
-                                                            active(datacard.requestId,"delete");
+                                                            active(datacard.requestId!,"delete");
                                                             getListViewItems("active");
                                                           },
                                                         ),),

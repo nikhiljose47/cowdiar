@@ -137,22 +137,22 @@ class _HomeState extends State<Home> {
       var datalist = jsonDecode(dataapinfo)['content']['app_info']  as List;
       setState(() {
         for (Map i in customervalue) {
-          customlist.add(ODetail.fromMap(i));
+          customlist.add(ODetail.fromMap(i as Map<String, dynamic>));
         }
         for (Map i in datalist) {
-          apiinforlist.add(AppInfo.fromMap(i));
+          apiinforlist.add(AppInfo.fromMap(i as Map<String, dynamic>));
         }
         for (Map i in listservices) {
-          listService.add(PService.fromMap(i));
+          listService.add(PService.fromMap(i as Map<String, dynamic>));
         }
         for (Map i in listpalces) {
-          listplaces.add(MPlace.fromMap(i));
+          listplaces.add(MPlace.fromMap(i as Map<String, dynamic>));
         }
         for (Map i in recent) {
-          listreview.add(RView.fromMap(i));
+          listreview.add(RView.fromMap(i as Map<String, dynamic>));
         }
         for (Map i in flistvalue) {
-          firtlist.add(FProposal.fromMap(i));
+          firtlist.add(FProposal.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });

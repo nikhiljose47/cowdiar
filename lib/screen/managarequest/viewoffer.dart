@@ -20,7 +20,7 @@ class _viewofferState extends State<viewoffer> {
   Future<Null> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print(token);
     setState(() {
@@ -39,10 +39,10 @@ class _viewofferState extends State<viewoffer> {
       print(offerdetails);
       setState(() {
         for (Map i in offerdetails) {
-          offerlistdata.add(RDetail.fromMap(i));
+          offerlistdata.add(RDetail.fromMap(i as Map<String, dynamic>));
         }
         for (Map i in productdetails) {
-          productlistdata.add(ODetail.fromMap(i));
+          productlistdata.add(ODetail.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });
@@ -126,7 +126,7 @@ class _viewofferState extends State<viewoffer> {
                                                 Container(
                                                     width: MediaQuery.of(context).size.width/1.2,
                                                     margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
-                                                    child: Text(datacard2.requestTitle)),
+                                                    child: Text(datacard2.requestTitle!)),
 
                                               ],
                                             ),
@@ -225,7 +225,7 @@ class _viewofferState extends State<viewoffer> {
                                     width: MediaQuery.of(context).size.width/1.2,
                                      height: MediaQuery.of(context).size.height/5,
                                       decoration: BoxDecoration(
-                                          image: DecorationImage(image: NetworkImage(datacard2.offerImage),
+                                          image: DecorationImage(image: NetworkImage(datacard2.offerImage!),
                                               fit: BoxFit.cover)
 
                                       ),
@@ -238,7 +238,7 @@ class _viewofferState extends State<viewoffer> {
 
                                                       width: MediaQuery.of(context).size.width/1.2,
                                                       margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
-                                                      child: Text(datacard2.offerTitle)),
+                                                      child: Text(datacard2.offerTitle!)),
 
                                                 ],
                                               ),
@@ -248,7 +248,7 @@ class _viewofferState extends State<viewoffer> {
                                                   Container(
                                                       margin:  const EdgeInsets.only(bottom: 8),
                                                       width: MediaQuery.of(context).size.width/1.2,
-                                                      child: Text(datacard2.offerDescription)),
+                                                      child: Text(datacard2.offerDescription!)),
                                                 ],
                                               ),
                                               Row(

@@ -31,13 +31,13 @@ class _categoryState extends State<category> {
       var subcat = jsonDecode(data)['content']['cArr'][0]['sCArr'] as List;
       setState(() {
         for (Map i in listservices) {
-          listService.add(CArr.fromMap(i));
+          listService.add(CArr.fromMap(i as Map<String, dynamic>));
           //print(listservices);
 
         }
 
         for (Map i in subcat) {
-          listsubcat.add(SCArr.fromMap(i));
+          listsubcat.add(SCArr.fromMap(i as Map<String, dynamic>));
           //print(listsubcat);
         }
         loading = false;

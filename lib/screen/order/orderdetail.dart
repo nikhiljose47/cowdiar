@@ -147,10 +147,10 @@ class _orderpageState extends State<orderpage> {
       setState(() {
         _file = null;
         for (Map i in listorders) {
-          listorder.add(ODetail.fromMap(i));
+          listorder.add(ODetail.fromMap(i as Map<String, dynamic>));
         }
         for (Map i in friendsList) {
-          friendsLists.add(ConversationArr.fromMap(i));
+          friendsLists.add(ConversationArr.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });

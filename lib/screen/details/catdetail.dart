@@ -34,7 +34,7 @@ class _catdetailState extends State<catdetail> {
 
       setState(() {
         for (Map i in listplists) {
-          listplist.add(PList.fromMap(i));
+          listplist.add(PList.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });

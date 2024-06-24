@@ -36,7 +36,7 @@ class _subcatDetailsState extends State<subcatDetails> {
       setState(() {
         print("object");
         for (Map i in listsCArr) {
-          listSCArr.add(SCArr.fromMap(i));
+          listSCArr.add(SCArr.fromMap(i as Map<String, dynamic>));
         }
         topimage = jsonDecode(data)['content']['bImage'];
         loading = false;

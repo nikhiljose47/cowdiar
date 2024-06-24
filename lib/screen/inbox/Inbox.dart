@@ -42,7 +42,7 @@ class _InboxpageState extends State<Inboxpage> {
       print(listsCArr);
       setState(() {
         for (Map i in listsCArr) {
-          listSCArr.add(InboxArr.fromMap(i));
+          listSCArr.add(InboxArr.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });
