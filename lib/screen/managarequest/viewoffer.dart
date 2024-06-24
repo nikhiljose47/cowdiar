@@ -20,7 +20,7 @@ class _viewofferState extends State<viewoffer> {
   Future<Null> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token")!!;
+      token = preferences.getString("token")!;
     });
     print(token);
     setState(() {

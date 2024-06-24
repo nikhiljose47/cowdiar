@@ -72,7 +72,7 @@ class _NotificationspageState extends State<Notifications> {
     if(value=="1"){
       loginToast(message);
       listSCArr.clear();
-      getData(choice);
+      getData(choice!);
     }
     else{
       loginToast(message);
@@ -103,7 +103,7 @@ class _NotificationspageState extends State<Notifications> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getData(choice);
+    getData(choice!);
 
   }
   Widget slideRightBackground() {
@@ -172,7 +172,7 @@ class _NotificationspageState extends State<Notifications> {
               return Constants.choices.map((String choice){
                 return PopupMenuItem<String>(
                   value: choice,
-                  child: Text(choice!),
+                  child: Text(choice),
                 );
               }).toList();
             },
@@ -186,10 +186,10 @@ class _NotificationspageState extends State<Notifications> {
           itemCount: listSCArr.length,
           itemBuilder: (context, i) {
             final nDataList = listSCArr[i];
-            String fName =  nDataList.onlineStatus;
+            String fName =  nDataList.onlineStatus!;
             print(fName);
             return Dismissible(
-                key: Key(nDataList.senderName),
+                key: Key(nDataList.senderName!),
                 background: slideRightBackground(),
                 secondaryBackground: slideLeftBackground(),
                 confirmDismiss: (direction) async {
@@ -218,7 +218,7 @@ class _NotificationspageState extends State<Notifications> {
                                 onPressed: () {
                                   // TODO: Delete the item from DB etc..
                                   setState(() {
-                                    action(nDataList.notificationId,"unread");
+                                    action(nDataList.notificationId!,"unread");
                                   });
                                   Navigator.of(context).pop();
                                 },
@@ -256,7 +256,7 @@ class _NotificationspageState extends State<Notifications> {
                                 onPressed: () {
                                   // TODO: Delete the item from DB etc..
                                   setState(() {
-                                    action(nDataList.notificationId,"unread");
+                                    action(nDataList.notificationId!,"unread");
                                   });
                                   Navigator.of(context).pop();
                                 },
@@ -285,7 +285,7 @@ class _NotificationspageState extends State<Notifications> {
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
                                         fit: BoxFit.fill,
-                                        image: NetworkImage(nDataList.senderImage)
+                                        image: NetworkImage(nDataList.senderImage!)
                                     )
                                 ),
                                 child: Stack(
@@ -325,14 +325,14 @@ class _NotificationspageState extends State<Notifications> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Text(
-                                          nDataList.senderName,
+                                          nDataList.senderName!,
                                           style: const TextStyle(
                                               fontWeight: FontWeight.w400,
                                               color: Colors.black87,
                                               fontSize: 17.0),
                                         ),
                                         Text(
-                                          nDataList.dateTime,
+                                          nDataList.dateTime!,
                                           style: const TextStyle(
                                               fontWeight: FontWeight.w400,
                                               color: Colors.black54,
@@ -350,7 +350,7 @@ class _NotificationspageState extends State<Notifications> {
                                             SizedBox(
                                               width: MediaQuery.of(context).size.width/1.4,
                                               child: Text(
-                                                nDataList.message,
+                                                nDataList.message!,
                                                 style: const TextStyle(
                                                     fontWeight: FontWeight.w400,
                                                     color: Colors.black54,

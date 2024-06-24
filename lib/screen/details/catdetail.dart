@@ -90,7 +90,7 @@ class _catdetailState extends State<catdetail> {
                                 widget.prelink, widget.pretitle))),
                   )
                 : true,
-        title: Text(widget.title!),
+        title: Text(widget.title),
         centerTitle: true,
       ),
       body: loading
@@ -118,7 +118,7 @@ class _catdetailState extends State<catdetail> {
                                   color: Colors.grey,
                                   image: DecorationImage(
                                     image: NetworkImage(
-                                      nplacesList.postImage,
+                                      nplacesList.postImage!,
                                     ),
                                     fit: BoxFit.cover,
                                   ),
@@ -203,7 +203,7 @@ class _catdetailState extends State<catdetail> {
                                                 ),
                                               )
                                             : Text(
-                                                nplacesList.title,
+                                                nplacesList.title!,
                                                 style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 14,

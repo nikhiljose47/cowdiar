@@ -441,7 +441,7 @@ class _RegisterState extends State<Register> {
                                               children: [
                                                 Expanded(
                                                   flex: 5,
-                                                  child: Text(dropdownValue!,
+                                                  child: Text(dropdownValue,
                                                       textAlign:
                                                           TextAlign.right,
                                                       style: const TextStyle(

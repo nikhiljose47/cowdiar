@@ -55,7 +55,7 @@ class _manageorderState extends State<manageorder> {
   Future<Null> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token")!!;
+      token = preferences.getString("token")!;
     });
     print(token);
 

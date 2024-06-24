@@ -1071,7 +1071,7 @@ class _HomeState extends State<Home> {
                               padding: const EdgeInsets.only(top:0),
                               alignment: const Alignment(0.0, -0.7),
                               child: Text(
-                                nDataList.title,
+                                nDataList.title!,
                                 style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),textAlign: TextAlign.center,

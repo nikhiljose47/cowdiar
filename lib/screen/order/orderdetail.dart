@@ -30,7 +30,7 @@ class _orderpageState extends State<orderpage> {
   final TextEditingController _controller = TextEditingController();
   Color myGreen = const Color(0xff4bb17b);
 
-  var? textvalue;
+  var textvalue;
   List<ODetail> listorder = [];
   List<ConversationArr> friendsLists = [];
   var loading = false;
@@ -38,8 +38,8 @@ class _orderpageState extends State<orderpage> {
   String token = "";
 
   Future getFile() async {
-        FilePickerResult result = await FilePicker.platform.pickFiles();
-    File file = File(result.files.single.path);
+        FilePickerResult? result = await FilePicker.platform.pickFiles();
+    File file = File(result!.files.single.path!);
 
     setState(() {
       _file = file;
@@ -48,7 +48,7 @@ class _orderpageState extends State<orderpage> {
 
   void _uploadFile(filePath) async {
     final form = _key.currentState;
-    form.save();
+    form!.save();
 
     print("textvalue");
     print(textvalue);
@@ -197,7 +197,7 @@ class _orderpageState extends State<orderpage> {
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height / 1.1,
                   child: const Center(child: CircularProgressIndicator()))
-              : Container(child: Center(child: Text(listorder[0].postTitle))),
+              : Container(child: Center(child: Text(listorder[0].postTitle!))),
         ),
         body: loading
             ? const Center(
@@ -217,7 +217,7 @@ class _orderpageState extends State<orderpage> {
                             children: <Widget>[
                               Center(
                                   child: Text(
-                                datacard.postTitle,
+                                datacard.postTitle!,
                                 style: const TextStyle(
                                   color: primarycolor,
                                   fontSize: 16,
@@ -231,7 +231,7 @@ class _orderpageState extends State<orderpage> {
                                     width:
                                         MediaQuery.of(context).size.width / 1.1,
                                     child: Center(
-                                      child: Image.network(datacard.postImage),
+                                      child: Image.network(datacard.postImage!),
                                     ),
                                   ),
                                 ],
@@ -253,7 +253,7 @@ class _orderpageState extends State<orderpage> {
                                           ),
                                         ),
                                         Text(
-                                          datacard.sellerName,
+                                          datacard.sellerName!,
                                           style: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
@@ -391,7 +391,7 @@ class _orderpageState extends State<orderpage> {
                                                       left: 20),
                                                   child: Center(
                                                       child: Text(
-                                                    datacard.postTitle,
+                                                    datacard.postTitle!,
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16,
@@ -406,7 +406,7 @@ class _orderpageState extends State<orderpage> {
                                                       4.6,
                                                   child: Center(
                                                       child: Text(
-                                                    datacard.orderDuration,
+                                                    datacard.orderDuration!,
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16,
@@ -421,7 +421,7 @@ class _orderpageState extends State<orderpage> {
                                                       4.6,
                                                   child: Center(
                                                       child: Text(
-                                                    datacard.itemPrice,
+                                                    datacard.itemPrice!,
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16,
@@ -481,7 +481,7 @@ class _orderpageState extends State<orderpage> {
                                                       4.6,
                                                   child: Center(
                                                       child: Text(
-                                                    datacard.orderFee,
+                                                    datacard.orderFee!,
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16,
@@ -532,7 +532,7 @@ class _orderpageState extends State<orderpage> {
                                                       4.6,
                                                   child: Center(
                                                       child: Text(
-                                                    datacard.orderPrice,
+                                                    datacard.orderPrice!,
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16,
@@ -578,7 +578,7 @@ class _orderpageState extends State<orderpage> {
                                                       fit: BoxFit.fill,
                                                       image: NetworkImage(
                                                           listcat
-                                                              .senderImage)))),
+                                                              .senderImage!)))),
                                           title: Container(
                                               padding: const EdgeInsets.only(
                                                   top: 10, bottom: 0),
@@ -591,7 +591,7 @@ class _orderpageState extends State<orderpage> {
                                                       padding: const EdgeInsets.only(
                                                           right: 10),
                                                       child: Text(
-                                                        listcat.senderName,
+                                                        listcat.senderName!,
                                                         style: const TextStyle(
                                                           color: Colors.black,
                                                           fontSize: 16,
@@ -600,7 +600,7 @@ class _orderpageState extends State<orderpage> {
                                                     ),
                                                     Container(
                                                         child: Text(
-                                                      listcat.dateTime,
+                                                      listcat.dateTime!,
                                                       style: const TextStyle(
                                                         color: Colors.grey,
                                                         fontSize: 14,
@@ -608,7 +608,7 @@ class _orderpageState extends State<orderpage> {
                                                     )),
                                                   ]),
                                                   Text(
-                                                    listcat.message,
+                                                    listcat.message!,
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16,
@@ -617,7 +617,7 @@ class _orderpageState extends State<orderpage> {
                                                   listcat.filetype ==
                                                               null
                                                       ? Text(
-                                                          listcat.filename,
+                                                          listcat.filename!,
                                                           style: const TextStyle(
                                                             color: Colors.black,
                                                             fontSize: 16,
@@ -636,7 +636,7 @@ class _orderpageState extends State<orderpage> {
                                                                       .fill,
                                                                   image: NetworkImage(
                                                                       listcat
-                                                                          .file))))
+                                                                          .file!))))
                                                       : Container(
                                                           height: 0,
                                                         ),

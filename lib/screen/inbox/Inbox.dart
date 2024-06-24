@@ -174,7 +174,7 @@ class _InboxpageState extends State<Inboxpage> {
               return Constants.choices.map((String choice){
                 return PopupMenuItem<String>(
                   value: choice,
-                  child: Text(choice!),
+                  child: Text(choice),
                 );
               }).toList();
             },
@@ -334,7 +334,7 @@ class _InboxpageState extends State<Inboxpage> {
                                                   fontSize: 17.0),
                                             ),
                                             Text(
-                                              nDataList.dateTime,
+                                              nDataList.dateTime!,
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   color: Colors.black54,
@@ -358,7 +358,7 @@ class _InboxpageState extends State<Inboxpage> {
                                                       .size
                                                       .width / 1.8,
                                                   child: Text(
-                                                    nDataList.senderMessage,
+                                                    nDataList.senderMessage!,
                                                     style: const TextStyle(
                                                         fontWeight: FontWeight.w400,
                                                         color: Colors.black54,

@@ -82,7 +82,7 @@ class _subcatDetailsState extends State<subcatDetails> {
               onPressed: () =>  Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (BuildContext context) => const category())),
             ),
-          title: Text(widget.title!),
+          title: Text(widget.title),
           centerTitle: true,
 
         ),

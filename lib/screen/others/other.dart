@@ -272,13 +272,13 @@ class _OthersState extends State<Others> {
                                   child: CircleAvatar(
                                     radius: 35.0,
                                     backgroundImage:
-                                        NetworkImage(datacard.sellerImage),
+                                        NetworkImage(datacard.sellerImage!),
                                   ),
                                 ),
                                 const SizedBox(height: 7),
                                 Center(
                                   child: Text(
-                                    datacard.sellerName,
+                                    datacard.sellerName!,
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 18,
@@ -529,7 +529,7 @@ class _OthersState extends State<Others> {
                   trailing: const Icon(Icons.keyboard_arrow_right),
                   onTap: () {
                     final RenderBox box = context.findRenderObject();
-                    Share.share(linkdata,
+                    Share.share(linkdata!,
                         sharePositionOrigin:
                             box.localToGlobal(Offset.zero) & box.size);
                   },

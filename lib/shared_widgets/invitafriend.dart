@@ -1,5 +1,5 @@
 import 'dart:convert';
-Platform;
+import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:cowdiar/services/api.dart';
@@ -29,11 +29,11 @@ myBoxDecorationfirst() {
 class _invitePage extends State<invitePage> {
   List<AppInfo> apiinforlist = [];
   String? linkdata;
-  Uri s;
+  Uri? s;
 
   Future<Null> getData() async {
     //final responseDataappinfo = await http.post( Uri.parse(baseurl + version + sitedetails), body:{'mobile_type':Platform.isAndroid?'android':'ios'});
-    final responseDataappinfo = await http.post(s, body:{'mobile_type':Platform.isAndroid?'android':'ios'});
+    final responseDataappinfo = await http.post(s!, body:{'mobile_type': Platform.isAndroid ?'android':'ios'});
 
     if (responseDataappinfo.statusCode == 200) {
       final dataapinfo = responseDataappinfo.body;
@@ -82,11 +82,12 @@ margin: const EdgeInsets.only(left: 5.0,right: 5.0),
                 ElevatedButton(
                   onPressed: ()
                     {
-                      final RenderBox box = context.findRenderObject();
-                      Share.share(linkdata,
-                          sharePositionOrigin:
-                          box.localToGlobal(Offset.zero) &
-                          box.size);
+                      final RenderObject box = context.findRenderObject()!;
+                      Share.share(linkdata!,
+                          // sharePositionOrigin:
+                          // box.localToGlobal(Offset.zero) &
+                          // box.size
+                          );
                     },
                   child: const Text(
                     "INVITE",

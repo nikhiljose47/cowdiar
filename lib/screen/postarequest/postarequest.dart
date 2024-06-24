@@ -24,7 +24,7 @@ class _postarequestState extends State<postarequest> {
   String token = "";
   List<SCArr> listsubcat = [];
   var loading = false;
-  String _mySelection, _mySelection2,_mySelectiondata,datacurrenct;
+  String? _mySelection, _mySelection2,_mySelectiondata,datacurrenct;
   String? newVal;
   final _key = GlobalKey<FormState>();
   String? selectedCountry;
@@ -32,11 +32,11 @@ class _postarequestState extends State<postarequest> {
   FocusNode descriptionnode = FocusNode();
   FocusNode delivertimenode = FocusNode();
   FocusNode budgetnode = FocusNode();
-  String title,description,delivertime,budget;
+  String? title,description,delivertime,budget;
 
   check() {
     final form = _key.currentState;
-    if (form.validate()) {
+    if (form!.validate()) {
       form.save();
       save();
     }
@@ -64,7 +64,7 @@ class _postarequestState extends State<postarequest> {
       "request_title": title,
       "request_description": description,
       "delivery_time": _mySelectiondata,
-      "request_budget":datacurrenct + budget,
+      "request_budget":datacurrenct! + budget!,
     } , headers: {'Auth': token});
 
     final data = response.body;
@@ -134,7 +134,7 @@ class _postarequestState extends State<postarequest> {
   }
   Future<Null> getDatas() async {
     listsubcat.clear();
-    final responseDatas = await http.get(Uri.parse(baseurl+version+subcatlink + _mySelection)
+    final responseDatas = await http.get(Uri.parse(baseurl+version+subcatlink + _mySelection!)
          );
     final datas = responseDatas.body;
     var subcat = jsonDecode(datas)['content']['sCArr'] as List;
@@ -191,7 +191,7 @@ class _postarequestState extends State<postarequest> {
                                   width: 1.0,
                                 ),
                                 top: BorderSide(
-                                  color: primarycolor[100],
+                                  color: primarycolor[100]!,
                                   width: 1.0,
                                 ),
                               ),),
@@ -215,12 +215,12 @@ class _postarequestState extends State<postarequest> {
 
                                   focusNode: titlenode,
                                   validator: (e) {
-                                    if (e.isEmpty) {
+                                    if (e!.isEmpty) {
                                       Text txt = const Text("Please Enter Description",
                                           textAlign: TextAlign.center,
                                           textDirection: TextDirection.ltr);
                                       var fullname = txt.data;
-                                      return? fullname;
+                                      return fullname;
                                     }
                                     return null;
                                   },
@@ -255,11 +255,11 @@ class _postarequestState extends State<postarequest> {
 
                               border: Border(
                                 bottom: BorderSide(
-                                  color: primarycolor[100],
+                                  color: primarycolor[100]!,
                                   width: 1.0,
                                 ),
                                 top: BorderSide(
-                                  color: primarycolor[100],
+                                  color: primarycolor[100]!,
                                   width: 1.0,
                                 ),
                               ),),
@@ -282,7 +282,7 @@ class _postarequestState extends State<postarequest> {
 
                                   focusNode: descriptionnode,
                                   validator: (e) {
-                                    if (e.isEmpty) {
+                                    if (e!.isEmpty) {
                                       Text txt = const Text("Please Enter Description",
                                           textAlign: TextAlign.center,
                                           textDirection: TextDirection.ltr);
@@ -323,11 +323,11 @@ class _postarequestState extends State<postarequest> {
 
                               border: Border(
                                 bottom: BorderSide(
-                                  color: primarycolor[100],
+                                  color: primarycolor[100]!,
                                   width: 1.0,
                                 ),
                                 top: BorderSide(
-                                  color: primarycolor[100],
+                                  color: primarycolor[100]!,
                                   width: 1.0,
                                 ),
                               ),),
@@ -407,11 +407,11 @@ class _postarequestState extends State<postarequest> {
 
                               border: Border(
                                 bottom: BorderSide(
-                                  color: primarycolor[100],
+                                  color: primarycolor[100]!,
                                   width: 1.0,
                                 ),
                                 top: BorderSide(
-                                  color: primarycolor[100],
+                                  color: primarycolor[100]!,
                                   width: 1.0,
                                 ),
                               ),),
@@ -465,11 +465,11 @@ class _postarequestState extends State<postarequest> {
 
                               border: Border(
                                 bottom: BorderSide(
-                                  color: primarycolor[100],
+                                  color: primarycolor[100]!,
                                   width: 1.0,
                                 ),
                                 top: BorderSide(
-                                  color: primarycolor[100],
+                                  color: primarycolor[100]!,
                                   width: 1.0,
                                 ),
                               ),),
@@ -496,7 +496,7 @@ class _postarequestState extends State<postarequest> {
                                       ),
                                       width: MediaQuery.of(context).size.width/15,
                                       padding: const EdgeInsets.only(top: 29,bottom: 12),
-                                      child:Text(datacurrenct ,style: const TextStyle(
+                                      child:Text(datacurrenct! ,style: const TextStyle(
     color: Colors.black,
     fontSize: 18,
     fontWeight: FontWeight.w300,
@@ -509,7 +509,7 @@ class _postarequestState extends State<postarequest> {
                                       maxLines: 1,
                                       focusNode: budgetnode,
                                       validator: (e) {
-                                        if (e.isEmpty) {
+                                        if (e!.isEmpty) {
                                           Text txt = const Text("Please Enter budget",
                                               textAlign: TextAlign.center,
                                               textDirection: TextDirection.ltr);

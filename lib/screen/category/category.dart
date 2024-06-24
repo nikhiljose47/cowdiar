@@ -108,7 +108,7 @@ class _categoryState extends State<category> {
                                       padding: const EdgeInsets.all(10.0),
                                       child: Image(
                                         image: NetworkImage(
-                                          nDataList.image,
+                                          nDataList.image!,
                                         ),
                                         height: 30,
                                         width: 30,

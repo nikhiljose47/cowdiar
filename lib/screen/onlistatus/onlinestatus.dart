@@ -17,7 +17,7 @@ class onlinestatus extends StatefulWidget{
 }
 class _onlinestatusState extends State<onlinestatus> {
   String token = "";
-  String name,listservicesstus;
+  String? name,listservicesstus;
   bool? _isSwitched;
   var loading = false;
   getdata() async {
@@ -157,7 +157,7 @@ print(_isSwitched);
                   print(_isSwitched);
                   save();
                 },
-                value: _isSwitched ,
+                value: _isSwitched! ,
 
               ),
             )

@@ -102,7 +102,7 @@ class _LoginState extends State<Login> {
       }
     } else {
       var body;
-      var child;
+      Map<String, dynamic> child;
       if (validateEmail()) {
         child = {
           "email": userId,

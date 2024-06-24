@@ -821,7 +821,7 @@ print(response);
                                                     padding: const EdgeInsets.only(
                                                         left: 0),
                                                     child: Text(
-                                                      datapass.buyerName,
+                                                      datapass.buyerName!,
                                                       style: const TextStyle(),
                                                       textAlign: TextAlign.left,
                                                     )),
@@ -834,7 +834,7 @@ print(response);
                                                     ),
                                                     Container(
                                                       child: Text(
-                                                          datapass.buyerRating,
+                                                          datapass.buyerRating!,
                                                           style: const TextStyle(
                                                             color:
                                                                 Colors.orange,
@@ -859,7 +859,7 @@ print(response);
                                                 ),
                                                 Container(
                                                   child: Text(
-                                                      datapass.reviewDate,
+                                                      datapass.reviewDate!,
                                                       textAlign:
                                                           TextAlign.right),
                                                 ),
@@ -1359,7 +1359,7 @@ print(response);
                                                             TextAlign.left,
                                                       )
                                                     : Text(
-                                                        datapass.title,
+                                                        datapass.title!,
                                                         style: const TextStyle(
                                                           fontSize: 18,
                                                           fontWeight:
@@ -1441,7 +1441,7 @@ print(response);
                                                   //                   }),
                                                   //       ]))
                                                   : Text(
-                                                      datapass.description,
+                                                      datapass.description!,
                                                     ),
                                             ),
                                             readmore

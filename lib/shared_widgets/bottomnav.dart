@@ -1,10 +1,5 @@
-// Copyright 2016 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-Queue;
 import 'dart:math' as math;
-
+import 'dart:collection';
 import 'package:flutter/material.dart';
 
 const double _kActiveFontSize = 14.0;
@@ -135,16 +130,16 @@ class MyBottomNavigationBar extends StatefulWidget {
     this.items,
     this.onTap,
     this.currentIndex = 0,
-    MyBottomNavigationBarType type,
+    MyBottomNavigationBarType? type,
     this.fixedColor,
     this.iconSize = 24.0,
-  }) : assert(items.length >= 2),
+  }) : assert(items!.length >= 2),
         assert(
-        items.every((BottomNavigationBarItem item) => item.activeIcon != null) == true,  //N-item.title
+        items!.every((BottomNavigationBarItem item) => item.activeIcon != null) == true,  //N-item.title
         'Every item must have a non-null title',
         ),
-        assert(0 <= currentIndex && currentIndex < items.length),
-        type = type ?? (items.length <= 3 ? MyBottomNavigationBarType.fixed : MyBottomNavigationBarType.shifting);
+        assert(0 <= currentIndex! && currentIndex < items!.length),
+        type = type ?? (items!.length <= 3 ? MyBottomNavigationBarType.fixed : MyBottomNavigationBarType.shifting);
 
   /// The interactive items laid out within the bottom navigation bar where each item has an icon and title.
   final List<BottomNavigationBarItem>? items;
@@ -210,15 +205,16 @@ class _BottomNavigationTile extends StatelessWidget {
   Widget _buildIcon() {
     double? tweenStart;
     Color? iconColor;
-    switch (type) {
+    switch(type) {
       case MyBottomNavigationBarType.fixed:
         tweenStart = 8.0;
-        iconColor = colorTween.evaluate(animation);
+        iconColor = colorTween!.evaluate(animation!);
         break;
       case MyBottomNavigationBarType.shifting:
         tweenStart = 16.0;
         iconColor = Colors.white;
         break;
+      case null:
     }
     return Align(
       alignment: Alignment.topCenter,
@@ -226,10 +222,10 @@ class _BottomNavigationTile extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(
           /// 这里是改变图标top值产生动态的地方，直接返回固定值
-          top: type == MyBottomNavigationBarType.fixed ? tweenStart : Tween<double>(
+          top: type! == MyBottomNavigationBarType.fixed ? tweenStart! : Tween<double>(
             begin: tweenStart,
             end: _kTopMargin,
-          ).evaluate(animation),
+          ).evaluate(animation!),
 //          top: Tween<double>(
 //            begin: tweenStart,
 //            end: _kTopMargin,
@@ -240,7 +236,7 @@ class _BottomNavigationTile extends StatelessWidget {
             color: iconColor,
             size: iconSize,
           ),
-          child: selected ? item.activeIcon : item.icon,
+          child: selected! ? item!.activeIcon : item!.icon,
         ),
       ),
     );
@@ -255,14 +251,14 @@ class _BottomNavigationTile extends StatelessWidget {
         child: DefaultTextStyle.merge(
           style: TextStyle(
             fontSize: _kActiveFontSize,
-            color: colorTween.evaluate(animation),
+            color: colorTween!.evaluate(animation!),
           ),
           // The font size should grow here when active, but because of the way
           // font rendering works, it doesn't grow smoothly if we just animate
           // the font size, so we use a transform instead.
           /// 这里是放大字体的地方，直接返回weiget
           //N-item.title
-          child: item.activeIcon,
+          child: item!.activeIcon,
 //          child: Transform(
 //            transform: Matrix4.diagonal3(
 //              Vector3.all(
@@ -293,18 +289,18 @@ class _BottomNavigationTile extends StatelessWidget {
             // the bottom margin to take that into account.
             begin: 2.0,
             end: _kBottomMargin,
-          ).evaluate(animation),
+          ).evaluate(animation!),
         ),
         child: FadeTransition(
           alwaysIncludeSemantics: true,
-          opacity: animation,
+          opacity: animation!,
           child: DefaultTextStyle.merge(
             style: const TextStyle(
               fontSize: _kActiveFontSize,
               color: Colors.white,
             ),
             //N-item.title
-            child: item.activeIcon
+            child: item!.activeIcon
           ),
         ),
       ),
@@ -325,12 +321,13 @@ class _BottomNavigationTile extends StatelessWidget {
         label = _buildFixedLabel();
         break;
       case MyBottomNavigationBarType.shifting:
-        size = (flex * 1000.0).round();
+        size = (flex! * 1000.0).round();
         label = _buildShiftingLabel();
         break;
+      case null:
     }
     return Expanded(
-      flex: size,
+      flex: size!,
       child: Semantics(
         container: true,
         header: true,
@@ -345,7 +342,7 @@ class _BottomNavigationTile extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   _buildIcon(),
-                  label,
+                  label!,
                 ],
               ),
             ),
@@ -381,21 +378,21 @@ class _BottomNavigationBarState extends State<MyBottomNavigationBar> with Ticker
     }
     _circles.clear();
 
-    _controllers = List<AnimationController>.generate(widget.items.length, (int index) {
+    _controllers = List<AnimationController>.generate(widget.items!.length, (int index) {
       return AnimationController(
         duration: kThemeAnimationDuration,
         vsync: this,
       )..addListener(_rebuild);
     });
-    _animations = List<CurvedAnimation>.generate(widget.items.length, (int index) {
+    _animations = List<CurvedAnimation>.generate(widget.items!.length, (int index) {
       return CurvedAnimation(
         parent: _controllers[index],
         curve: Curves.fastOutSlowIn,
         reverseCurve: Curves.fastOutSlowIn.flipped,
       );
     });
-    _controllers[widget.currentIndex].value = 1.0;
-    _backgroundColor = widget.items[widget.currentIndex].backgroundColor;
+    _controllers[widget.currentIndex!].value = 1.0;
+    _backgroundColor = widget.items![widget.currentIndex!].backgroundColor;
   }
 
   @override
@@ -425,14 +422,14 @@ class _BottomNavigationBarState extends State<MyBottomNavigationBar> with Ticker
   double _evaluateFlex(Animation<double> animation) => _flexTween.evaluate(animation);
 
   void _pushCircle(int index) {
-    if (widget.items[index].backgroundColor != null) {
+    if (widget.items![index].backgroundColor != null) {
       _circles.add(
         _Circle(
           state: this,
           index: index,
-          color: widget.items[index].backgroundColor,
+          color: widget.items![index].backgroundColor,
           vsync: this,
-        )..controller.addStatusListener(
+        )..controller!.addStatusListener(
               (AnimationStatus status) {
             switch (status) {
               case AnimationStatus.completed:
@@ -458,24 +455,25 @@ class _BottomNavigationBarState extends State<MyBottomNavigationBar> with Ticker
     super.didUpdateWidget(oldWidget);
 
     // No animated segue if the length of the items list changes.
-    if (widget.items.length != oldWidget.items.length) {
+    if (widget.items!.length != oldWidget.items!.length) {
       _resetState();
       return;
     }
 
     if (widget.currentIndex != oldWidget.currentIndex) {
-      switch (widget.type) {
+      switch(widget.type) {
         case MyBottomNavigationBarType.fixed:
           break;
         case MyBottomNavigationBarType.shifting:
-          _pushCircle(widget.currentIndex);
+          _pushCircle(widget.currentIndex!);
           break;
+        case null:
       }
-      _controllers[oldWidget.currentIndex].reverse();
-      _controllers[widget.currentIndex].forward();
+      _controllers[oldWidget.currentIndex!].reverse();
+      _controllers[widget.currentIndex!].forward();
     } else {
-      if (_backgroundColor != widget.items[widget.currentIndex].backgroundColor) {
-        _backgroundColor = widget.items[widget.currentIndex].backgroundColor;
+      if (_backgroundColor != widget.items![widget.currentIndex!].backgroundColor) {
+        _backgroundColor = widget.items![widget.currentIndex!].backgroundColor;
       }
     }
   }
@@ -483,8 +481,7 @@ class _BottomNavigationBarState extends State<MyBottomNavigationBar> with Ticker
   List<Widget> _createTiles() {
     final MaterialLocalizations localizations = MaterialLocalizations.of(context);
     final List<Widget> children = <Widget>[];
-    switch (widget.type) {
-      case MyBottomNavigationBarType.fixed:
+    if(widget.type == MyBottomNavigationBarType.fixed ) {
         final ThemeData themeData = Theme.of(context);
         final TextTheme textTheme = themeData.textTheme;
         Color? themeColor;
@@ -496,47 +493,30 @@ class _BottomNavigationBarState extends State<MyBottomNavigationBar> with Ticker
             themeColor = themeData.colorScheme.secondary;
             break;
         }
+
         final ColorTween colorTween = ColorTween(
-          begin: textTheme.bodySmall.color,
+          begin: textTheme.bodySmall!.color,
           end: widget.fixedColor ?? themeColor,
         );
-        for (int i = 0; i < widget.items.length; i += 1) {
+        for (int i = 0; i < widget.items!.length; i += 1) {
           children.add(
             _BottomNavigationTile(
               widget.type,
-              widget.items[i],
-              _animations[i],
+              widget.items?[i],
+              _animations?[i],
               widget.iconSize,
               onTap: () {
-                widget.onTap(i);
+                widget.onTap!(i);
               },
               colorTween: colorTween,
               selected: i == widget.currentIndex,
-              indexLabel: localizations.tabLabel(tabIndex: i + 1, tabCount: widget.items.length),
+              indexLabel: localizations.tabLabel(tabIndex: i + 1, tabCount: widget.items!.length),
             ),
           );
         }
-        break;
-      case MyBottomNavigationBarType.shifting:
-        for (int i = 0; i < widget.items.length; i += 1) {
-          children.add(
-            _BottomNavigationTile(
-              widget.type,
-              widget.items[i],
-              _animations[i],
-              widget.iconSize,
-              onTap: () {
-                widget.onTap(i);
-              },
-              flex: _evaluateFlex(_animations[i]),
-              selected: i == widget.currentIndex,
-              indexLabel: localizations.tabLabel(tabIndex: i + 1, tabCount: widget.items.length),
-            ),
-          );
-        }
-        break;
+
     }
-    return? children;
+    return children;
   }
 
   Widget _createContainer(List<Widget> tiles) {
@@ -563,6 +543,7 @@ class _BottomNavigationBarState extends State<MyBottomNavigationBar> with Ticker
       case MyBottomNavigationBarType.shifting:
         backgroundColor = _backgroundColor;
         break;
+      case null:
     }
     return Semantics(
       container: true,
@@ -613,17 +594,17 @@ class _Circle {
      this.state,
      this.index,
      this.color,
-     TickerProvider vsync,
+     TickerProvider? vsync,
   }) {
     controller = AnimationController(
       duration: kThemeAnimationDuration,
-      vsync: vsync,
+      vsync: vsync!,
     );
     animation = CurvedAnimation(
-      parent: controller,
+      parent: controller!,
       curve: Curves.fastOutSlowIn,
     );
-    controller.forward();
+    controller!.forward();
   }
 
   final _BottomNavigationBarState? state;
@@ -636,19 +617,19 @@ class _Circle {
     double weightSum(Iterable<Animation<double>> animations) {
       // We're adding flex values instead of animation values to produce correct
       // ratios.
-      return animations.map<double>(state._evaluateFlex).fold<double>(0.0, (double sum, double value) => sum + value);
+      return animations.map<double>(state!._evaluateFlex).fold<double>(0.0, (double sum, double value) => sum + value);
     }
 
-    final double allWeights = weightSum(state._animations);
+    final double allWeights = weightSum(state!._animations!);
     // These weights sum to the start edge of the indexed item.
-    final double leadingWeights = weightSum(state._animations.sublist(0, index));
+    final double leadingWeights = weightSum(state!._animations!.sublist(0, index));
 
     // Add half of its flex value in order to get to the center.
-    return (leadingWeights + state._evaluateFlex(state._animations[index]) / 2.0) / allWeights;
+    return (leadingWeights + state!._evaluateFlex(state!._animations![index!]) / 2.0) / allWeights;
   }
 
   void dispose() {
-    controller.dispose();
+    controller!.dispose();
   }
 }
 
@@ -680,11 +661,11 @@ class _RadialPainter extends CustomPainter {
     if (circles == oldPainter.circles) {
       return false;
     }
-    if (circles.length != oldPainter.circles.length) {
+    if (circles!.length != oldPainter.circles!.length) {
       return true;
     }
-    for (int i = 0; i < circles.length; i += 1) {
-      if (circles[i] != oldPainter.circles[i]) {
+    for (int i = 0; i < circles!.length; i += 1) {
+      if (circles![i] != oldPainter.circles![i]) {
         return true;
     }
       }
@@ -693,8 +674,8 @@ class _RadialPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    for (_Circle circle in circles) {
-      final Paint paint = Paint()..color = circle.color;
+    for (_Circle circle in circles!) {
+      final Paint paint = Paint()..color = circle.color!;
       final Rect rect = Rect.fromLTWH(0.0, 0.0, size.width, size.height);
       canvas.clipRect(rect);
       double? leftFraction;
@@ -705,15 +686,16 @@ class _RadialPainter extends CustomPainter {
         case TextDirection.ltr:
           leftFraction = circle.horizontalLeadingOffset;
           break;
+        case null:
       }
-      final Offset center = Offset(leftFraction * size.width, size.height / 2.0);
+      final Offset center = Offset(leftFraction!* size.width, size.height / 2.0);
       final Tween<double> radiusTween = Tween<double>(
         begin: 0.0,
         end: _maxRadius(center, size),
       );
       canvas.drawCircle(
         center,
-        radiusTween.transform(circle.animation.value),
+        radiusTween.transform(circle.animation!.value),
         paint,
       );
     }

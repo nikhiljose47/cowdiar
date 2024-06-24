@@ -31,7 +31,7 @@ class catDetailPage extends StatelessWidget {
         Container(
           padding: const EdgeInsets.only(bottom: 20.00),
           child: Text(
-            cat.name,
+            cat.name!,
             style: const TextStyle(color: Colors.white, fontSize: 45.0),
           ),
         ),
@@ -73,7 +73,7 @@ class catDetailPage extends StatelessWidget {
           padding: const EdgeInsets.all(20.00),
           child: Center(
             child: Text(
-              cat.name,
+              cat.name!,
               style: const TextStyle(fontSize: 18.0),
             ),
           ),

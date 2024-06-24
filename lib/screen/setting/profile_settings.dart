@@ -392,7 +392,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                               (String value) {
                                         return DropdownMenuItem<String>(
                                           value: value,
-                                          child: Text(value!,
+                                          child: Text(value,
                                               style: TextStyle(
                                                 color: textColor,
                                                 fontSize: 16,
@@ -466,7 +466,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                           (String value) {
                                         return DropdownMenuItem<String>(
                                           value: value,
-                                          child: Text(value!,
+                                          child: Text(value,
                                               style: TextStyle(
                                                 color: textColor,
                                                 fontSize: 16,
@@ -515,7 +515,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                           (String value) {
                                         return DropdownMenuItem<String>(
                                           value: value,
-                                          child: Text(value!,
+                                          child: Text(value,
                                               style: TextStyle(
                                                 color: textColor,
                                                 fontSize: 16,

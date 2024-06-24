@@ -24,7 +24,7 @@ class _helpState extends State<help>{
               Icon(
                 IconData(iconcode,fontFamily: 'MaterialIcons',),color: primarycolor,size: 25.0,),
               Text(
-                icontitle,
+                icontitle!,
                 style: const TextStyle(
                   color: Colors.black87,
                   fontSize: 15.0,
@@ -87,7 +87,7 @@ class _helpState extends State<help>{
                 child: ElevatedButton(
                   onPressed: (){ Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>buyer() ),
+                    MaterialPageRoute(builder: (context) =>const buyer() ),
                   );
                   },
                   child: const Text("BUYER HELP CENTER"),

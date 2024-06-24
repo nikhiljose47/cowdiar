@@ -171,7 +171,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
                     .of(context)
                     .size
                     .width / 1.8,
-                child: Center(child: Text(widget.sellname!)
+                child: Center(child: Text(widget.sellname)
                 )
             ),
 
@@ -235,7 +235,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
                                     ),),
                                     listcat.filetype == null
                                         ? Text(
-                                      listcat.filename,
+                                      listcat.filename!,
                                       style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,

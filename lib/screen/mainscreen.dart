@@ -52,13 +52,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child = const Home();
         break;
       case 1:
-        child = Inboxpage();
+        child = const Inboxpage();
         break;
       case 2:
         child = const search();
         break;
       case 3:
-        child = Notifications();
+        child = const Notifications();
         break;
       case 4:
         child = const Others();

@@ -37,7 +37,7 @@ class _PushNotificationState extends State<PushNotification> {
   Future<Null> getData() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token")!!;
+      token = preferences.getString("token")!;
     });
     final getdataresponse = await http.post(Uri.parse(baseurl + version + getnotifaction), headers: {
       'auth':token
@@ -69,7 +69,7 @@ class _PushNotificationState extends State<PushNotification> {
   Future<Null> updateData() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token")!!;
+      token = preferences.getString("token")!;
     });
     final responseValue = await http.post(Uri.parse(baseurl + version + postnotifaction), body: {
       "inbox_push_notification_status": inboxMessages ? "1" : "0",
@@ -94,7 +94,7 @@ class _PushNotificationState extends State<PushNotification> {
   Future<Null> updateEachData({String? key, bool? value}) async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token")!!;
+      token = preferences.getString("token")!;
     });
     final responseValue = await http.post(Uri.parse(baseurl + version + postnotifaction), body: {
       key : value! ? "1" : "0",

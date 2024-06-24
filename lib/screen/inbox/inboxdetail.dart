@@ -211,7 +211,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
         elevation: 0.0,
         title: SizedBox(
             width: MediaQuery.of(context).size.width / 1.8,
-            child: Center(child: Text(widget.sellname!))),
+            child: Center(child: Text(widget.sellname))),
       ),
       body: loading
           ? const Center(
@@ -252,7 +252,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                         Container(
                                           padding: const EdgeInsets.only(right: 10),
                                           child: Text(
-                                            listcat.senderName,
+                                            listcat.senderName!,
                                             style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 16,
@@ -261,7 +261,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                         ),
                                         Container(
                                             child: Text(
-                                          listcat.dateTime,
+                                          listcat.dateTime!,
                                           style: const TextStyle(
                                             color: Colors.grey,
                                             fontSize: 14,
@@ -269,7 +269,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                         )),
                                       ]),
                                       Text(
-                                        listcat.message,
+                                        listcat.message!,
                                         style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 16,
@@ -277,7 +277,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                       ),
                                       listcat.filetype == null
                                           ? Text(
-                                              listcat.filename,
+                                              listcat.filename!,
                                               style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 16,

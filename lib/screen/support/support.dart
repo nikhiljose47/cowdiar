@@ -61,7 +61,7 @@ class _supportState extends State<support>{
    save() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token")!!;
+      token = preferences.getString("token")!;
     });
    final response = await http
           .post(Uri.parse(baseurl +version+ sendfeedback), body: {
@@ -99,7 +99,7 @@ class _supportState extends State<support>{
   save1() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token")!!;
+      token = preferences.getString("token")!;
     });
     final response = await http
         .post(Uri.parse(baseurl +version+ sendfeedback), body: {
@@ -134,7 +134,7 @@ class _supportState extends State<support>{
   save2() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token")!!;
+      token = preferences.getString("token")!;
     });
     final response = await http
         .post(Uri.parse(baseurl +version+ sendfeedback), body: {
@@ -169,7 +169,7 @@ class _supportState extends State<support>{
   save3() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token")!!;
+      token = preferences.getString("token")!;
     });
     final response = await http
         .post(Uri.parse(baseurl +version+ sendfeedback), body: {
@@ -205,7 +205,7 @@ class _supportState extends State<support>{
   Future<Null> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token")!!;
+      token = preferences.getString("token")!;
     });
     setState(() {
       loading = true;
