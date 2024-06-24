@@ -12,16 +12,18 @@ import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileSettings extends StatefulWidget {
+  const ProfileSettings({super.key});
+
   @override
   _ProfileSettingsState createState() => _ProfileSettingsState();
 }
 
 class _ProfileSettingsState extends State<ProfileSettings> {
   String name, username, email, phoneNumber, token, linkdata;
-  FocusNode nameFocusNode = new FocusNode();
-  FocusNode usernameFocusNode = new FocusNode();
-  FocusNode emailFocusNode = new FocusNode();
-  FocusNode phoneNumberFocusNode = new FocusNode();
+  FocusNode nameFocusNode = FocusNode();
+  FocusNode usernameFocusNode = FocusNode();
+  FocusNode emailFocusNode = FocusNode();
+  FocusNode phoneNumberFocusNode = FocusNode();
   var loading = false;
   bool checkBoxVal = false;
   bool hasNetworkIssue = false;
@@ -36,10 +38,10 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   String langDropdownValue = 'Select your language';
   String dialCodeDropdownValue = '+91';
   //profile
-  MProfile profileDetails = new MProfile();
+  MProfile profileDetails = MProfile();
 
   //keys
-  final _key = new GlobalKey<FormState>();
+  final _key = GlobalKey<FormState>();
 
 //color
   Color boxColor = Colors.grey;
@@ -125,7 +127,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
 
   callBackFn(String data) {
     setState(() {
-      this.dialCodeDropdownValue = data;
+      dialCodeDropdownValue = data;
     });
   }
 
@@ -155,11 +157,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
-        appBar: AppBar(title: Text("Profile Settings")),
+        appBar: AppBar(title: const Text("Profile Settings")),
         body: loading
             ? Center(
                 child: CircularProgressIndicator(
-                    valueColor: new AlwaysStoppedAnimation<Color>(boxColor)))
+                    valueColor: AlwaysStoppedAnimation<Color>(boxColor)))
             : ListView(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 children: [
@@ -188,7 +190,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           top: -10,
                           child: IconButton(
                               onPressed: () => getFile(),
-                              icon: new Icon(
+                              icon: const Icon(
                                 Icons.edit,
                                 color: Colors.red,
                                 size: 25,
@@ -200,8 +202,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       child: Column(
                         children: <Widget>[
                           Container(
-                            margin: EdgeInsets.symmetric(vertical: 6),
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            margin: const EdgeInsets.symmetric(vertical: 6),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Material(
                               elevation: 0.0,
                               child: TextFormField(
@@ -216,7 +218,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   fontWeight: FontWeight.w300,
                                 ),
                                 decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(13.0),
+                                    contentPadding: const EdgeInsets.all(13.0),
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide(color: boxColor),
                                       borderRadius: BorderRadius.circular(8),
@@ -235,8 +237,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.symmetric(vertical: 6),
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            margin: const EdgeInsets.symmetric(vertical: 6),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Material(
                               elevation: 0.0,
                               child: TextFormField(
@@ -253,7 +255,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   fontWeight: FontWeight.w300,
                                 ),
                                 decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(13.0),
+                                    contentPadding: const EdgeInsets.all(13.0),
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide(color: boxColor),
                                       borderRadius: BorderRadius.circular(8),
@@ -272,15 +274,15 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.symmetric(vertical: 6),
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            margin: const EdgeInsets.symmetric(vertical: 6),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Row(
                               children: [
                                 Expanded(
                                     flex: 3,
                                     child: Container(
                                         margin:
-                                            EdgeInsets.symmetric(vertical: 2.0),
+                                            const EdgeInsets.symmetric(vertical: 2.0),
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(8),
@@ -308,21 +310,21 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                                             FontWeight.w300,
                                                       )),
                                                 ),
-                                                Expanded(
+                                                const Expanded(
                                                   flex: 2,
                                                   child: IconButton(
                                                       onPressed: null,
-                                                      icon: new Icon(
+                                                      icon: Icon(
                                                         Icons.arrow_downward,
                                                         size: 15,
                                                       )),
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   width: 3,
                                                 )
                                               ]),
                                         ))),
-                                SizedBox(width: 1),
+                                const SizedBox(width: 1),
                                 Expanded(
                                   flex: 6,
                                   child: TextFormField(
@@ -338,7 +340,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                       fontWeight: FontWeight.w300,
                                     ),
                                     decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.all(13.0),
+                                        contentPadding: const EdgeInsets.all(13.0),
                                         border: OutlineInputBorder(
                                           borderSide:
                                               BorderSide(color: boxColor),
@@ -366,8 +368,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             ),
                           ),
                           Container(
-                              margin: EdgeInsets.symmetric(vertical: 6),
-                              padding: EdgeInsets.symmetric(horizontal: 32),
+                              margin: const EdgeInsets.symmetric(vertical: 6),
+                              padding: const EdgeInsets.symmetric(horizontal: 32),
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
@@ -377,7 +379,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 15),
+                                  padding: const EdgeInsets.symmetric(horizontal: 15),
                                   child: DropdownButton(
                                       underline:
                                           Container(color: Colors.transparent),
@@ -406,8 +408,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 ),
                               )),
                           Container(
-                            margin: EdgeInsets.symmetric(vertical: 6),
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            margin: const EdgeInsets.symmetric(vertical: 6),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: TextFormField(
                               //focusNode: nameFocusNode,
                               // initialValue: "",
@@ -420,7 +422,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 fontWeight: FontWeight.w300,
                               ),
                               decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.all(13.0),
+                                  contentPadding: const EdgeInsets.all(13.0),
                                   border: OutlineInputBorder(
                                     borderSide: BorderSide(color: boxColor),
                                     borderRadius: BorderRadius.circular(8),
@@ -438,8 +440,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             ),
                           ),
                           Container(
-                              margin: EdgeInsets.symmetric(vertical: 6),
-                              padding: EdgeInsets.symmetric(horizontal: 32),
+                              margin: const EdgeInsets.symmetric(vertical: 6),
+                              padding: const EdgeInsets.symmetric(horizontal: 32),
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
@@ -449,7 +451,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 15),
+                                  padding: const EdgeInsets.symmetric(horizontal: 15),
                                   child: DropdownButton(
                                       underline:
                                           Container(color: Colors.transparent),
@@ -480,8 +482,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 ),
                               )),
                           Container(
-                              margin: EdgeInsets.symmetric(vertical: 6),
-                              padding: EdgeInsets.symmetric(horizontal: 32),
+                              margin: const EdgeInsets.symmetric(vertical: 6),
+                              padding: const EdgeInsets.symmetric(horizontal: 32),
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
@@ -491,7 +493,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 15),
+                                  padding: const EdgeInsets.symmetric(horizontal: 15),
                                   child: DropdownButton(
                                       underline:
                                           Container(color: Colors.transparent),
@@ -529,8 +531,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 ),
                               )),
                           Container(
-                            margin: EdgeInsets.symmetric(vertical: 6),
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            margin: const EdgeInsets.symmetric(vertical: 6),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Material(
                               elevation: 0.0,
                               child: TextFormField(
@@ -546,7 +548,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   fontWeight: FontWeight.w300,
                                 ),
                                 decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(16.0),
+                                    contentPadding: const EdgeInsets.all(16.0),
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide(color: boxColor),
                                       borderRadius: BorderRadius.circular(8),
@@ -566,8 +568,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.symmetric(vertical: 6),
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            margin: const EdgeInsets.symmetric(vertical: 6),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Material(
                               elevation: 0.0,
                               child: TextFormField(
@@ -583,7 +585,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   fontWeight: FontWeight.w300,
                                 ),
                                 decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(16.0),
+                                    contentPadding: const EdgeInsets.all(16.0),
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide(color: boxColor),
                                       borderRadius: BorderRadius.circular(8),
@@ -604,14 +606,14 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
                               ElevatedButton(
-                                child: Text(
+                                child: const Text(
                                   "Cancel",
                                   style: TextStyle(
                                       color: Colors.white,
@@ -624,7 +626,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 },
                               ),
                               ElevatedButton(
-                                child: Text("Save Changes",
+                                child: const Text("Save Changes",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w500,
@@ -635,7 +637,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                         ],
@@ -651,7 +653,7 @@ class CountryCodeItem extends StatefulWidget {
   final int? index;
   final String? name;
   final Function? callback;
-  const CountryCodeItem(this.index, this.name, this.callback);
+  const CountryCodeItem(this.index, this.name, this.callback, {super.key});
 
   @override
   CountryCodeItemState createState() => CountryCodeItemState();
@@ -667,10 +669,10 @@ class CountryCodeItemState extends State<CountryCodeItem> {
         Expanded(
           flex: 5,
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 12),
+            padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(widget.name,
                 maxLines: 2,
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15)),
+                style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15)),
           ),
         ),
         Expanded(

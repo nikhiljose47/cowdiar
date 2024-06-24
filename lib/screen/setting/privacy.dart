@@ -3,8 +3,10 @@ import 'package:cowdiar/services/api.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class privacy extends StatefulWidget {
+  const privacy({super.key});
+
   @override
-  privacyState createState() => new privacyState();
+  privacyState createState() => privacyState();
 }
 
 class privacyState extends State<privacy> {
@@ -35,7 +37,7 @@ class privacyState extends State<privacy> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Text(
+        title: const Text(
           "Privacy Policy",
           style: TextStyle(
             color: Color.fromARGB(3, 0, 0, 0),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cowdiar/services/api.dart';
 
 class payment extends StatefulWidget{
+  const payment({super.key});
+
   @override
   _paymentState createState(){
     return _paymentState();
@@ -14,14 +16,14 @@ class _paymentState extends State<payment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios, size: 28,color: Colors.black87 ),
-        title:  Text('Payments',style: TextStyle(color: Colors.black87),),
+        leading: const Icon(Icons.arrow_back_ios, size: 28,color: Colors.black87 ),
+        title:  const Text('Payments',style: TextStyle(color: Colors.black87),),
         centerTitle: true,
       ),
       body: Column(
         children: <Widget>[
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
 
@@ -32,9 +34,9 @@ class _paymentState extends State<payment> {
               ),
             ),
           ),
-          SizedBox(height: 55),
+          const SizedBox(height: 55),
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -47,8 +49,8 @@ class _paymentState extends State<payment> {
                 ),
               ),
             ),
-            child: new Container(
-              child: ListTile(
+            child: Container(
+              child: const ListTile(
                 title: Text('Currency', style:TextStyle(
                   fontSize: 20,
                   color: Colors.black,
@@ -71,7 +73,7 @@ class _paymentState extends State<payment> {
         currentIndex: _index,
         type: BottomNavigationBarType.fixed,
         fixedColor: primarycolor,
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), activeIcon: Text("Home",style: TextStyle(color: Colors.black87),)),
           BottomNavigationBarItem(icon: Icon(Icons.mail_outline), activeIcon: Text("Inbox",style: TextStyle(color: Colors.black87),)),
           BottomNavigationBarItem(icon: Icon(Icons.search), activeIcon: Text("Explore",style: TextStyle(color: Colors.black87),)),

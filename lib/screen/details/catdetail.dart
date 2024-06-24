@@ -12,8 +12,7 @@ class catdetail extends StatefulWidget {
       title,
       prelink,
       pretitle; //if you have multiple values add here
-  catdetail(this.subcatlink, this.title, this.prelink, this.pretitle, {Key? key})
-      : super(key: key);
+  const catdetail(this.subcatlink, this.title, this.prelink, this.pretitle, {super.key});
   @override
   _catdetailState createState() => _catdetailState();
 }
@@ -24,8 +23,8 @@ class _catdetailState extends State<catdetail> {
   String? topimage;
 
   Future<Null> getData() async {
-    final linkdata = '/' + widget.subcatlink;
-    final titlelink = '/' + widget.title;
+    final linkdata = '/${widget.subcatlink}';
+    final titlelink = '/${widget.title}';
     print(baseurl + version + linkdata);
     final responseData = await http.get(Uri.parse(baseurl + version + linkdata));
     if (responseData.statusCode == 200) {
@@ -45,10 +44,10 @@ class _catdetailState extends State<catdetail> {
   myBoxDecorationfirst() {
     return BoxDecoration(
       color: Colors.white,
-      border: new Border.all(
+      border: Border.all(
           color: Colors.grey, width: 0.5, style: BorderStyle.solid),
-      borderRadius: new BorderRadius.vertical(
-        bottom: new Radius.circular(10.0),
+      borderRadius: const BorderRadius.vertical(
+        bottom: Radius.circular(10.0),
         //bottom: new Radius.circular(20.0),
       ),
     );
@@ -67,6 +66,7 @@ class _catdetailState extends State<catdetail> {
     getData();
   }
 
+  @override
   Widget build(BuildContext context) {
     // print(widget.pretitle + widget.prelink);
     return Scaffold(
@@ -74,15 +74,15 @@ class _catdetailState extends State<catdetail> {
         elevation: 0.0,
         leading: widget.prelink == "home"
             ? IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.black),
+                icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () => Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => MyHomePage(0))),
+                        builder: (BuildContext context) => const MyHomePage(0))),
               )
             : widget.pretitle != "home"
                 ? IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.black),
+                    icon: const Icon(Icons.arrow_back, color: Colors.black),
                     onPressed: () => Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
@@ -94,9 +94,9 @@ class _catdetailState extends State<catdetail> {
         centerTitle: true,
       ),
       body: loading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(
-                  valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
+                  valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
           : ListView.builder(
               itemCount: listplist.length,
               itemBuilder: (context, int index) {
@@ -106,7 +106,7 @@ class _catdetailState extends State<catdetail> {
                     margin:
                         const EdgeInsets.only(left: 5.0, top: 5.0, right: 5.0),
                     child: Card(
-                      child: Container(
+                      child: SizedBox(
                         height: 120,
                         child: Row(
                           children: <Widget>[
@@ -140,7 +140,7 @@ class _catdetailState extends State<catdetail> {
                                           Expanded(
                                             flex: 4,
                                             child: Row(children: [
-                                              Icon(
+                                              const Icon(
                                                 Icons.star,
                                                 size: 12.0,
                                                 color: Colors.amber,
@@ -151,7 +151,7 @@ class _catdetailState extends State<catdetail> {
                                                 child: Text(
                                                   nplacesList
                                                       .rating.averageRatting,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     color: Colors.amber,
                                                   ),
                                                 ),
@@ -161,7 +161,7 @@ class _catdetailState extends State<catdetail> {
                                                     left: 4.0),
                                                 child: Text(
                                                   "(${nplacesList.rating.totalReviews})",
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     color: Colors.grey,
                                                   ),
                                                 ),
@@ -177,7 +177,7 @@ class _catdetailState extends State<catdetail> {
                                                 size: 18.0,
                                                 color:
                                                     nplacesList.isFavourite == 1
-                                                        ? Color.fromARGB(255, 255, 166, 0)
+                                                        ? const Color.fromARGB(255, 255, 166, 0)
                                                         : Colors.grey,
                                               ),
                                             ),
@@ -185,27 +185,26 @@ class _catdetailState extends State<catdetail> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10.0,
                                     ),
                                     Expanded(
-                                      child: Container(
+                                      child: SizedBox(
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 0.35,
                                         child: nplacesList.title.length >= 50
                                             ? Text(
-                                                nplacesList.title
-                                                        .substring(0, 30) +
-                                                    "...",
-                                                style: TextStyle(
+                                                "${nplacesList.title
+                                                        .substring(0, 30)}...",
+                                                style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 14,
                                                 ),
                                               )
                                             : Text(
                                                 nplacesList.title,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 14,
                                                 ),
@@ -216,8 +215,8 @@ class _catdetailState extends State<catdetail> {
                                       child: Align(
                                         alignment: Alignment.topRight,
                                         child: Text(
-                                          "From " + nplacesList.price,
-                                          style: TextStyle(
+                                          "From ${nplacesList.price}",
+                                          style: const TextStyle(
                                             color: primarycolor,
                                             fontWeight: FontWeight.bold,
                                           ),

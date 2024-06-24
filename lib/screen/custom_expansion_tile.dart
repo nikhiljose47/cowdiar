@@ -22,7 +22,7 @@ class ExpansionTile extends StatefulWidget {
   /// the tile to reveal or hide the [children]. The [initiallyExpanded] property must
   /// be non-null.
   const ExpansionTile({
-     Key? key,
+     super.key,
     this.headerBackgroundColor,
      this.leading,
      this.title,
@@ -32,7 +32,7 @@ class ExpansionTile extends StatefulWidget {
     this.children = const <Widget>[],
      this.trailing,
     this.initiallyExpanded = false,
-  })  : super(key: key);
+  });
 
   /// A widget to display before the title.
   ///
@@ -194,7 +194,7 @@ class _ExpansionTileState extends State<ExpansionTile>
   @override
   void didChangeDependencies() {
     final ThemeData theme = Theme.of(context);
-    _borderColorTween..end = theme.dividerColor;
+    _borderColorTween.end = theme.dividerColor;
     _headerColorTween
     //N-..begin = theme.textTheme.subhead.color
       ..begin = theme.textTheme.titleSmall.color
@@ -202,7 +202,7 @@ class _ExpansionTileState extends State<ExpansionTile>
     _iconColorTween
       ..begin = theme.unselectedWidgetColor
       ..end = theme.colorScheme.secondary;
-    _backgroundColorTween..end = widget.backgroundColor;
+    _backgroundColorTween.end = widget.backgroundColor;
     super.didChangeDependencies();
   }
 

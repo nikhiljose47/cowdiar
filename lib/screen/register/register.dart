@@ -10,6 +10,8 @@ import 'package:flutter/services.dart';
 import '../../util/const.dart';
 
 class Register extends StatefulWidget {
+  const Register({super.key});
+
   @override
   _RegisterState createState() => _RegisterState();
 }
@@ -19,20 +21,20 @@ enum regStatus { register, login }
 class _RegisterState extends State<Register> {
   regStatus _regStatus = regStatus.register;
   String name, username, email, phoneNumber, password, confirm_password;
-  FocusNode nameFocusNode = new FocusNode();
-  FocusNode usernameFocusNode = new FocusNode();
-  FocusNode emailFocusNode = new FocusNode();
-  FocusNode phoneNumberFocusNode = new FocusNode();
-  FocusNode passwordFocusNode = new FocusNode();
-  FocusNode confirmpasswordFocusNode = new FocusNode();
+  FocusNode nameFocusNode = FocusNode();
+  FocusNode usernameFocusNode = FocusNode();
+  FocusNode emailFocusNode = FocusNode();
+  FocusNode phoneNumberFocusNode = FocusNode();
+  FocusNode passwordFocusNode = FocusNode();
+  FocusNode confirmpasswordFocusNode = FocusNode();
   bool _secureText = true;
   bool _secureText2 = true;
   var loading = false;
   bool checkBoxVal = false;
   String dropdownValue = '+91';
   //keys
-    final _key = new GlobalKey<FormState>();
-     final _fnameKey = new GlobalKey<FormState>();
+    final _key = GlobalKey<FormState>();
+     final _fnameKey = GlobalKey<FormState>();
 
 
   showHide() {
@@ -117,7 +119,7 @@ class _RegisterState extends State<Register> {
 
   callBackFn(String data) {
     setState(() {
-      this.dropdownValue = data;
+      dropdownValue = data;
     });
   }
 
@@ -153,7 +155,7 @@ class _RegisterState extends State<Register> {
             title: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                const Text(
                   "Join",
                   style: TextStyle(
                       color: primarycolor,
@@ -173,13 +175,13 @@ class _RegisterState extends State<Register> {
               ],
             ),
             foregroundColor: Colors.black,
-            backgroundColor: Color.fromARGB(255, 250, 250, 250),
+            backgroundColor: const Color.fromARGB(255, 250, 250, 250),
           ),
           backgroundColor: Colors.white,
           body: ListView(
             shrinkWrap: true,
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Align(
@@ -188,10 +190,10 @@ class _RegisterState extends State<Register> {
                   height: 45,
                   width: 300,
                   padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 6, 6, 6),
                       borderRadius: BorderRadius.all(Radius.circular(8))),
-                  child: Center(
+                  child: const Center(
                       child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -208,7 +210,7 @@ class _RegisterState extends State<Register> {
                   )),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Align(
@@ -217,10 +219,10 @@ class _RegisterState extends State<Register> {
                   height: 45,
                   width: 300,
                   padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Color(0xff5890FF),
                       borderRadius: BorderRadius.all(Radius.circular(8))),
-                  child: Center(
+                  child: const Center(
                       child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -237,8 +239,8 @@ class _RegisterState extends State<Register> {
                   )),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text(
                   "- OR -",
                   textAlign: TextAlign.center,
@@ -249,17 +251,17 @@ class _RegisterState extends State<Register> {
                 ),
               ),
               loading
-                  ? Center(
+                  ? const Center(
                       child: CircularProgressIndicator(
                           valueColor:
-                              new AlwaysStoppedAnimation<Color>(primarycolor)))
+                              AlwaysStoppedAnimation<Color>(primarycolor)))
                   : Form(
                       key: _key,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Material(
                               elevation: 0.0,
                               child: TextFormField(
@@ -268,30 +270,30 @@ class _RegisterState extends State<Register> {
                                 validator: (e) => e.isEmpty?"Please enter Full Name":null                                                             ,
                                 onSaved: (e) => name = e,
                                // onChanged: (e) => _fnameKey.currentState.validate(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: primarycolor,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w300,
                                 ),
                                 decoration: InputDecoration(
                                     contentPadding:
-                                        EdgeInsets.symmetric(vertical: 10.0),
+                                        const EdgeInsets.symmetric(vertical: 10.0),
                                     border: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    prefixIcon: Padding(
+                                    prefixIcon: const Padding(
                                       padding:
                                           EdgeInsets.only(left: 20, right: 15),
                                       child: Icon(Icons.person,
@@ -299,19 +301,19 @@ class _RegisterState extends State<Register> {
                                     ),
                                     //contentPadding: EdgeInsets.all(15),
                                     labelText: "Fullname",
-                                    labelStyle: TextStyle(color: primarycolor)),
+                                    labelStyle: const TextStyle(color: primarycolor)),
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Material(
                               elevation: 0.0,
                               child: TextFormField(
-                                inputFormatters: [
+                                inputFormatters: const [
                                   //      WhitelistingTextInputFormatter(RegExp("^[a-zA-Z0-9_]+|\s")),
                                 ],
                                 focusNode: usernameFocusNode,
@@ -322,30 +324,30 @@ class _RegisterState extends State<Register> {
                                   return null;
                                 },
                                 onSaved: (e) => username = e,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: primarycolor,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w300,
                                 ),
                                 decoration: InputDecoration(
                                     contentPadding:
-                                        EdgeInsets.symmetric(vertical: 10.0),
+                                        const EdgeInsets.symmetric(vertical: 10.0),
                                     border: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    prefixIcon: Padding(
+                                    prefixIcon: const Padding(
                                       padding:
                                           EdgeInsets.only(left: 20, right: 15),
                                       child: Icon(Icons.person,
@@ -353,15 +355,15 @@ class _RegisterState extends State<Register> {
                                     ),
                                     //contentPadding: EdgeInsets.all(15),
                                     labelText: "Username",
-                                    labelStyle: TextStyle(color: primarycolor)),
+                                    labelStyle: const TextStyle(color: primarycolor)),
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Material(
                               elevation: 0.0,
                               child: TextFormField(
@@ -373,30 +375,30 @@ class _RegisterState extends State<Register> {
                                   return null;
                                 },
                                 onSaved: (e) => email = e,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: primarycolor,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w300,
                                 ),
                                 decoration: InputDecoration(
                                     contentPadding:
-                                        EdgeInsets.symmetric(vertical: 10.0),
+                                        const EdgeInsets.symmetric(vertical: 10.0),
                                     border: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    prefixIcon: Padding(
+                                    prefixIcon: const Padding(
                                       padding:
                                           EdgeInsets.only(left: 20, right: 15),
                                       child: Icon(Icons.email,
@@ -404,22 +406,22 @@ class _RegisterState extends State<Register> {
                                     ),
                                     // contentPadding: EdgeInsets.all(18),
                                     labelText: "Email",
-                                    labelStyle: TextStyle(color: primarycolor)),
+                                    labelStyle: const TextStyle(color: primarycolor)),
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Row(
                               children: [
                                 Expanded(
                                     flex: 3,
                                     child: Container(
                                         padding:
-                                            EdgeInsets.symmetric(vertical: 0.0),
+                                            const EdgeInsets.symmetric(vertical: 0.0),
                                         //  contentPadding: EdgeInsets.symmetric(
                                         //     vertical: 10.0),
 
@@ -442,28 +444,28 @@ class _RegisterState extends State<Register> {
                                                   child: Text(dropdownValue,
                                                       textAlign:
                                                           TextAlign.right,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         color: primarycolor,
                                                         fontSize: 16,
                                                         fontWeight:
                                                             FontWeight.w300,
                                                       )),
                                                 ),
-                                                Expanded(
+                                                const Expanded(
                                                   flex: 2,
                                                   child: IconButton(
                                                       onPressed: null,
-                                                      icon: new Icon(
+                                                      icon: Icon(
                                                         Icons.arrow_downward,
                                                         size: 16,
                                                       )),
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   width: 3,
                                                 )
                                               ]),
                                         ))),
-                                SizedBox(width: 1),
+                                const SizedBox(width: 1),
                                 Expanded(
                                   flex: 6,
                                   child: TextFormField(
@@ -472,37 +474,37 @@ class _RegisterState extends State<Register> {
                                       FilteringTextInputFormatter.digitsOnly
                                     ],
                                     focusNode: phoneNumberFocusNode,
-                                    validator: (e) => !e.isEmpty
+                                    validator: (e) => e.isNotEmpty
                                         ? null
                                         : null,
                                     onSaved: (e) => phoneNumber = e,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: primarycolor,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w300,
                                     ),
                                     decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                             vertical: 10.0),
                                         border: OutlineInputBorder(
                                           borderSide:
-                                              BorderSide(color: primarycolor),
+                                              const BorderSide(color: primarycolor),
                                           borderRadius:
                                               BorderRadius.circular(8),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide:
-                                              BorderSide(color: primarycolor),
+                                              const BorderSide(color: primarycolor),
                                           borderRadius:
                                               BorderRadius.circular(8),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide:
-                                              BorderSide(color: primarycolor),
+                                              const BorderSide(color: primarycolor),
                                           borderRadius:
                                               BorderRadius.circular(8),
                                         ),
-                                        prefixIcon: Padding(
+                                        prefixIcon: const Padding(
                                           padding: EdgeInsets.only(
                                               left: 20, right: 15),
                                           child: Icon(Icons.phone,
@@ -511,17 +513,17 @@ class _RegisterState extends State<Register> {
                                         // contentPadding: EdgeInsets.all(18),
                                         labelText: "(optional) Phone number ",
                                         labelStyle:
-                                            TextStyle(color: primarycolor)),
+                                            const TextStyle(color: primarycolor)),
                                   ),
                                 )
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Material(
                               elevation: 0.0,
                               child: TextFormField(
@@ -534,27 +536,27 @@ class _RegisterState extends State<Register> {
                                   return null;
                                 },
                                 onSaved: (e) => password = e,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: primarycolor,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w300,
                                 ),
                                 decoration: InputDecoration(
                                     contentPadding:
-                                        EdgeInsets.symmetric(vertical: 10.0),
+                                        const EdgeInsets.symmetric(vertical: 10.0),
                                     border: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     suffixIcon: IconButton(
@@ -565,7 +567,7 @@ class _RegisterState extends State<Register> {
                                               : Icons.visibility,
                                           color: primarycolor),
                                     ),
-                                    prefixIcon: Padding(
+                                    prefixIcon: const Padding(
                                       padding:
                                           EdgeInsets.only(left: 20, right: 15),
                                       child: Icon(Icons.phonelink_lock,
@@ -573,15 +575,15 @@ class _RegisterState extends State<Register> {
                                     ),
                                     // contentPadding: EdgeInsets.all(18),
                                     labelText: "Password",
-                                    labelStyle: TextStyle(color: primarycolor)),
+                                    labelStyle: const TextStyle(color: primarycolor)),
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Material(
                               elevation: 0.0,
                               child: TextFormField(
@@ -594,27 +596,27 @@ class _RegisterState extends State<Register> {
                                   return null;
                                 },
                                 onSaved: (e) => confirm_password = e,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: primarycolor,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w300,
                                 ),
                                 decoration: InputDecoration(
                                     contentPadding:
-                                        EdgeInsets.symmetric(vertical: 10.0),
+                                        const EdgeInsets.symmetric(vertical: 10.0),
                                     border: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: primarycolor),
+                                          const BorderSide(color: primarycolor),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     suffixIcon: IconButton(
@@ -625,7 +627,7 @@ class _RegisterState extends State<Register> {
                                               : Icons.visibility,
                                           color: primarycolor),
                                     ),
-                                    prefixIcon: Padding(
+                                    prefixIcon: const Padding(
                                       padding:
                                           EdgeInsets.only(left: 20, right: 15),
                                       child: Icon(Icons.phonelink_lock,
@@ -633,11 +635,11 @@ class _RegisterState extends State<Register> {
                                     ),
                                     // contentPadding: EdgeInsets.all(18),
                                     labelText: "Confirm Password",
-                                    labelStyle: TextStyle(color: primarycolor)),
+                                    labelStyle: const TextStyle(color: primarycolor)),
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
                           Row(
@@ -647,23 +649,23 @@ class _RegisterState extends State<Register> {
                                   value: checkBoxVal,
                                   onChanged: (val) =>
                                       setState(() => checkBoxVal = val)),
-                              Text("I accept terms and conditions"),
+                              const Text("I accept terms and conditions"),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
                           Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 32),
+                              padding: const EdgeInsets.symmetric(horizontal: 32),
                               child: Container(
                                   decoration: BoxDecoration(
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(8)),
+                                          const BorderRadius.all(Radius.circular(8)),
                                       color: checkBoxVal?primarycolor:Colors.grey),
                                   child: SizedBox(
                                     width: double.infinity,
                                     child: TextButton(
-                                      child: Text(
+                                      child: const Text(
                                         "Sign Up",
                                         style: TextStyle(
                                             color: Colors.white,
@@ -671,18 +673,19 @@ class _RegisterState extends State<Register> {
                                             fontSize: 18),
                                       ),
                                       onPressed: () {
-                                        if(checkBoxVal)
-                                        check();
+                                        if(checkBoxVal) {
+                                          check();
+                                        }
                                       },
                                     ),
                                   ))),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text(
+                              const Text(
                                 "Already Have Account ?  ",
                                 style: TextStyle(
                                     color: Colors.black,
@@ -690,7 +693,7 @@ class _RegisterState extends State<Register> {
                                     fontWeight: FontWeight.normal),
                               ),
                               TextButton(
-                                child: Text("Login",
+                                child: const Text("Login",
                                     style: TextStyle(
                                         color: primarycolor,
                                         fontWeight: FontWeight.w500,
@@ -700,13 +703,13 @@ class _RegisterState extends State<Register> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            Login("loginfull")),
+                                            const Login("loginfull")),
                                   );
                                 },
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                         ],
@@ -717,7 +720,7 @@ class _RegisterState extends State<Register> {
         break;
 
       case regStatus.login:
-        return Login("loginfull");
+        return const Login("loginfull");
 //        return ProfilePage(signOut);
         break;
     }
@@ -728,7 +731,7 @@ class CountryCodeItem extends StatefulWidget {
   final int? index;
   final String? name;
   final Function? callback;
-  const CountryCodeItem(this.index, this.name, this.callback);
+  const CountryCodeItem(this.index, this.name, this.callback, {super.key});
 
   @override
   CountryCodeItemState createState() => CountryCodeItemState();
@@ -744,10 +747,10 @@ class CountryCodeItemState extends State<CountryCodeItem> {
         Expanded(
           flex: 5,
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 12),
+            padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(widget.name,
                 maxLines: 2,
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15)),
+                style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15)),
           ),
         ),
         Expanded(

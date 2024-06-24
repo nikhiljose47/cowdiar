@@ -8,6 +8,8 @@ import 'package:cowdiar/services/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class manageorder extends StatefulWidget {
+  const manageorder({super.key});
+
   @override
   _manageorderState createState() => _manageorderState();
 }
@@ -101,7 +103,7 @@ class _manageorderState extends State<manageorder> {
     return Scaffold(
       appBar: AppBar(
 
-        title: Text("Manage Orders"),
+        title: const Text("Manage Orders"),
         centerTitle: true,
       ),
       body: ListView(
@@ -109,9 +111,9 @@ class _manageorderState extends State<manageorder> {
           Column(
               children: <Widget>[ Container(
                 height: 50,
-                padding: EdgeInsets.only(bottom: 10, top: 1.00),
+                padding: const EdgeInsets.only(bottom: 10, top: 1.00),
                 child: loading
-                    ? Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator())
                     : ListView.builder(
                   scrollDirection: Axis.horizontal,
                   primary: false,
@@ -133,16 +135,16 @@ class _manageorderState extends State<manageorder> {
 
 
                         // alignment: Alignment(-1.0, -1.0),
-                        margin: EdgeInsets.only(top: 0, left: 5, bottom: 5),
-                        padding: EdgeInsets.only(top: 0, left: 5, bottom: 5),
+                        margin: const EdgeInsets.only(top: 0, left: 5, bottom: 5),
+                        padding: const EdgeInsets.only(top: 0, left: 5, bottom: 5),
                         child: Center(
                           child: Container(
 
                             width: 125,
                             height: 80,
-                            alignment: Alignment(0.0, 1.0),
+                            alignment: const Alignment(0.0, 1.0),
                             child: Text(
-                              nDataList.status.substring(0,1).toUpperCase() +nDataList.status.substring(1) + " ("+nDataList.count+")",
+                              "${nDataList.status.substring(0,1).toUpperCase()}${nDataList.status.substring(1)} (${nDataList.count})",
                               style: TextStyle(
                                 color: _selectedIndex == i
                                     ? primarycolor
@@ -167,21 +169,21 @@ class _manageorderState extends State<manageorder> {
               child:  loading2
                   ? Container(
                   color: Colors.white,
-                  padding: EdgeInsets.only(bottom: 70, top: 8.00),
+                  padding: const EdgeInsets.only(bottom: 70, top: 8.00),
                   //alignment: FractionalOffset(1.0, 1.0),
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height/1.1,
-                  child: Center( child: CircularProgressIndicator())
+                  child: const Center( child: CircularProgressIndicator())
               ):Column(
                 children: <Widget>[
 
                   Container(
                       color: Colors.white,
-                      padding: EdgeInsets.only(bottom: 70, top: 8.00),
+                      padding: const EdgeInsets.only(bottom: 70, top: 8.00),
                       //alignment: FractionalOffset(1.0, 1.0),
                       width: MediaQuery.of(context).size.width,
                       height: listvalues.isEmpty && listdeafultval.isEmpty ? 1:MediaQuery.of(context).size.height/1.1,
-                      child:  listvalues.length == 0 ?
+                      child:  listvalues.isEmpty ?
                       ListView.builder(
                           scrollDirection: Axis.vertical,
                           itemCount: listdeafultval.length,
@@ -190,16 +192,16 @@ class _manageorderState extends State<manageorder> {
                             final datacard2 = listdeafultval[i];
                             print(datacard2.orderStatus);
                             return Container(
-                                decoration:BoxDecoration(
+                                decoration:const BoxDecoration(
 
 
                                 ),
-                                padding: EdgeInsets.only(top:3,bottom: 3),
-                                margin:  EdgeInsets.only(left: 10, right: 8.00),
+                                padding: const EdgeInsets.only(top:3,bottom: 3),
+                                margin:  const EdgeInsets.only(left: 10, right: 8.00),
                                 child: GestureDetector(
                                   child: Card(
                                     child: Container(
-                                      padding: EdgeInsets.only(top:5,bottom: 10),
+                                      padding: const EdgeInsets.only(top:5,bottom: 10),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
@@ -211,16 +213,16 @@ class _manageorderState extends State<manageorder> {
                                                 children: <Widget>[
 
                                                   Container(
-                                                      padding: EdgeInsets.only(top:3,bottom: 3),
-                                                      margin:  EdgeInsets.only(left: 10, top: 8.00),
+                                                      padding: const EdgeInsets.only(top:3,bottom: 3),
+                                                      margin:  const EdgeInsets.only(left: 10, top: 8.00),
                                                       width: MediaQuery.of(context).size.width/5,
                                                       height: MediaQuery.of(context).size.height/10,
 
-                                                      decoration: new BoxDecoration(
+                                                      decoration: BoxDecoration(
 
-                                                          image: new DecorationImage(
+                                                          image: DecorationImage(
                                                               fit: BoxFit.fill,
-                                                              image: new NetworkImage(
+                                                              image: NetworkImage(
                                                                   datacard2.postImage)
                                                           )
                                                       )),
@@ -233,16 +235,16 @@ class _manageorderState extends State<manageorder> {
                                                     children: <Widget>[
                                                       Container(
                                                           width: MediaQuery.of(context).size.width/3.6,
-                                                          margin:  EdgeInsets.only(left: 10, top: 8.00),
-                                                          child: Text(datacard2.sellerName,style: TextStyle(
+                                                          margin:  const EdgeInsets.only(left: 10, top: 8.00),
+                                                          child: Text(datacard2.sellerName,style: const TextStyle(
                                                             color: Colors.black,
 
                                                             fontSize: 16,
                                                           ),textAlign: TextAlign.left,)),
                                                       Container(
                                                           width: MediaQuery.of(context).size.width/2.8,
-                                                          margin:  EdgeInsets.only(left: 10, top: 8.00),
-                                                          child: Text(datacard2.orderDate,style: TextStyle(
+                                                          margin:  const EdgeInsets.only(left: 10, top: 8.00),
+                                                          child: Text(datacard2.orderDate,style: const TextStyle(
                                                             color: Colors.grey,
 
                                                             fontSize: 14,
@@ -253,10 +255,10 @@ class _manageorderState extends State<manageorder> {
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: <Widget>[
                                                       Container(
-                                                          padding: EdgeInsets.only(top:13,bottom: 13),
+                                                          padding: const EdgeInsets.only(top:13,bottom: 13),
                                                           width: MediaQuery.of(context).size.width/1.6,
-                                                          margin:  EdgeInsets.only(left: 10, top: 0.00),
-                                                          child: Text(datacard2.postTitle,style: TextStyle(
+                                                          margin:  const EdgeInsets.only(left: 10, top: 0.00),
+                                                          child: Text(datacard2.postTitle,style: const TextStyle(
                                                             color: Colors.black,
                                                             fontWeight: FontWeight.w300,
                                                             fontSize: 16,
@@ -268,7 +270,7 @@ class _manageorderState extends State<manageorder> {
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: <Widget>[
                                                       Container(
-                                                          padding: EdgeInsets.all(4),
+                                                          padding: const EdgeInsets.all(4),
                                                           decoration:BoxDecoration(
                                                             border: Border.all(
                                                               color: primarycolor,
@@ -277,7 +279,7 @@ class _manageorderState extends State<manageorder> {
 
                                                           ),
 
-                                                          child: Text(datacard2.orderStatus == "cancellation requested" ? "cancellation" :datacard2.orderStatus,style: TextStyle(
+                                                          child: Text(datacard2.orderStatus == "cancellation requested" ? "cancellation" :datacard2.orderStatus,style: const TextStyle(
                                                             color: primarycolor,
 
                                                             fontSize: 16,
@@ -285,9 +287,9 @@ class _manageorderState extends State<manageorder> {
                                                       Container(
                                                         width: MediaQuery.of(context).size.width/3.9,
                                                       ),
-                                                      Container(
+                                                      SizedBox(
                                                           width: MediaQuery.of(context).size.width/7,
-                                                          child: Text(datacard2.orderPrice,style: TextStyle(
+                                                          child: Text(datacard2.orderPrice,style: const TextStyle(
                                                             color: primarycolor,
 
                                                             fontSize: 16,
@@ -322,16 +324,16 @@ class _manageorderState extends State<manageorder> {
                             final datacard = listvalues[i];
                             print("first");
                             return Container(
-                                decoration:BoxDecoration(
+                                decoration:const BoxDecoration(
 
 
                                 ),
-                                padding: EdgeInsets.only(top:3,bottom: 3),
-                                margin:  EdgeInsets.only(left: 10, right: 8.00),
+                                padding: const EdgeInsets.only(top:3,bottom: 3),
+                                margin:  const EdgeInsets.only(left: 10, right: 8.00),
                                 child: GestureDetector(
                                   child: Card(
                                     child: Container(
-                                      padding: EdgeInsets.only(top:5,bottom: 10),
+                                      padding: const EdgeInsets.only(top:5,bottom: 10),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
@@ -343,16 +345,16 @@ class _manageorderState extends State<manageorder> {
                                                 children: <Widget>[
 
                                                   Container(
-                                                      padding: EdgeInsets.only(top:3,bottom: 3),
-                                                      margin:  EdgeInsets.only(left: 10, top: 8.00),
+                                                      padding: const EdgeInsets.only(top:3,bottom: 3),
+                                                      margin:  const EdgeInsets.only(left: 10, top: 8.00),
                                                       width: MediaQuery.of(context).size.width/5,
                                                       height: MediaQuery.of(context).size.height/10,
 
-                                                      decoration: new BoxDecoration(
+                                                      decoration: BoxDecoration(
 
-                                                          image: new DecorationImage(
+                                                          image: DecorationImage(
                                                               fit: BoxFit.fill,
-                                                              image: new NetworkImage(
+                                                              image: NetworkImage(
                                                                   datacard.postImage)
                                                           )
                                                       )),
@@ -365,16 +367,16 @@ class _manageorderState extends State<manageorder> {
                                                     children: <Widget>[
                                                       Container(
                                                           width: MediaQuery.of(context).size.width/3.6,
-                                                          margin:  EdgeInsets.only(left: 10, top: 8.00),
-                                                          child: Text(datacard.sellerName.length > 12 ? datacard.sellerName.substring(0,12) : datacard.sellerName,style: TextStyle(
+                                                          margin:  const EdgeInsets.only(left: 10, top: 8.00),
+                                                          child: Text(datacard.sellerName.length > 12 ? datacard.sellerName.substring(0,12) : datacard.sellerName,style: const TextStyle(
                                                             color: Colors.black,
 
                                                             fontSize: 16,
                                                           ),textAlign: TextAlign.left,)),
                                                       Container(
                                                           width: MediaQuery.of(context).size.width/2.8,
-                                                          margin:  EdgeInsets.only(left: 10, top: 8.00),
-                                                          child: Text(datacard.orderDate,style: TextStyle(
+                                                          margin:  const EdgeInsets.only(left: 10, top: 8.00),
+                                                          child: Text(datacard.orderDate,style: const TextStyle(
                                                             color: Colors.grey,
 
                                                             fontSize: 14,
@@ -385,10 +387,10 @@ class _manageorderState extends State<manageorder> {
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: <Widget>[
                                                       Container(
-                                                          padding: EdgeInsets.only(top:13,bottom: 13),
+                                                          padding: const EdgeInsets.only(top:13,bottom: 13),
                                                           width: MediaQuery.of(context).size.width/1.6,
-                                                          margin:  EdgeInsets.only(left: 10, top: 0.00),
-                                                          child: Text(datacard.postTitle,style: TextStyle(
+                                                          margin:  const EdgeInsets.only(left: 10, top: 0.00),
+                                                          child: Text(datacard.postTitle,style: const TextStyle(
                                                             color: Colors.black,
                                                             fontWeight: FontWeight.w300,
                                                             fontSize: 16,
@@ -399,7 +401,7 @@ class _manageorderState extends State<manageorder> {
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: <Widget>[
                                                       Container(
-                                                          padding: EdgeInsets.all(4),
+                                                          padding: const EdgeInsets.all(4),
                                                           decoration:BoxDecoration(
                                                             border: Border.all(
                                                               color: primarycolor,
@@ -408,7 +410,7 @@ class _manageorderState extends State<manageorder> {
 
                                                           ),
 
-                                                          child: Text(datacard.orderStatus == "cancellation requested" ? "cancellation" :datacard.orderStatus,style: TextStyle(
+                                                          child: Text(datacard.orderStatus == "cancellation requested" ? "cancellation" :datacard.orderStatus,style: const TextStyle(
                                                             color: primarycolor,
 
                                                             fontSize: 16,
@@ -416,9 +418,9 @@ class _manageorderState extends State<manageorder> {
                                                       Container(
                                                         width: MediaQuery.of(context).size.width/3.9,
                                                       ),
-                                                      Container(
+                                                      SizedBox(
                                                           width: MediaQuery.of(context).size.width/7,
-                                                          child: Text(datacard.orderPrice,style: TextStyle(
+                                                          child: Text(datacard.orderPrice,style: const TextStyle(
                                                             color: primarycolor,
 
                                                             fontSize: 16,
@@ -448,11 +450,11 @@ class _manageorderState extends State<manageorder> {
                       )
                   ),
                   Container(          color: Colors.white,
-                      padding: EdgeInsets.only(bottom: 70, top: 8.00),
+                      padding: const EdgeInsets.only(bottom: 70, top: 8.00),
                       //alignment: FractionalOffset(1.0, 1.0),
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height/1,
-                      child: Center(
+                      child: const Center(
                           child: Text("No Order Avaliable", style: TextStyle(
                             color: primarycolor,
                             fontWeight: FontWeight.w700,

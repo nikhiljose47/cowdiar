@@ -13,15 +13,15 @@ Widget searchsec(context) {
           children: <Widget>[
             Container(
 
-              margin: EdgeInsets.only(top: 10.00, right: 5.00,left: 5.00),
-              decoration: new BoxDecoration(
+              margin: const EdgeInsets.only(top: 10.00, right: 5.00,left: 5.00),
+              decoration: BoxDecoration(
                   color: Colors.white,
-                  border: new Border.all(
+                  border: Border.all(
                       color: Colors.grey,
                       width: 1.0,
                       style: BorderStyle.solid
                   ),
-                  borderRadius:new BorderRadius.all(new Radius.circular(10.0)
+                  borderRadius:const BorderRadius.all(Radius.circular(10.0)
                   )),
 
 
@@ -32,18 +32,18 @@ Widget searchsec(context) {
                     GestureDetector(
                       child: Container(
 
-                        padding: EdgeInsets.only(left: 10.00,right: 65),
+                        padding: const EdgeInsets.only(left: 10.00,right: 65),
 
                         height: 40,
 
-                        child: Row(
+                        child: const Row(
                           children: <Widget>[
                             Icon(
                               Icons.search,
                               size: 20.0,
                               color: Colors.black,
                             ),
-                            new Text("  What are you looking for?"),
+                            Text("  What are you looking for?"),
                           ],
                         ),
                       ),
@@ -53,9 +53,9 @@ Widget searchsec(context) {
                     ),
                     GestureDetector(
                       child: Container(
-                        padding: EdgeInsets.only(right: 10.00),
+                        padding: const EdgeInsets.only(right: 10.00),
                         height: 40,
-                        child: Row(
+                        child: const Row(
                           children: <Widget>[
                             Icon(
                               Icons.mic,
@@ -75,12 +75,12 @@ Widget searchsec(context) {
 
             ),
             Container(
-              margin: EdgeInsets.only(top: 5.00, right: 5.00),
+              margin: const EdgeInsets.only(top: 5.00, right: 5.00),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   GestureDetector(
-                    child: Text(
+                    child: const Text(
                       'cancel',
                       style: TextStyle(
                         fontSize: 16,

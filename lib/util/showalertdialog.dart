@@ -5,7 +5,7 @@ class ShowAlertDialog extends StatelessWidget {
   final String? title;
   final String? content;
 
- ShowAlertDialog({Key? key, this.context, this.title, this.content}) : super(key: key);
+ const ShowAlertDialog({super.key, this.context, this.title, this.content});
 
   @override  
   Widget build(context) { 
@@ -13,7 +13,7 @@ class ShowAlertDialog extends StatelessWidget {
     return Padding(  
       padding: const EdgeInsets.all(20.0),  
       child: ElevatedButton(  
-        child: Text('Show alert'),  
+        child: const Text('Show alert'),  
         onPressed: () {  
           showAlertDialog(context);  
         },  
@@ -23,7 +23,7 @@ class ShowAlertDialog extends StatelessWidget {
 
   showAlertDialog(BuildContext context) {  
   Widget okButton = ElevatedButton(  
-    child: Text("OK"),  
+    child: const Text("OK"),  
     onPressed: () {  
       Navigator.of(context).pop();  
     },  

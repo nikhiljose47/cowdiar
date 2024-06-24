@@ -12,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class orderpage extends StatefulWidget {
   final String? orderid; //if you have multiple values add here
-  orderpage(this.orderid, {Key? key}) : super(key: key);
+  const orderpage(this.orderid, {super.key});
 
   @override
   _orderpageState createState() => _orderpageState();
@@ -20,15 +20,15 @@ class orderpage extends StatefulWidget {
 
 class _orderpageState extends State<orderpage> {
   File? _file;
-  bool _showBottom = false;
-  String _fileName = '...';
+  final bool _showBottom = false;
+  final String _fileName = '...';
   ScrollController _scrollController = ScrollController();
-  String _path = '...';
+  final String _path = '...';
   String? _extension;
   FileType? _pickingType;
-  final _key = new GlobalKey<FormState>();
-  TextEditingController _controller = new TextEditingController();
-  Color myGreen = Color(0xff4bb17b);
+  final _key = GlobalKey<FormState>();
+  final TextEditingController _controller = TextEditingController();
+  Color myGreen = const Color(0xff4bb17b);
 
   var? textvalue;
   List<ODetail> listorder = [];
@@ -65,7 +65,7 @@ class _orderpageState extends State<orderpage> {
       print("file base name:$fileName");
 
       try {
-        FormData formData = new FormData.fromMap({
+        FormData formData = FormData.fromMap({
           'order_id': widget.orderid,
           'message': textvalue,
           'file':
@@ -95,7 +95,7 @@ class _orderpageState extends State<orderpage> {
       }
     } else {
       try {
-        FormData formData = new FormData.fromMap({
+        FormData formData = FormData.fromMap({
           'order_id': widget.orderid,
           'message': textvalue,
           'file': '',
@@ -175,7 +175,7 @@ class _orderpageState extends State<orderpage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          bottom: TabBar(
+          bottom: const TabBar(
             unselectedLabelColor: Colors.black,
             labelColor: primarycolor,
             indicatorWeight: 3,
@@ -192,18 +192,18 @@ class _orderpageState extends State<orderpage> {
           title: loading
               ? Container(
                   color: Colors.white,
-                  padding: EdgeInsets.only(bottom: 70, top: 8.00),
+                  padding: const EdgeInsets.only(bottom: 70, top: 8.00),
                   //alignment: FractionalOffset(1.0, 1.0),
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height / 1.1,
-                  child: Center(child: CircularProgressIndicator()))
+                  child: const Center(child: CircularProgressIndicator()))
               : Container(child: Center(child: Text(listorder[0].postTitle))),
         ),
         body: loading
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(
                     valueColor:
-                        new AlwaysStoppedAnimation<Color>(primarycolor)))
+                        AlwaysStoppedAnimation<Color>(primarycolor)))
             : TabBarView(
                 children: [
                   ListView.builder(
@@ -212,13 +212,13 @@ class _orderpageState extends State<orderpage> {
                       itemBuilder: (context, i) {
                         final datacard = listorder[i];
                         return Container(
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           child: Column(
                             children: <Widget>[
                               Center(
                                   child: Text(
                                 datacard.postTitle,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: primarycolor,
                                   fontSize: 16,
                                 ),
@@ -227,7 +227,7 @@ class _orderpageState extends State<orderpage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
-                                    padding: EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5),
                                     width:
                                         MediaQuery.of(context).size.width / 1.1,
                                     child: Center(
@@ -238,14 +238,14 @@ class _orderpageState extends State<orderpage> {
                               ),
                               Container(
                                 width: MediaQuery.of(context).size.width / 1.1,
-                                margin: EdgeInsets.only(bottom: 20),
-                                padding: EdgeInsets.all(5),
+                                margin: const EdgeInsets.only(bottom: 20),
+                                padding: const EdgeInsets.all(5),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Row(
                                       children: <Widget>[
-                                        Text(
+                                        const Text(
                                           "Seller: ",
                                           style: TextStyle(
                                             color: primarycolor,
@@ -254,7 +254,7 @@ class _orderpageState extends State<orderpage> {
                                         ),
                                         Text(
                                           datacard.sellerName,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
                                           ),
@@ -265,14 +265,14 @@ class _orderpageState extends State<orderpage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
-                                        Container(
+                                        SizedBox(
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width /
                                                 2,
                                             child: Row(
                                               children: <Widget>[
-                                                Text(
+                                                const Text(
                                                   "Order id: ",
                                                   style: TextStyle(
                                                     color: primarycolor,
@@ -280,8 +280,8 @@ class _orderpageState extends State<orderpage> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "#" + datacard.orderNumber,
-                                                  style: TextStyle(
+                                                  "#${datacard.orderNumber}",
+                                                  style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 16,
                                                   ),
@@ -295,12 +295,12 @@ class _orderpageState extends State<orderpage> {
                               ),
                               Card(
                                   elevation: 4,
-                                  child: Container(
+                                  child: SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width / 1.1,
                                     child: Column(
                                       children: <Widget>[
-                                        Container(
+                                        SizedBox(
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width /
@@ -310,13 +310,13 @@ class _orderpageState extends State<orderpage> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: <Widget>[
                                               Container(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       top: 5, bottom: 5),
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width /
                                                       4.6,
-                                                  child: Center(
+                                                  child: const Center(
                                                       child: Text(
                                                     "Iteam",
                                                     style: TextStyle(
@@ -325,13 +325,13 @@ class _orderpageState extends State<orderpage> {
                                                     ),
                                                   ))),
                                               Container(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       top: 5, bottom: 5),
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width /
                                                       4.6,
-                                                  child: Center(
+                                                  child: const Center(
                                                       child: Text(
                                                     "Duration",
                                                     style: TextStyle(
@@ -340,13 +340,13 @@ class _orderpageState extends State<orderpage> {
                                                     ),
                                                   ))),
                                               Container(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       top: 5, bottom: 5),
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width /
                                                       4.6,
-                                                  child: Center(
+                                                  child: const Center(
                                                       child: Text(
                                                     "Price",
                                                     style: TextStyle(
@@ -362,7 +362,7 @@ class _orderpageState extends State<orderpage> {
                                                   .size
                                                   .width /
                                               1.1,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             border: Border(
                                               top: BorderSide(
                                                 //                   <--- left side
@@ -385,20 +385,20 @@ class _orderpageState extends State<orderpage> {
                                                           .size
                                                           .width /
                                                       4.6,
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       top: 10,
                                                       bottom: 10,
                                                       left: 20),
                                                   child: Center(
                                                       child: Text(
                                                     datacard.postTitle,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16,
                                                     ),
                                                   ))),
                                               Container(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       top: 5, bottom: 5),
                                                   width: MediaQuery.of(context)
                                                           .size
@@ -407,13 +407,13 @@ class _orderpageState extends State<orderpage> {
                                                   child: Center(
                                                       child: Text(
                                                     datacard.orderDuration,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16,
                                                     ),
                                                   ))),
                                               Container(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       top: 5, bottom: 5),
                                                   width: MediaQuery.of(context)
                                                           .size
@@ -422,7 +422,7 @@ class _orderpageState extends State<orderpage> {
                                                   child: Center(
                                                       child: Text(
                                                     datacard.itemPrice,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16,
                                                     ),
@@ -435,7 +435,7 @@ class _orderpageState extends State<orderpage> {
                                                   .size
                                                   .width /
                                               1.1,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             border: Border(
                                               bottom: BorderSide(
                                                 //                    <--- top side
@@ -449,13 +449,13 @@ class _orderpageState extends State<orderpage> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: <Widget>[
                                               Container(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       top: 5, bottom: 4),
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width /
                                                       3,
-                                                  child: Center(
+                                                  child: const Center(
                                                       child: Text(
                                                     "Processing",
                                                     style: TextStyle(
@@ -464,16 +464,16 @@ class _orderpageState extends State<orderpage> {
                                                     ),
                                                   ))),
                                               Container(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       top: 5, bottom: 4),
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width /
                                                       5,
                                                   child:
-                                                      Center(child: Text(""))),
+                                                      const Center(child: Text(""))),
                                               Container(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       top: 5, bottom: 5),
                                                   width: MediaQuery.of(context)
                                                           .size
@@ -482,7 +482,7 @@ class _orderpageState extends State<orderpage> {
                                                   child: Center(
                                                       child: Text(
                                                     datacard.orderFee,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16,
                                                     ),
@@ -490,7 +490,7 @@ class _orderpageState extends State<orderpage> {
                                             ],
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width /
@@ -500,13 +500,13 @@ class _orderpageState extends State<orderpage> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: <Widget>[
                                               Container(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       top: 5, bottom: 5),
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width /
                                                       4.6,
-                                                  child: Center(
+                                                  child: const Center(
                                                       child: Text(
                                                     "Total",
                                                     style: TextStyle(
@@ -515,16 +515,16 @@ class _orderpageState extends State<orderpage> {
                                                     ),
                                                   ))),
                                               Container(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       top: 5, bottom: 5),
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width /
                                                       4.6,
                                                   child:
-                                                      Center(child: Text(""))),
+                                                      const Center(child: Text(""))),
                                               Container(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       top: 5, bottom: 5),
                                                   width: MediaQuery.of(context)
                                                           .size
@@ -533,7 +533,7 @@ class _orderpageState extends State<orderpage> {
                                                   child: Center(
                                                       child: Text(
                                                     datacard.orderPrice,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16,
                                                     ),
@@ -549,9 +549,9 @@ class _orderpageState extends State<orderpage> {
                         );
                       }),
                   loading
-                      ? Center(
+                      ? const Center(
                           child: CircularProgressIndicator(
-                              valueColor: new AlwaysStoppedAnimation<Color>(
+                              valueColor: AlwaysStoppedAnimation<Color>(
                                   primarycolor)))
                       : Stack(
                           children: <Widget>[
@@ -572,15 +572,15 @@ class _orderpageState extends State<orderpage> {
                                           leading: Container(
                                               width: 40.0,
                                               height: 40.0,
-                                              decoration: new BoxDecoration(
+                                              decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
-                                                  image: new DecorationImage(
+                                                  image: DecorationImage(
                                                       fit: BoxFit.fill,
-                                                      image: new NetworkImage(
+                                                      image: NetworkImage(
                                                           listcat
                                                               .senderImage)))),
                                           title: Container(
-                                              padding: EdgeInsets.only(
+                                              padding: const EdgeInsets.only(
                                                   top: 10, bottom: 0),
                                               child: Column(
                                                 crossAxisAlignment:
@@ -588,11 +588,11 @@ class _orderpageState extends State<orderpage> {
                                                 children: <Widget>[
                                                   Row(children: <Widget>[
                                                     Container(
-                                                      padding: EdgeInsets.only(
+                                                      padding: const EdgeInsets.only(
                                                           right: 10),
                                                       child: Text(
                                                         listcat.senderName,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           color: Colors.black,
                                                           fontSize: 16,
                                                         ),
@@ -601,7 +601,7 @@ class _orderpageState extends State<orderpage> {
                                                     Container(
                                                         child: Text(
                                                       listcat.dateTime,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         color: Colors.grey,
                                                         fontSize: 14,
                                                       ),
@@ -609,7 +609,7 @@ class _orderpageState extends State<orderpage> {
                                                   ]),
                                                   Text(
                                                     listcat.message,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16,
                                                     ),
@@ -618,7 +618,7 @@ class _orderpageState extends State<orderpage> {
                                                               null
                                                       ? Text(
                                                           listcat.filename,
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                             color: Colors.black,
                                                             fontSize: 16,
                                                           ),
@@ -630,11 +630,11 @@ class _orderpageState extends State<orderpage> {
                                                       ? Container(
                                                           width: 100,
                                                           height: 100,
-                                                          decoration: new BoxDecoration(
-                                                              image: new DecorationImage(
+                                                          decoration: BoxDecoration(
+                                                              image: DecorationImage(
                                                                   fit: BoxFit
                                                                       .fill,
-                                                                  image: new NetworkImage(
+                                                                  image: NetworkImage(
                                                                       listcat
                                                                           .file))))
                                                       : Container(
@@ -650,7 +650,7 @@ class _orderpageState extends State<orderpage> {
                                   Form(
                                       key: _key,
                                       child: Container(
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           border: Border(
                                             top: BorderSide(
                                               //                   <--- top side
@@ -659,12 +659,12 @@ class _orderpageState extends State<orderpage> {
                                             ),
                                           ),
                                         ),
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             top: 0.0,
                                             bottom: 0.0,
                                             right: 5.0,
                                             left: 5.0),
-                                        margin: EdgeInsets.only(
+                                        margin: const EdgeInsets.only(
                                             top: 5.0,
                                             bottom: 0.0,
                                             right: 0.0,
@@ -680,7 +680,7 @@ class _orderpageState extends State<orderpage> {
                                                       child: TextFormField(
                                                         onSaved: (e) =>
                                                             textvalue = e,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           height: 1,
                                                           color: Colors.black,
                                                           fontSize: 16,
@@ -689,7 +689,7 @@ class _orderpageState extends State<orderpage> {
                                                           fontFamily:
                                                               'SophiaNubian',
                                                         ),
-                                                        decoration: InputDecoration(
+                                                        decoration: const InputDecoration(
                                                             hintText:
                                                                 "Type a Message...",
                                                             border: InputBorder
@@ -712,7 +712,7 @@ class _orderpageState extends State<orderpage> {
                                                                         0.0),
                                                                 child:
                                                                     IconButton(
-                                                                  icon: Icon(Icons
+                                                                  icon: const Icon(Icons
                                                                       .attachment),
                                                                   color:
                                                                       primarycolor,
@@ -723,7 +723,7 @@ class _orderpageState extends State<orderpage> {
                                                                 ),
                                                               ),
                                                               TextButton(
-                                                                child: Text(
+                                                                child: const Text(
                                                                   "send",
                                                                   style:
                                                                       TextStyle(

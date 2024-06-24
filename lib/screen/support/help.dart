@@ -3,7 +3,7 @@ import 'package:cowdiar/screen/Support/buyer.dart';
 import 'package:cowdiar/services/api.dart';
 
 class help extends StatefulWidget{
-  help({Key? key,this.title}):super(key:key);
+  const help({super.key,this.title});
   final String? title;
   @override
   _helpState createState()=>_helpState();
@@ -25,7 +25,7 @@ class _helpState extends State<help>{
                 IconData(iconcode,fontFamily: 'MaterialIcons',),color: primarycolor,size: 25.0,),
               Text(
                 icontitle,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black87,
                   fontSize: 15.0,
 
@@ -39,14 +39,14 @@ class _helpState extends State<help>{
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('Help & Support',style: TextStyle(color:Colors.black87),),
-        leading: Icon(Icons.arrow_back_ios, size: 28,color: Colors.black87 ),
+        title: const Text('Help & Support',style: TextStyle(color:Colors.black87),),
+        leading: const Icon(Icons.arrow_back_ios, size: 28,color: Colors.black87 ),
         centerTitle: true,
 
       ),
       body:Container(
         child:Column(children: <Widget>[
-          TextField(
+          const TextField(
             decoration: InputDecoration(
                 labelText: "  What are you looking for?",
                 hintText: "Search",
@@ -57,7 +57,7 @@ class _helpState extends State<help>{
           ),Expanded(
             child:GridView.count(
               crossAxisCount: 3,
-              padding: EdgeInsets.all(2),
+              padding: const EdgeInsets.all(2),
               children: <Widget>[
                 singleCard(59576,'        Getting              \t       Started '),
                 singleCard(59576, '      Accounts &   \tProfile Settings '),
@@ -68,13 +68,13 @@ class _helpState extends State<help>{
               ],
             ),),
           Container(
-            child: Padding(
+            child: const Padding(
                 padding: EdgeInsets.only(top:10.0),
                 child: Text("Can't find what you're looking for?",style: TextStyle(fontSize: 16.0,height: 1.5),textAlign: TextAlign.center,)
             ),
           ),
           Container(
-            child: Align(
+            child: const Align(
               alignment: FractionalOffset.center,
               child: Text("Please visit our Help Center for more information",style: TextStyle(fontSize: 16.0,height: 1.5),textAlign: TextAlign.center,),
             ),
@@ -83,14 +83,14 @@ class _helpState extends State<help>{
             child:Align(
               alignment:FractionalOffset.topCenter,
               child: Padding(
-                padding: EdgeInsets.only(top:16.0),
+                padding: const EdgeInsets.only(top:16.0),
                 child: ElevatedButton(
                   onPressed: (){ Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) =>buyer() ),
                   );
                   },
-                  child: Text("BUYER HELP CENTER"),
+                  child: const Text("BUYER HELP CENTER"),
                 ),
               ),
             ),
@@ -103,7 +103,7 @@ class _helpState extends State<help>{
         currentIndex: _index,
         type: BottomNavigationBarType.fixed,
         fixedColor: primarycolor,
-        items: [
+        items: const [
           //N-title:Text()
           BottomNavigationBarItem(icon: Icon(Icons.home), activeIcon: Text("Home",style: TextStyle(color: Colors.black87),)),
           BottomNavigationBarItem(icon: Icon(Icons.mail_outline), activeIcon: Text("Inbox",style: TextStyle(color: Colors.black87),)),

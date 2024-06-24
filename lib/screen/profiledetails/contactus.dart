@@ -14,21 +14,21 @@ import 'dart:async';
 
 class contactdetailpage extends StatefulWidget {
   final String messagegropid, sellname;//if you have multiple values add here
-  contactdetailpage(this.messagegropid, this.sellname, {Key? key}): super(key: key);
+  const contactdetailpage(this.messagegropid, this.sellname, {super.key});
   @override
   _contactdetailpageState createState() => _contactdetailpageState();
 }
 enum LoginStatus { newmessage, messagesend }
 class _contactdetailpageState extends State<contactdetailpage> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   File? _file;
-  String _fileName = '...';
-  String _path = '...';
+  final String _fileName = '...';
+  final String _path = '...';
   String? _extension;
   FileType? _pickingType;
-  final _key = new GlobalKey<FormState>();
-  TextEditingController _controller = new TextEditingController();
-  Color myGreen = Color(0xff4bb17b);
+  final _key = GlobalKey<FormState>();
+  final TextEditingController _controller = TextEditingController();
+  Color myGreen = const Color(0xff4bb17b);
   LoginStatus _loginStatus = LoginStatus.newmessage;
   var? textvalue;
   List<ConversationArr> friendsLists = [];
@@ -69,7 +69,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
       print("file base name:$fileName");
 
       try {
-        FormData formData = new FormData.fromMap({
+        FormData formData = FormData.fromMap({
           'receiver_id': widget.messagegropid,
           'message': textvalue,
           'file': await MultipartFile.fromFile(
@@ -100,7 +100,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
       }
     } else {
       try {
-        FormData formData = new FormData.fromMap({
+        FormData formData = FormData.fromMap({
           'receiver_id': widget.messagegropid,
           'message': textvalue,
           'file': '',
@@ -166,7 +166,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
         return Scaffold(
           appBar: AppBar(
             elevation: 0.0,
-            title: Container(
+            title: SizedBox(
                 width: MediaQuery
                     .of(context)
                     .size
@@ -178,9 +178,9 @@ class _contactdetailpageState extends State<contactdetailpage> {
           ),
 
           body: loading
-              ? Center(
+              ? const Center(
               child: CircularProgressIndicator(
-                  valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
+                  valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
               : Stack(
             children: <Widget>[
               Positioned.fill(
@@ -200,14 +200,14 @@ class _contactdetailpageState extends State<contactdetailpage> {
                             leading: Container(
                                 width: 40.0,
                                 height: 40.0,
-                                decoration: new BoxDecoration(
+                                decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    image: new DecorationImage(
+                                    image: DecorationImage(
                                         fit: BoxFit.fill,
-                                        image: new NetworkImage(
+                                        image: NetworkImage(
                                             listcat.senderImage)))),
                             title: Container(
-                                padding: EdgeInsets.only(top: 10, bottom: 0),
+                                padding: const EdgeInsets.only(top: 10, bottom: 0),
 
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -216,27 +216,27 @@ class _contactdetailpageState extends State<contactdetailpage> {
                                     Row(
                                         children: <Widget>[
                                           Container(
-                                            padding: EdgeInsets.only(right: 10),
+                                            padding: const EdgeInsets.only(right: 10),
                                             child: Text(listcat.senderName,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 16,
                                               ),),),
                                           Container(
                                               child: Text(listcat.dateTime,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: Colors.grey,
                                                   fontSize: 14,
                                                 ),)),
                                         ]),
-                                    Text(listcat.message, style: TextStyle(
+                                    Text(listcat.message, style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
                                     ),),
                                     listcat.filetype == null
                                         ? Text(
                                       listcat.filename,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
                                       ),
@@ -248,10 +248,10 @@ class _contactdetailpageState extends State<contactdetailpage> {
                                         ? Container(
                                         width: 100,
                                         height: 100,
-                                        decoration: new BoxDecoration(
-                                            image: new DecorationImage(
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
                                                 fit: BoxFit.fill,
-                                                image: new NetworkImage(
+                                                image: NetworkImage(
                                                     listcat
                                                         .messageFile))))
                                         : Container(
@@ -266,7 +266,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
                     Form(
                         key: _key,
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             border: Border(
                               top: BorderSide(
                                 //                   <--- top side
@@ -275,9 +275,9 @@ class _contactdetailpageState extends State<contactdetailpage> {
                               ),
                             ),
                           ),
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               top: 0.0, bottom: 0.0, right: 5.0, left: 5.0),
-                          margin: EdgeInsets.only(
+                          margin: const EdgeInsets.only(
                               top: 5.0, bottom: 0.0, right: 0.0, left: 0.0),
                           height: 100,
                           child: Row(
@@ -289,14 +289,14 @@ class _contactdetailpageState extends State<contactdetailpage> {
                                       Container(
                                         child: TextFormField(
                                           onSaved: (e) => textvalue = e,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             height: 1,
                                             color: Colors.black,
                                             fontSize: 16,
                                             fontWeight: FontWeight.w300,
                                             fontFamily: 'SophiaNubian',
                                           ),
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                               hintText: "Type a Message...",
                                               border: InputBorder.none
                                           ),
@@ -314,7 +314,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
                                                   const EdgeInsets.all(
                                                       0.0),
                                                   child: IconButton(
-                                                    icon: Icon(
+                                                    icon: const Icon(
                                                         Icons.attachment),
                                                     color: primarycolor,
                                                     onPressed: () {
@@ -323,7 +323,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
                                                   ),
                                                 ),
                                                 TextButton(
-                                                  child: Text(
+                                                  child: const Text(
                                                     "send",
                                                     style: TextStyle(
                                                       fontSize: 18,

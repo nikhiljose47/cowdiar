@@ -22,10 +22,9 @@ class profiledetailpage extends StatefulWidget {
       title,
       pretitle,
       prelink; //if you have multiple values add here
-  profiledetailpage(
+  const profiledetailpage(
       this.links, this.sublink, this.title, this.prelink, this.pretitle,
-      {Key? key})
-      : super(key: key);
+      {super.key});
 
   @override
   _profiledetailpageState createState() => _profiledetailpageState();
@@ -35,7 +34,7 @@ class _profiledetailpageState extends State<profiledetailpage> {
   List<PDetail> listdata = [];
   List<Faq> listfaq = [];
   List<Review> listreview = [];
-  final _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   List<String>? imageslist;
   VoidCallback? _showPersBottomSheetCallBack;
   bool isExpanded = false;
@@ -49,9 +48,9 @@ class _profiledetailpageState extends State<profiledetailpage> {
   myBoxDecorationfirst() {
     return BoxDecoration(
         color: Colors.white,
-        border: new Border.all(
+        border: Border.all(
             color: Colors.grey, width: 0.5, style: BorderStyle.solid),
-        borderRadius: new BorderRadius.all(new Radius.circular(10.0)));
+        borderRadius: const BorderRadius.all(Radius.circular(10.0)));
   }
 
   addcart(String package, String product, String quenty) async {
@@ -86,7 +85,7 @@ print(response);
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (BuildContext context) {
-            return cart();
+            return const cart();
           },
         ),
       );
@@ -140,7 +139,7 @@ print(response);
       loading = true;
     });
 
-    final linkdata = '/' + widget.links;
+    final linkdata = '/${widget.links}';
     final responseData = await http
         .get(Uri.parse(baseurl + version + linkdata), headers: {'Auth': token});
     if (responseData.statusCode == 200) {
@@ -174,13 +173,13 @@ print(response);
     _scaffoldKey.currentState
         .showBottomSheet((context) {
           return SingleChildScrollView(
-            child: new Container(
+            child: Container(
               child: Column(
                 children: <Widget>[
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    alignment: Alignment(-1.0, -1.0),
-                    padding: EdgeInsets.only(
+                    alignment: const Alignment(-1.0, -1.0),
+                    padding: const EdgeInsets.only(
                         left: 10.00, right: 10.00, top: 10.00, bottom: 5.00),
                     child: Column(
                       children: <Widget>[
@@ -190,24 +189,24 @@ print(response);
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                new Container(
+                                Container(
                                     width: 40.0,
                                     height: 40.0,
-                                    decoration: new BoxDecoration(
+                                    decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        image: new DecorationImage(
+                                        image: DecorationImage(
                                             fit: BoxFit.fill,
-                                            image: new NetworkImage(listdata[0]
+                                            image: NetworkImage(listdata[0]
                                                 .seller
                                                 .sellerImage))),
-                                    child: new Stack(
+                                    child: Stack(
                                       children: <Widget>[
                                         if (listdata[0].seller.onlineStatus ==
                                             'online')
-                                          new Positioned(
+                                          const Positioned(
                                             right: 0.0,
                                             bottom: 0.0,
-                                            child: new Icon(
+                                            child: Icon(
                                               Icons.fiber_manual_record,
                                               size: 15.0,
                                               color: primarycolor,
@@ -215,10 +214,10 @@ print(response);
                                           ),
                                         if (listdata[0].seller.onlineStatus ==
                                             'offline')
-                                          new Positioned(
+                                          const Positioned(
                                             right: 0.0,
                                             bottom: 0.0,
-                                            child: new Icon(
+                                            child: Icon(
                                               Icons.fiber_manual_record,
                                               size: 15.0,
                                               color: Colors.grey,
@@ -226,10 +225,10 @@ print(response);
                                           ),
                                       ],
                                     )),
-                                new Container(
+                                Container(
                                   width:
                                       MediaQuery.of(context).size.width / 1.3,
-                                  padding: EdgeInsets.only(left: 10.00),
+                                  padding: const EdgeInsets.only(left: 10.00),
                                   child: Column(
                                     children: <Widget>[
                                       Row(
@@ -244,43 +243,41 @@ print(response);
                                             children: <Widget>[
                                               Container(
                                                   padding:
-                                                      EdgeInsets.only(left: 0),
-                                                  child: new Text(
+                                                      const EdgeInsets.only(left: 0),
+                                                  child: Text(
                                                     listdata[0]
                                                         .seller
                                                         .sellerName,
-                                                    style: TextStyle(),
+                                                    style: const TextStyle(),
                                                     textAlign: TextAlign.left,
                                                   )),
                                               Container(
                                                   width: 100.0,
                                                   padding:
-                                                      EdgeInsets.only(top: 5),
+                                                      const EdgeInsets.only(top: 5),
                                                   child: Row(
                                                     children: <Widget>[
-                                                      Icon(
+                                                      const Icon(
                                                         Icons.star,
                                                         color: Colors.orange,
                                                         size: 16.0,
                                                       ),
-                                                      new Text(
+                                                      Text(
                                                         listdata[0]
                                                             .rating
                                                             .averageRatting,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           fontSize: 14,
                                                           color: Colors.orange,
                                                         ),
                                                         textAlign:
                                                             TextAlign.left,
                                                       ),
-                                                      new Text(
-                                                        " (" +
-                                                            listdata[0]
+                                                      Text(
+                                                        " (${listdata[0]
                                                                 .rating
-                                                                .totalReviews +
-                                                            ")",
-                                                        style: TextStyle(
+                                                                .totalReviews})",
+                                                        style: const TextStyle(
                                                           fontSize: 14,
                                                           color: Colors.black,
                                                         ),
@@ -303,7 +300,7 @@ print(response);
                       ],
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     color: Colors.grey,
                     height: 1,
                     thickness: 1,
@@ -313,32 +310,32 @@ print(response);
                   Column(
                     children: <Widget>[
                       Container(
-                        padding: EdgeInsets.only(left: 10, top: 10),
+                        padding: const EdgeInsets.only(left: 10, top: 10),
                         width: MediaQuery.of(context).size.width,
-                        child: Text("User Information"),
+                        child: const Text("User Information"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width / 1.1,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            new Container(
+                            Container(
                               width: 40.0,
                               height: 40.0,
-                              decoration: new BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.account_circle,
                                 color: Colors.grey,
                                 size: 30.0,
                               ),
                             ),
-                            new Container(
-                              padding: EdgeInsets.only(left: 10.00),
+                            Container(
+                              padding: const EdgeInsets.only(left: 10.00),
                               child: Column(
                                 children: <Widget>[
                                   Row(
@@ -352,21 +349,21 @@ print(response);
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Container(
-                                              padding: EdgeInsets.only(left: 0),
-                                              child: new Text(
+                                              padding: const EdgeInsets.only(left: 0),
+                                              child: const Text(
                                                 "Seller Level",
                                                 style: TextStyle(),
                                                 textAlign: TextAlign.left,
                                               )),
                                           Container(
-                                              padding: EdgeInsets.only(top: 5),
+                                              padding: const EdgeInsets.only(top: 5),
                                               child: Row(
                                                 children: <Widget>[
-                                                  new Text(
+                                                  Text(
                                                     listdata[0]
                                                         .seller
                                                         .sellerLevel,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.black,
                                                     ),
@@ -384,28 +381,28 @@ print(response);
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width / 1.1,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            new Container(
+                            Container(
                               width: 40.0,
                               height: 40.0,
-                              decoration: new BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.location_on,
                                 color: Colors.grey,
                                 size: 30.0,
                               ),
                             ),
-                            new Container(
-                              padding: EdgeInsets.only(left: 10.00),
+                            Container(
+                              padding: const EdgeInsets.only(left: 10.00),
                               child: Column(
                                 children: <Widget>[
                                   Row(
@@ -419,21 +416,21 @@ print(response);
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Container(
-                                              padding: EdgeInsets.only(left: 0),
-                                              child: new Text(
+                                              padding: const EdgeInsets.only(left: 0),
+                                              child: const Text(
                                                 "Location",
                                                 style: TextStyle(),
                                                 textAlign: TextAlign.left,
                                               )),
                                           Container(
-                                              padding: EdgeInsets.only(top: 5),
+                                              padding: const EdgeInsets.only(top: 5),
                                               child: Row(
                                                 children: <Widget>[
-                                                  new Text(
+                                                  Text(
                                                     listdata[0]
                                                         .seller
                                                         .sellerCountry,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.black,
                                                     ),
@@ -451,28 +448,28 @@ print(response);
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width / 1.1,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            new Container(
+                            Container(
                               width: 40.0,
                               height: 40.0,
-                              decoration: new BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.folder_open,
                                 color: Colors.grey,
                                 size: 30.0,
                               ),
                             ),
-                            new Container(
-                              padding: EdgeInsets.only(left: 10.00),
+                            Container(
+                              padding: const EdgeInsets.only(left: 10.00),
                               child: Column(
                                 children: <Widget>[
                                   Row(
@@ -486,21 +483,21 @@ print(response);
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Container(
-                                              padding: EdgeInsets.only(left: 0),
-                                              child: new Text(
+                                              padding: const EdgeInsets.only(left: 0),
+                                              child: const Text(
                                                 "Recent Delivery",
                                                 style: TextStyle(),
                                                 textAlign: TextAlign.left,
                                               )),
                                           Container(
-                                              padding: EdgeInsets.only(top: 5),
+                                              padding: const EdgeInsets.only(top: 5),
                                               child: Row(
                                                 children: <Widget>[
-                                                  new Text(
+                                                  Text(
                                                     listdata[0]
                                                         .seller
                                                         .recentDelivery,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.black,
                                                     ),
@@ -518,28 +515,28 @@ print(response);
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width / 1.1,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            new Container(
+                            Container(
                               width: 40.0,
                               height: 40.0,
-                              decoration: new BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.date_range,
                                 color: Colors.grey,
                                 size: 30.0,
                               ),
                             ),
-                            new Container(
-                              padding: EdgeInsets.only(left: 10.00),
+                            Container(
+                              padding: const EdgeInsets.only(left: 10.00),
                               child: Column(
                                 children: <Widget>[
                                   Row(
@@ -553,21 +550,21 @@ print(response);
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Container(
-                                              padding: EdgeInsets.only(left: 0),
-                                              child: new Text(
+                                              padding: const EdgeInsets.only(left: 0),
+                                              child: const Text(
                                                 "Seller Since",
                                                 style: TextStyle(),
                                                 textAlign: TextAlign.left,
                                               )),
                                           Container(
-                                              padding: EdgeInsets.only(top: 5),
+                                              padding: const EdgeInsets.only(top: 5),
                                               child: Row(
                                                 children: <Widget>[
-                                                  new Text(
+                                                  Text(
                                                     listdata[0]
                                                         .seller
                                                         .sellerSince,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.black,
                                                     ),
@@ -585,28 +582,28 @@ print(response);
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width / 1.1,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            new Container(
+                            Container(
                               width: 40.0,
                               height: 40.0,
-                              decoration: new BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.check_circle,
                                 color: Colors.grey,
                                 size: 30.0,
                               ),
                             ),
-                            new Container(
-                              padding: EdgeInsets.only(left: 10.00),
+                            Container(
+                              padding: const EdgeInsets.only(left: 10.00),
                               child: Column(
                                 children: <Widget>[
                                   Row(
@@ -620,21 +617,21 @@ print(response);
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Container(
-                                              padding: EdgeInsets.only(left: 0),
-                                              child: new Text(
+                                              padding: const EdgeInsets.only(left: 0),
+                                              child: const Text(
                                                 "Seller Last Activity",
                                                 style: TextStyle(),
                                                 textAlign: TextAlign.left,
                                               )),
                                           Container(
-                                              padding: EdgeInsets.only(top: 5),
+                                              padding: const EdgeInsets.only(top: 5),
                                               child: Row(
                                                 children: <Widget>[
-                                                  new Text(
+                                                  Text(
                                                     listdata[0]
                                                         .seller
                                                         .sellerLastActivity,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.black,
                                                     ),
@@ -652,31 +649,31 @@ print(response);
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Divider(
+                      const Divider(
                         color: Colors.grey,
                         height: 1,
                         thickness: 1,
                         indent: 0,
                         endIndent: 0,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      new Column(
+                      Column(
                         children: <Widget>[
                           Container(
                             width: MediaQuery.of(context).size.width,
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 left: 15.00,
                                 right: 10.00,
                                 top: 0.00,
                                 bottom: 10.00),
-                            child: Text(
+                            child: const Text(
                               "Description",
-                              style: new TextStyle(
+                              style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
@@ -685,7 +682,7 @@ print(response);
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width,
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 left: 15.00,
                                 right: 10.00,
                                 top: 0.00,
@@ -723,27 +720,27 @@ print(response);
   }
 
   Widget expendableList() {
-    return new ListView.builder(
+    return ListView.builder(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
       itemCount: listfaq.length.compareTo(0),
       itemBuilder: (context, i) {
         final datapass = listdata[i];
-        return new custom.ExpansionTile(
+        return custom.ExpansionTile(
           headerBackgroundColor: Colors.white,
           iconColor: isExpanded ? primarycolor : Colors.black,
-          title: new Text(
+          title: Text(
             "Frequently Asked Questions",
-            style: new TextStyle(
+            style: TextStyle(
               color: isExpanded ? primarycolor : Colors.black,
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
             ),
           ),
           children: <Widget>[
-            new Column(
+            Column(
               children: <Widget>[
-                new ListTile(
+                ListTile(
                   title: Text(datapass.faqs[i].question),
                   subtitle: Text(datapass.faqs[i].answer),
                 )
@@ -751,7 +748,7 @@ print(response);
             ),
           ],
           onExpansionChanged: (bool expanding) =>
-              setState(() => this.isExpanded = expanding),
+              setState(() => isExpanded = expanding),
         );
       },
     );
@@ -760,21 +757,21 @@ print(response);
   Widget reviewexpendableList() {
     return listdata[0].reviews.length == 0
         ? Container()
-        : new custom.ExpansionTile(
+        : custom.ExpansionTile(
             headerBackgroundColor: Colors.white,
             iconColor: isExpanded ? primarycolor : Colors.black,
-            title: new Text(
+            title: Text(
               "Reviews",
-              style: new TextStyle(
+              style: TextStyle(
                 color: isExpanded ? primarycolor : Colors.black,
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
             children: <Widget>[
-              new Column(
+              Column(
                 children: <Widget>[
-                  new ListView.builder(
+                  ListView.builder(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       itemCount: listdata[0].reviews.length.compareTo(0),
@@ -782,8 +779,8 @@ print(response);
                         final datapass = listdata[0].reviews[index];
 
                         return Container(
-                          alignment: Alignment(-1.0, -1.0),
-                          padding: EdgeInsets.only(
+                          alignment: const Alignment(-1.0, -1.0),
+                          padding: const EdgeInsets.only(
                               left: 10.00,
                               right: 10.00,
                               top: 10.00,
@@ -797,20 +794,20 @@ print(response);
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
-                                      new Container(
+                                      Container(
                                           width: 40.0,
                                           height: 40.0,
-                                          decoration: new BoxDecoration(
+                                          decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              image: new DecorationImage(
+                                              image: DecorationImage(
                                                   fit: BoxFit.fill,
-                                                  image: new NetworkImage(
+                                                  image: NetworkImage(
                                                       datapass.buyerImage)))),
-                                      new Container(
+                                      Container(
                                         width:
                                             MediaQuery.of(context).size.width /
                                                 1.3,
-                                        padding: EdgeInsets.only(left: 10.00),
+                                        padding: const EdgeInsets.only(left: 10.00),
                                         child: Column(
                                           children: <Widget>[
                                             Row(
@@ -821,24 +818,24 @@ print(response);
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Container(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         left: 0),
-                                                    child: new Text(
+                                                    child: Text(
                                                       datapass.buyerName,
-                                                      style: TextStyle(),
+                                                      style: const TextStyle(),
                                                       textAlign: TextAlign.left,
                                                     )),
                                                 Row(
                                                   children: <Widget>[
-                                                    Icon(
+                                                    const Icon(
                                                       Icons.star,
                                                       color: Colors.orange,
                                                       size: 16.0,
                                                     ),
                                                     Container(
-                                                      child: new Text(
+                                                      child: Text(
                                                           datapass.buyerRating,
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                             color:
                                                                 Colors.orange,
                                                           ),
@@ -858,10 +855,10 @@ print(response);
                                               children: <Widget>[
                                                 Container(
                                                   padding:
-                                                      EdgeInsets.only(left: 0),
+                                                      const EdgeInsets.only(left: 0),
                                                 ),
                                                 Container(
-                                                  child: new Text(
+                                                  child: Text(
                                                       datapass.reviewDate,
                                                       textAlign:
                                                           TextAlign.right),
@@ -876,9 +873,9 @@ print(response);
                                 ],
                               ),
                               Container(
-                                padding: EdgeInsets.only(left: 25.00),
+                                padding: const EdgeInsets.only(left: 25.00),
                                 width: MediaQuery.of(context).size.width / 1.3,
-                                child: new Text(datapass.buyerReview,
+                                child: Text(datapass.buyerReview,
                                     textAlign: TextAlign.left),
                               ),
                             ],
@@ -889,16 +886,16 @@ print(response);
               ),
             ],
             onExpansionChanged: (bool expanding) =>
-                setState(() => this.isExpanded = expanding),
+                setState(() => isExpanded = expanding),
           );
   }
 
   Widget review(context) {
     return Column(
       children: <Widget>[
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        const Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Padding(
-            padding: const EdgeInsets.only(left: 10.0, top: 0.00),
+            padding: EdgeInsets.only(left: 10.0, top: 0.00),
             child: Text('Recently Viewes & more',
                 style: TextStyle(
                   fontSize: 16,
@@ -909,15 +906,15 @@ print(response);
         ]),
         Column(children: <Widget>[
           Container(
-            padding: EdgeInsets.only(bottom: 5, top: 5),
+            padding: const EdgeInsets.only(bottom: 5, top: 5),
             // alignment: FractionalOffset(1.0, 1.0),
             width: MediaQuery.of(context).size.width,
             height: 300,
             child: loading
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                         valueColor:
-                            new AlwaysStoppedAnimation<Color>(primarycolor)))
+                            AlwaysStoppedAnimation<Color>(primarycolor)))
                 : ListView.builder(
                     scrollDirection: Axis.horizontal,
                     primary: false,
@@ -926,16 +923,16 @@ print(response);
                       final nplacesList = listreviews[i];
                       return GestureDetector(
                         child: Container(
-                          margin: EdgeInsets.only(
+                          margin: const EdgeInsets.only(
                               left: 5.00, top: 5.00, right: 5.00),
                           width: 250,
                           decoration: myBoxDecorationfirst(),
                           child: Column(children: <Widget>[
-                            Container(
+                            SizedBox(
                               height: 150,
                               child: Column(
                                 children: <Widget>[
-                                  Container(
+                                  SizedBox(
                                     //height: 150,
                                     width: double.infinity,
                                     child: Image.network(
@@ -947,7 +944,7 @@ print(response);
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   left: 10.00,
                                   right: 10.00,
                                   top: 10.00,
@@ -960,20 +957,20 @@ print(response);
                                     mainAxisAlignment:
                                         MainAxisAlignment.start,
                                     children: <Widget>[
-                                      new Container(
+                                      Container(
                                           width: 50.0,
                                           height: 50.0,
-                                          decoration: new BoxDecoration(
+                                          decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              image: new DecorationImage(
+                                              image: DecorationImage(
                                                   fit: BoxFit.fill,
-                                                  image: new NetworkImage(
+                                                  image: NetworkImage(
                                                       nplacesList
                                                           .sellerImage)))),
-                                      new Container(
-                                        padding: EdgeInsets.only(left: 5.00),
+                                      Container(
+                                        padding: const EdgeInsets.only(left: 5.00),
                                         child:
-                                            new Text(nplacesList.sellerName),
+                                            Text(nplacesList.sellerName),
                                       ),
                                     ],
                                   ),
@@ -982,7 +979,7 @@ print(response);
                             ),
                             Container(
                               padding:
-                                  EdgeInsets.only(right: 10.00, left: 10.00),
+                                  const EdgeInsets.only(right: 10.00, left: 10.00),
                               child: Column(children: <Widget>[
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -999,7 +996,7 @@ print(response);
                               ]),
                             ),
                             Container(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   right: 10.00, left: 10.00, top: 10.00),
                               child: Row(
                                 mainAxisAlignment:
@@ -1009,10 +1006,10 @@ print(response);
                                     mainAxisAlignment:
                                         MainAxisAlignment.start,
                                     children: <Widget>[
-                                      new Container(
-                                          padding: EdgeInsets.only(left: 10),
+                                      Container(
+                                          padding: const EdgeInsets.only(left: 10),
                                           child: Row(children: <Widget>[
-                                            Text(
+                                            const Text(
                                               "From ",
                                               style: TextStyle(
                                                 fontSize: 15,
@@ -1023,7 +1020,7 @@ print(response);
                                             ),
                                             Text(
                                               "${nplacesList.price}",
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontSize: 18,
                                                 color: primarycolor,
                                               ),
@@ -1034,16 +1031,16 @@ print(response);
                                     ],
                                   ),
                                   Row(children: <Widget>[
-                                    new Container(
+                                    Container(
                                         child: Row(children: <Widget>[
-                                      Icon(
+                                      const Icon(
                                         Icons.star,
                                         size: 14,
                                         color: Colors.orangeAccent,
                                       ),
                                       Text(
                                         "${nplacesList.rating.averageRatting}",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 15,
                                           color: Colors.orangeAccent,
                                         ),
@@ -1052,7 +1049,7 @@ print(response);
                                       ),
                                       Text(
                                         "(${nplacesList.rating.totalReviews})",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 15,
                                           color: Colors.black38,
                                         ),
@@ -1090,17 +1087,17 @@ print(response);
     return Scaffold(
       key: _scaffoldKey,
       body: loading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(
-                  valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
-          : listdata.length != 0
+                  valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
+          : listdata.isNotEmpty
               ? ListView(
                   children: [
                     Column(
                       children: <Widget>[
                         ListView.builder(
                           scrollDirection: Axis.vertical,
-                          physics: new NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: listdata.length.compareTo(0),
                           itemBuilder: (context, i) {
@@ -1113,7 +1110,7 @@ print(response);
                                 Stack(children: <Widget>[
                                   Container(
                                     width: MediaQuery.of(context).size.width,
-                                    margin: EdgeInsets.symmetric(
+                                    margin: const EdgeInsets.symmetric(
                                         horizontal: 0.0, vertical: 0.0),
                                     color: Colors.white,
                                     height: 200,
@@ -1138,9 +1135,9 @@ print(response);
                                               reverse: false,
                                               autoPlay: true,
                                               autoPlayInterval:
-                                                  Duration(seconds: 5),
+                                                  const Duration(seconds: 5),
                                               autoPlayAnimationDuration:
-                                                  Duration(milliseconds: 800),
+                                                  const Duration(milliseconds: 800),
                                               autoPlayCurve:
                                                   Curves.fastOutSlowIn,
                                               enlargeCenterPage: false,
@@ -1169,12 +1166,12 @@ print(response);
                                           ),
                                         ]),
                                     // padding: EdgeInsets.only(left: 10),
-                                    margin: EdgeInsets.symmetric(
+                                    margin: const EdgeInsets.symmetric(
                                         horizontal: 10.0, vertical: 20.0),
 
                                     child: widget.sublink == "home"
                                         ? IconButton(
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.arrow_back,
                                               color: Colors.white,
                                             ),
@@ -1183,7 +1180,7 @@ print(response);
                                                 MaterialPageRoute(
                                                   builder:
                                                       (BuildContext context) {
-                                                    return MyHomePage(0);
+                                                    return const MyHomePage(0);
                                                   },
                                                 ),
                                               );
@@ -1191,7 +1188,7 @@ print(response);
                                           )
                                         : widget.sublink == "search"
                                             ? IconButton(
-                                                icon: Icon(
+                                                icon: const Icon(
                                                   Icons.arrow_back,
                                                   color: Colors.white,
                                                 ),
@@ -1200,14 +1197,14 @@ print(response);
                                                     MaterialPageRoute(
                                                       builder: (BuildContext
                                                           context) {
-                                                        return MyHomePage(2);
+                                                        return const MyHomePage(2);
                                                       },
                                                     ),
                                                   );
                                                 },
                                               )
                                             : IconButton(
-                                                icon: Icon(
+                                                icon: const Icon(
                                                   Icons.arrow_back,
                                                   color: Colors.white,
                                                 ),
@@ -1231,8 +1228,8 @@ print(response);
                                 Container(
                                   width:
                                   MediaQuery.of(context).size.width / 1,
-                                  alignment: Alignment(-1.0, -1.0),
-                                  padding: EdgeInsets.only(
+                                  alignment: const Alignment(-1.0, -1.0),
+                                  padding: const EdgeInsets.only(
                                       left: 10.00,
                                       right: 10.00,
                                       top: 10.00,
@@ -1245,25 +1242,25 @@ print(response);
                                         mainAxisAlignment:
                                         MainAxisAlignment.start,
                                         children: <Widget>[
-                                          new Container(
+                                          Container(
                                               width: 50.0,
                                               height: 50.0,
-                                              decoration: new BoxDecoration(
+                                              decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
-                                                  image: new DecorationImage(
+                                                  image: DecorationImage(
                                                       fit: BoxFit.fill,
-                                                      image: new NetworkImage(
+                                                      image: NetworkImage(
                                                           datapass.seller
                                                               .sellerImage))),
-                                              child: new Stack(
+                                              child: Stack(
                                                 children: <Widget>[
                                                   if (datapass.seller
                                                       .onlineStatus ==
                                                       'online')
-                                                    new Positioned(
+                                                    const Positioned(
                                                       right: 0.0,
                                                       bottom: 0.0,
-                                                      child: new Icon(
+                                                      child: Icon(
                                                         Icons
                                                             .fiber_manual_record,
                                                         size: 15.0,
@@ -1273,10 +1270,10 @@ print(response);
                                                   if (datapass.seller
                                                       .onlineStatus ==
                                                       'offline')
-                                                    new Positioned(
+                                                    const Positioned(
                                                       right: 0.0,
                                                       bottom: 0.0,
-                                                      child: new Icon(
+                                                      child: Icon(
                                                         Icons
                                                             .fiber_manual_record,
                                                         size: 15.0,
@@ -1285,9 +1282,9 @@ print(response);
                                                     ),
                                                 ],
                                               )),
-                                          new Container(
+                                          Container(
                                             padding:
-                                            EdgeInsets.only(left: 10.00),
+                                            const EdgeInsets.only(left: 10.00),
                                             child: Column(
                                               mainAxisAlignment:
                                               MainAxisAlignment.start,
@@ -1295,17 +1292,17 @@ print(response);
                                               CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Container(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         left: 0),
-                                                    child: new Text(
+                                                    child: Text(
                                                       datapass
                                                           .seller.sellerName,
-                                                      style: TextStyle(),
+                                                      style: const TextStyle(),
                                                       textAlign:
                                                       TextAlign.left,
                                                     )),
                                                 Container(
-                                                    child: new Text(datapass
+                                                    child: Text(datapass
                                                         .seller.sellerLevel)),
                                               ],
                                             ),
@@ -1313,7 +1310,7 @@ print(response);
                                         ],
                                       ),
                                       IconButton(
-                                        icon: Icon(Icons.keyboard_arrow_down),
+                                        icon: const Icon(Icons.keyboard_arrow_down),
                                         onPressed:
                                         _showPersBottomSheetCallBack,
                                       ),
@@ -1321,8 +1318,8 @@ print(response);
                                   ),
                                 ),
                                 Container(
-                                  alignment: Alignment(-1.0, -1.0),
-                                  padding: EdgeInsets.only(
+                                  alignment: const Alignment(-1.0, -1.0),
+                                  padding: const EdgeInsets.only(
                                       left: 10.00,
                                       right: 10.00,
                                       top: 10.00,
@@ -1331,8 +1328,8 @@ print(response);
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
-                                      new Container(
-                                        padding: EdgeInsets.only(left: 10.00),
+                                      Container(
+                                        padding: const EdgeInsets.only(left: 10.00),
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
@@ -1345,16 +1342,15 @@ print(response);
                                                         .width /
                                                     1.5,
                                                 padding:
-                                                    EdgeInsets.only(left: 0),
+                                                    const EdgeInsets.only(left: 0),
                                                 child: datapass
                                                             .title.length >=
                                                         30
                                                     ? Text(
-                                                        datapass.title
+                                                        "${datapass.title
                                                                 .substring(
-                                                                    0, 30) +
-                                                            "...",
-                                                        style: TextStyle(
+                                                                    0, 30)}...",
+                                                        style: const TextStyle(
                                                           fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.w700,
@@ -1364,7 +1360,7 @@ print(response);
                                                       )
                                                     : Text(
                                                         datapass.title,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.w700,
@@ -1372,7 +1368,7 @@ print(response);
                                                         textAlign:
                                                             TextAlign.left,
                                                       )),
-                                            Container(
+                                            SizedBox(
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width *
@@ -1383,12 +1379,11 @@ print(response);
                                                   ? Wrap(
                                                       children: [
                                                         Text(readmore
-                                                            ? datapass
+                                                            ? '${datapass
                                                                     .description
                                                                     .substring(
                                                                         0,
-                                                                        62) +
-                                                                '...'
+                                                                        62)}...'
                                                             : ''),
                                                         GestureDetector(
                                                           onTap: () {
@@ -1462,9 +1457,9 @@ print(response);
                                                     },
                                                     child: Container(
                                                       padding:
-                                                          EdgeInsets.only(
+                                                          const EdgeInsets.only(
                                                               left: 5),
-                                                      child: Text(
+                                                      child: const Text(
                                                         'Read Less',
                                                         style: TextStyle(
                                                             color: Colors.red,
@@ -1484,7 +1479,7 @@ print(response);
                         ),
                         DefaultTabController(
                           length: 3,
-                          child: Container(
+                          child: SizedBox(
                             height: MediaQuery.of(context).size.height / 2.5,
                             child: Column(
                               children: <Widget>[
@@ -1529,7 +1524,7 @@ print(response);
                                   child: TabBarView(
                                     children: <Widget>[
                                       Container(
-                                        padding: EdgeInsets.all(15),
+                                        padding: const EdgeInsets.all(15),
                                         child: Column(
                                           children: <Widget>[
                                             Container(
@@ -1549,7 +1544,7 @@ print(response);
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Container(
@@ -1565,19 +1560,18 @@ print(response);
                                                               .description
                                                               .length >
                                                           30
-                                                      ? listdata[0]
+                                                      ? '${listdata[0]
                                                               .pPackages[0]
                                                               .description
                                                               .substring(
-                                                                  0, 30) +
-                                                          '...'
+                                                                  0, 30)}...'
                                                       : listdata[0]
                                                           .pPackages[0]
                                                           .description)
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Container(
@@ -1587,14 +1581,14 @@ print(response);
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: <Widget>[
-                                                  Text("Revisions"),
+                                                  const Text("Revisions"),
                                                   Text(listdata[0]
                                                       .pPackages[0]
                                                       .revisions)
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Container(
@@ -1604,14 +1598,14 @@ print(response);
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: <Widget>[
-                                                  Text("Delivery Time"),
+                                                  const Text("Delivery Time"),
                                                   Text(listdata[0]
                                                       .pPackages[0]
                                                       .deliveryTime)
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Container(
@@ -1621,7 +1615,7 @@ print(response);
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: <Widget>[
-                                                  Text("price"),
+                                                  const Text("price"),
                                                   Text(listdata[0]
                                                       .pPackages[0]
                                                       .price)
@@ -1635,18 +1629,18 @@ print(response);
                                                                 .size
                                                                 .width /
                                                             1.1,
-                                                    margin: EdgeInsets.only(
+                                                    margin: const EdgeInsets.only(
                                                         top: 10,
                                                         right: 20,
                                                         left: 20),
                                                     child: TextButton(
-                                                      child: Text('Log In '),
+                                                      child: const Text('Log In '),
                                                       onPressed: () {
                                                         Navigator.push(
                                                           context,
                                                           MaterialPageRoute(
                                                             builder: (context) =>
-                                                                Login(
+                                                                const Login(
                                                                     "loginfull"),
                                                           ),
                                                         );
@@ -1659,16 +1653,15 @@ print(response);
                                                                 .size
                                                                 .width /
                                                             1.1,
-                                                    margin: EdgeInsets.only(
+                                                    margin: const EdgeInsets.only(
                                                         top: 10,
                                                         right: 20,
                                                         left: 20),
                                                     child: TextButton(
                                                       child: Text(
-                                                          'Add To Cart ' +
-                                                              listdata[0]
+                                                          'Add To Cart ${listdata[0]
                                                                   .pPackages[0]
-                                                                  .price),
+                                                                  .price}'),
                                                       onPressed: () {
                                                         setState(() {
                                                           addcart(
@@ -1686,7 +1679,7 @@ print(response);
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.all(15),
+                                        padding: const EdgeInsets.all(15),
                                         child: Column(
                                           children: <Widget>[
                                             Container(
@@ -1703,7 +1696,7 @@ print(response);
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Container(
@@ -1719,12 +1712,11 @@ print(response);
                                                               .description
                                                               .length >
                                                           20
-                                                      ? listdata[0]
+                                                      ? '${listdata[0]
                                                               .pPackages[1]
                                                               .description
                                                               .substring(
-                                                                  0, 21) +
-                                                          '...'
+                                                                  0, 21)}...'
                                                       : listdata[0]
                                                           .pPackages[1]
                                                           .description)
@@ -1733,26 +1725,26 @@ print(response);
                                             ),
                                             Container(
                                               alignment: Alignment.centerLeft,
-                                              padding: EdgeInsets.only(top: 8),
+                                              padding: const EdgeInsets.only(top: 8),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: <Widget>[
-                                                  Text("Revisions"),
+                                                  const Text("Revisions"),
                                                   listdata[0]
                                                               .pPackages[1]
                                                               .revisions
                                                               .length ==
                                                           0
-                                                      ? Text("--")
+                                                      ? const Text("--")
                                                       : Text(listdata[0]
                                                           .pPackages[1]
                                                           .revisions)
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Container(
@@ -1762,14 +1754,14 @@ print(response);
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: <Widget>[
-                                                  Text("Delivery Time"),
+                                                  const Text("Delivery Time"),
                                                   Text(listdata[0]
                                                       .pPackages[1]
                                                       .deliveryTime)
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Container(
@@ -1779,7 +1771,7 @@ print(response);
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: <Widget>[
-                                                  Text("price"),
+                                                  const Text("price"),
                                                   Text(listdata[0]
                                                       .pPackages[1]
                                                       .price)
@@ -1793,18 +1785,18 @@ print(response);
                                                                 .size
                                                                 .width /
                                                             1.1,
-                                                    margin: EdgeInsets.only(
+                                                    margin: const EdgeInsets.only(
                                                         top: 10,
                                                         right: 20,
                                                         left: 20),
                                                     child: TextButton(
-                                                      child: Text('Log In '),
+                                                      child: const Text('Log In '),
                                                       onPressed: () {
                                                         Navigator.push(
                                                           context,
                                                           MaterialPageRoute(
                                                             builder: (context) =>
-                                                                Login(
+                                                                const Login(
                                                                     "loginfull"),
                                                           ),
                                                         );
@@ -1817,16 +1809,15 @@ print(response);
                                                                 .size
                                                                 .width /
                                                             1.1,
-                                                    margin: EdgeInsets.only(
+                                                    margin: const EdgeInsets.only(
                                                         top: 10,
                                                         right: 20,
                                                         left: 20),
                                                     child: TextButton(
                                                       child: Text(
-                                                          'Add To Cart ' +
-                                                              listdata[0]
+                                                          'Add To Cart ${listdata[0]
                                                                   .pPackages[1]
-                                                                  .price),
+                                                                  .price}'),
                                                       onPressed: () {
                                                         setState(() {
                                                           addcart(
@@ -1844,7 +1835,7 @@ print(response);
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.all(15),
+                                        padding: const EdgeInsets.all(15),
                                         child: Column(
                                           children: <Widget>[
                                             Container(
@@ -1861,7 +1852,7 @@ print(response);
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Container(
@@ -1877,19 +1868,18 @@ print(response);
                                                               .description
                                                               .length >
                                                           38
-                                                      ? listdata[0]
+                                                      ? '${listdata[0]
                                                               .pPackages[2]
                                                               .description
                                                               .substring(
-                                                                  0, 38) +
-                                                          '...'
+                                                                  0, 38)}...'
                                                       : listdata[0]
                                                           .pPackages[2]
                                                           .description)
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Container(
@@ -1899,14 +1889,14 @@ print(response);
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: <Widget>[
-                                                  Text("Revisions"),
+                                                  const Text("Revisions"),
                                                   Text(listdata[0]
                                                       .pPackages[2]
                                                       .revisions)
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Container(
@@ -1916,14 +1906,14 @@ print(response);
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: <Widget>[
-                                                  Text("Delivery Time"),
+                                                  const Text("Delivery Time"),
                                                   Text(listdata[0]
                                                       .pPackages[2]
                                                       .deliveryTime)
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 8,
                                             ),
                                             Container(
@@ -1933,7 +1923,7 @@ print(response);
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: <Widget>[
-                                                  Text("price"),
+                                                  const Text("price"),
                                                   Text(listdata[0]
                                                       .pPackages[2]
                                                       .price)
@@ -1947,18 +1937,18 @@ print(response);
                                                                 .size
                                                                 .width /
                                                             1.1,
-                                                    margin: EdgeInsets.only(
+                                                    margin: const EdgeInsets.only(
                                                         top: 10,
                                                         right: 20,
                                                         left: 20),
                                                     child: TextButton(
-                                                      child: Text('Log In '),
+                                                      child: const Text('Log In '),
                                                       onPressed: () {
                                                         Navigator.push(
                                                           context,
                                                           MaterialPageRoute(
                                                             builder: (context) =>
-                                                                Login(
+                                                                const Login(
                                                                     "loginfull"),
                                                           ),
                                                         );
@@ -1971,16 +1961,15 @@ print(response);
                                                                 .size
                                                                 .width /
                                                             1.1,
-                                                    margin: EdgeInsets.only(
+                                                    margin: const EdgeInsets.only(
                                                         top: 10,
                                                         right: 20,
                                                         left: 20),
                                                     child: TextButton(
                                                       child: Text(
-                                                          'Add To Cart ' +
-                                                              listdata[0]
+                                                          'Add To Cart ${listdata[0]
                                                                   .pPackages[2]
-                                                                  .price),
+                                                                  .price}'),
                                                       onPressed: () {
                                                         setState(() {
                                                           addcart(
@@ -2007,37 +1996,37 @@ print(response);
                       ],
                     ),
                     loading
-                        ? Center(
+                        ? const Center(
                             child: CircularProgressIndicator(
-                                valueColor: new AlwaysStoppedAnimation<Color>(
+                                valueColor: AlwaysStoppedAnimation<Color>(
                                     primarycolor)))
                         : Container(
                             child: expendableList(),
                           ),
                     loading
-                        ? Center(
+                        ? const Center(
                             child: CircularProgressIndicator(
-                                valueColor: new AlwaysStoppedAnimation<Color>(
+                                valueColor: AlwaysStoppedAnimation<Color>(
                                     primarycolor)))
                         : Container(
                             child: reviewexpendableList(),
                           ),
                     loading
-                        ? Center(
+                        ? const Center(
                             child: CircularProgressIndicator(
-                                valueColor: new AlwaysStoppedAnimation<Color>(
+                                valueColor: AlwaysStoppedAnimation<Color>(
                                     primarycolor)))
                         : listdata[0].reviews.length != 0
-                            ? SizedBox(
+                            ? const SizedBox(
                                 height: 20,
                               )
-                            : SizedBox(
+                            : const SizedBox(
                                 height: 0,
                               ),
                     review(context),
                   ],
                 )
-              : Center(
+              : const Center(
                   child: Text(
                   "Loading..",
                   style: TextStyle(fontSize: 20, color: primarycolor),
@@ -2067,38 +2056,38 @@ print(response);
                   : Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Login("loginfull"),
+                        builder: (context) => const Login("loginfull"),
                       ),
                     );
         },
         label: loading
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(
                     valueColor:
-                        new AlwaysStoppedAnimation<Color>(primarycolor)))
-            : listdata.length != 0
+                        AlwaysStoppedAnimation<Color>(primarycolor)))
+            : listdata.isNotEmpty
                 ? Container(
-                    padding: EdgeInsets.all(0.00),
+                    padding: const EdgeInsets.all(0.00),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Container(
-                            padding: EdgeInsets.only(right: 15),
+                            padding: const EdgeInsets.only(right: 15),
                             width: 30.0,
                             height: 30.0,
-                            decoration: new BoxDecoration(
+                            decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                image: new DecorationImage(
+                                image: DecorationImage(
                                     fit: BoxFit.fill,
-                                    image: new NetworkImage(
+                                    image: NetworkImage(
                                         listdata[0].seller.sellerImage))),
-                            child: new Stack(
+                            child: Stack(
                               children: <Widget>[
                                 if (listdata[0].seller.onlineStatus == 'online')
-                                  new Positioned(
+                                  const Positioned(
                                     right: 0.0,
                                     bottom: 0.0,
-                                    child: new Icon(
+                                    child: Icon(
                                       Icons.fiber_manual_record,
                                       size: 15.0,
                                       color: primarycolor,
@@ -2106,10 +2095,10 @@ print(response);
                                   ),
                                 if (listdata[0].seller.onlineStatus ==
                                     'offline')
-                                  new Positioned(
+                                  const Positioned(
                                     right: 0.0,
                                     bottom: 0.0,
-                                    child: new Icon(
+                                    child: Icon(
                                       Icons.fiber_manual_record,
                                       size: 15.0,
                                       color: Colors.grey,
@@ -2118,8 +2107,8 @@ print(response);
                               ],
                             )),
                         Container(
-                            padding: EdgeInsets.only(left: 5),
-                            child: Text(
+                            padding: const EdgeInsets.only(left: 5),
+                            child: const Text(
                               'Chat',
                               style: TextStyle(
                                 color: primarycolor,
@@ -2129,7 +2118,7 @@ print(response);
                             )),
                       ],
                     ))
-                : Text("Log in"),
+                : const Text("Log in"),
         backgroundColor: Colors.white,
       ),
     );

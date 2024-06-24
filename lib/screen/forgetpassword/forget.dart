@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:cowdiar/util/appinfo.dart';
 import 'package:http/http.dart' as http;
@@ -10,14 +9,16 @@ import 'package:cowdiar/services/api.dart';
 import 'package:cowdiar/screen/login/login.dart';
 
 class forgetpass extends StatefulWidget {
+  const forgetpass({super.key});
+
   @override
   _forgetpassState createState() => _forgetpassState();
 }
 
 class _forgetpassState extends State<forgetpass> {
-  final _key = new GlobalKey<FormState>();
+  final _key = GlobalKey<FormState>();
   String? email;
-  FocusNode emailFocusNode = new FocusNode();
+  FocusNode emailFocusNode = FocusNode();
   List<AppInfo> apiinforlist = [];
   bool shouldShowDialog = false;
 
@@ -65,7 +66,7 @@ class _forgetpassState extends State<forgetpass> {
   bool validateEmail(String email) {
     String pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = new RegExp(pattern);
+    RegExp regex = RegExp(pattern);
     return regex.hasMatch(email);
     // if (!regex.hasMatch(email)) {
     //   loginToast("Incorrect Email");
@@ -92,12 +93,12 @@ class _forgetpassState extends State<forgetpass> {
     }
 
     Widget okButton = ElevatedButton(
-      child: Text("OK"),
+      child: const Text("OK"),
       onPressed: () {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-                builder: (BuildContext context) => MyHomePage(0)));
+                builder: (BuildContext context) => const MyHomePage(0)));
       },
     );
 
@@ -129,7 +130,7 @@ class _forgetpassState extends State<forgetpass> {
                     alignment: Alignment.center,
                     heightFactor: 0.7,
                     child: Image.asset('assets/logo/cowdiar_logo.png'))),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Form(
@@ -139,7 +140,7 @@ class _forgetpassState extends State<forgetpass> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 32),
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
                     child: TextFormField(
                       validator: (e) {
                         if (e!.isEmpty || !validateEmail(e)) {
@@ -148,26 +149,26 @@ class _forgetpassState extends State<forgetpass> {
                         return null;
                       },
                       onSaved: (e) => email = e,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: primarycolor,
                         fontSize: 16,
                         fontWeight: FontWeight.w300,
                       ),
                       decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 10),
+                          contentPadding: const EdgeInsets.symmetric(vertical: 10),
                           border: OutlineInputBorder(
-                            borderSide: BorderSide(color: primarycolor),
+                            borderSide: const BorderSide(color: primarycolor),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: primarycolor),
+                            borderSide: const BorderSide(color: primarycolor),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: primarycolor),
+                            borderSide: const BorderSide(color: primarycolor),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          prefixIcon: Padding(
+                          prefixIcon: const Padding(
                             padding: EdgeInsets.only(left: 20, right: 15),
                             child: Icon(Icons.person, color: primarycolor),
                           ),
@@ -179,20 +180,20 @@ class _forgetpassState extends State<forgetpass> {
                                   : primarycolor)),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 32),
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
                       child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(8)),
                               color: primarycolor),
                           child: SizedBox(
                             width: double.infinity,
                             child: TextButton(
-                              child: Text(
+                              child: const Text(
                                 "Reset Password",
                                 style: TextStyle(
                                     color: Colors.white,
@@ -204,7 +205,7 @@ class _forgetpassState extends State<forgetpass> {
                               },
                             ),
                           ))),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Center(
@@ -215,7 +216,7 @@ class _forgetpassState extends State<forgetpass> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           TextButton(
-                            child: Text(
+                            child: const Text(
                               "<< Login",
                               style: TextStyle(
                                   color: primarycolor,
@@ -226,12 +227,12 @@ class _forgetpassState extends State<forgetpass> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Login("loginfull")),
+                                    builder: (context) => const Login("loginfull")),
                               );
                             },
                           ),
                           TextButton(
-                            child: Text(
+                            child: const Text(
                               "Skip >>",
                               style: TextStyle(
                                   color: primarycolor,
@@ -242,7 +243,7 @@ class _forgetpassState extends State<forgetpass> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MyHomePage(0)),
+                                    builder: (context) => const MyHomePage(0)),
                               );
                             },
                           ),
@@ -250,13 +251,13 @@ class _forgetpassState extends State<forgetpass> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
+                      const Text(
                         "Don't have an Account ? ",
                         style: TextStyle(
                             color: Colors.black,
@@ -264,7 +265,7 @@ class _forgetpassState extends State<forgetpass> {
                             fontWeight: FontWeight.normal),
                       ),
                       TextButton(
-                        child: Text("Sign Up ",
+                        child: const Text("Sign Up ",
                             style: TextStyle(
                                 color: primarycolor,
                                 fontWeight: FontWeight.w500,
@@ -274,7 +275,7 @@ class _forgetpassState extends State<forgetpass> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Register()),
+                                  builder: (context) => const Register()),
                             );
                           }
                         },

@@ -13,8 +13,7 @@ import 'package:path_provider/path_provider.dart';
 
 class Inboxdetailpage extends StatefulWidget {
   final String messagegropid, sellname; //if you have multiple values add here
-  Inboxdetailpage(this.messagegropid, this.sellname, {Key? key})
-      : super(key: key);
+  const Inboxdetailpage(this.messagegropid, this.sellname, {super.key});
 
   @override
   _InboxdetailpageState createState() => _InboxdetailpageState();
@@ -28,11 +27,11 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
   String progress = '0';
   ScrollController _scrollController = ScrollController();
   File? _file;
-  bool _showBottom = false;
-  String _fileName = '...';
-  final _key = new GlobalKey<FormState>();
-  TextEditingController _controller = new TextEditingController();
-  Color myGreen = Color(0xff4bb17b);
+  final bool _showBottom = false;
+  final String _fileName = '...';
+  final _key = GlobalKey<FormState>();
+  final TextEditingController _controller = TextEditingController();
+  Color myGreen = const Color(0xff4bb17b);
 
   var? textvalue;
   List<ConversationArr> friendsLists = [];
@@ -47,13 +46,13 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
     try {
       var dir = await getApplicationDocumentsDirectory();
       print(dir.path);
-      await dio.download(imgUrl, "${dir.path}",
+      await dio.download(imgUrl, dir.path,
           onReceiveProgress: (rec, total) {
         print("Rec: $rec , Total: $total");
 
         setState(() {
           downloading = true;
-          progressString = ((rec / total) * 100).toStringAsFixed(0) + "%";
+          progressString = "${((rec / total) * 100).toStringAsFixed(0)}%";
         });
       });
     } catch (e) {
@@ -95,7 +94,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
       print("file base name:$fileName");
 
       try {
-        FormData formData = new FormData.fromMap({
+        FormData formData = FormData.fromMap({
           'message_group_id': widget.messagegropid,
           'message': textvalue,
           'file':
@@ -126,7 +125,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
       }
     } else {
       try {
-        FormData formData = new FormData.fromMap({
+        FormData formData = FormData.fromMap({
           'message_group_id': widget.messagegropid,
           'message': textvalue,
           'file': '',
@@ -210,14 +209,14 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        title: Container(
+        title: SizedBox(
             width: MediaQuery.of(context).size.width / 1.8,
             child: Center(child: Text(widget.sellname))),
       ),
       body: loading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(
-                  valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
+                  valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
           : Stack(
               children: <Widget>[
                 Positioned.fill(
@@ -237,24 +236,24 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                               leading: Container(
                                   width: 40.0,
                                   height: 40.0,
-                                  decoration: new BoxDecoration(
+                                  decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      image: new DecorationImage(
+                                      image: DecorationImage(
                                           fit: BoxFit.fill,
-                                          image: new NetworkImage(
+                                          image: NetworkImage(
                                               listcat.senderImage)))),
                               title: Container(
-                                  padding: EdgeInsets.only(top: 10, bottom: 0),
+                                  padding: const EdgeInsets.only(top: 10, bottom: 0),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Row(children: <Widget>[
                                         Container(
-                                          padding: EdgeInsets.only(right: 10),
+                                          padding: const EdgeInsets.only(right: 10),
                                           child: Text(
                                             listcat.senderName,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 16,
                                             ),
@@ -263,7 +262,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                         Container(
                                             child: Text(
                                           listcat.dateTime,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.grey,
                                             fontSize: 14,
                                           ),
@@ -271,7 +270,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                       ]),
                                       Text(
                                         listcat.message,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 16,
                                         ),
@@ -279,7 +278,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                       listcat.filetype == null
                                           ? Text(
                                               listcat.filename,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 16,
                                               ),
@@ -291,10 +290,10 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                           ? Container(
                                               width: 100,
                                               height: 100,
-                                              decoration: new BoxDecoration(
-                                                  image: new DecorationImage(
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
                                                       fit: BoxFit.fill,
-                                                      image: new NetworkImage(
+                                                      image: NetworkImage(
                                                           listcat
                                                               .messageFile))))
                                           : Container(
@@ -310,7 +309,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                       Form(
                           key: _key,
                           child: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               border: Border(
                                 top: BorderSide(
                                   //                   <--- top side
@@ -319,9 +318,9 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                 ),
                               ),
                             ),
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 top: 0.0, bottom: 0.0, right: 5.0, left: 5.0),
-                            margin: EdgeInsets.only(
+                            margin: const EdgeInsets.only(
                                 top: 3.0, bottom: 0.0, right: 0.0, left: 0.0),
                             height: 100,
                             child: Row(
@@ -333,14 +332,14 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                         Container(
                                           child: TextFormField(
                                             onSaved: (e) => textvalue = e,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               height: 1,
                                               color: Colors.black,
                                               fontSize: 16,
                                               fontWeight: FontWeight.w300,
                                               fontFamily: 'SophiaNubian',
                                             ),
-                                            decoration: InputDecoration(
+                                            decoration: const InputDecoration(
                                                 hintText: "Type a Message...",
                                                 border: InputBorder.none),
                                           ),
@@ -357,7 +356,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                                         const EdgeInsets.all(
                                                             0.0),
                                                     child: IconButton(
-                                                      icon: Icon(
+                                                      icon: const Icon(
                                                           Icons.attachment),
                                                       color: primarycolor,
                                                       onPressed: () {
@@ -366,7 +365,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                                     ),
                                                   ),
                                                   TextButton(
-                                                    child: Text(
+                                                    child: const Text(
                                                       "send",
                                                       style: TextStyle(
                                                         fontSize: 18,

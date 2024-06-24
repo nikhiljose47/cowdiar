@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 Widget pagetilesec() {
   return Container(
-    padding: EdgeInsets.only(left: 0.00),
-    child: Center(child: Text("Inbox")),
+    padding: const EdgeInsets.only(left: 0.00),
+    child: const Center(child: Text("Inbox")),
   );
 }
 // title right
@@ -14,7 +14,7 @@ Widget rightsec(){
       Row(
         children: <Widget>[
           IconButton(
-            icon: Icon(Icons.list,      size: 20.0,
+            icon: const Icon(Icons.list,      size: 20.0,
             color: Colors.black),
             onPressed: () {
             },

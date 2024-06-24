@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'package:cowdiar/services/api.dart';
 class onlinestatus extends StatefulWidget{
   final String? listservicesstus;//if you have multiple values add here
-  onlinestatus(this.listservicesstus, {Key? key}): super(key: key);
+  const onlinestatus(this.listservicesstus, {super.key});
 
   @override
   _onlinestatusState createState(){
@@ -109,15 +109,15 @@ class _onlinestatusState extends State<onlinestatus> {
 print(_isSwitched);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Online Status", style: TextStyle(color: Colors.black87),),
+        title: const Text("Online Status", style: TextStyle(color: Colors.black87),),
         centerTitle: true,
       ),
       body:
-      _isSwitched == null ?  Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
+      _isSwitched == null ?  const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
           : Column(
         children: <Widget>[
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
 
@@ -128,9 +128,9 @@ print(_isSwitched);
               ),
             ),
           ),
-          SizedBox(height: 55),
+          const SizedBox(height: 55),
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -144,7 +144,7 @@ print(_isSwitched);
               ),
             ),
             child:  ListTile(
-              title: Text(
+              title: const Text(
                 "Show Online",
                 style: TextStyle(fontSize: 18,color: Colors.black),
               ),
@@ -163,8 +163,8 @@ print(_isSwitched);
             )
           ),
           Container(
-            padding: EdgeInsets.only(right:42.00,top: 15.0),
-            child: Text("You'll remain Online for as long as the app is open",style: TextStyle(fontSize: 13.0,color: Colors.grey),textAlign: TextAlign.left,),
+            padding: const EdgeInsets.only(right:42.00,top: 15.0),
+            child: const Text("You'll remain Online for as long as the app is open",style: TextStyle(fontSize: 13.0,color: Colors.grey),textAlign: TextAlign.left,),
           )
         ],
       ),

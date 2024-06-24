@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io' show? Platform;
+Platform;
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:cowdiar/services/api.dart';
@@ -7,6 +7,8 @@ import 'package:cowdiar/util/appinfo.dart';
 import 'package:share/share.dart';
 
 class invitePage extends StatefulWidget {
+  const invitePage({super.key});
+
   @override
   _invitePage createState() => _invitePage();
 }
@@ -14,13 +16,13 @@ class invitePage extends StatefulWidget {
 myBoxDecorationfirst() {
   return BoxDecoration(
       color: Colors.white,
-      border: new Border.all(
+      border: Border.all(
           color: Colors.grey,
           width: 0.5,
           style: BorderStyle.solid
       ),
 
-      borderRadius:new BorderRadius.all(new Radius.circular(10.0)
+      borderRadius:const BorderRadius.all(Radius.circular(10.0)
       ));
 }
 
@@ -44,6 +46,7 @@ class _invitePage extends State<invitePage> {
       });
     }
   }
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -53,27 +56,27 @@ class _invitePage extends State<invitePage> {
   @override
   Widget build(BuildContext context) {
     return linkdata != "" ?Container(
-margin: EdgeInsets.only(left: 5.0,right: 5.0),
+margin: const EdgeInsets.only(left: 5.0,right: 5.0),
       child: Center(
         child: Card(
           elevation: 0,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             side: BorderSide(color: Colors.grey, width: 0.5),
-            borderRadius: const BorderRadius.all(
+            borderRadius: BorderRadius.all(
               Radius.circular(8.0),
             ),
           ),
           child: Container(
-            padding: EdgeInsets.only(top:20,left: 10,right: 10,bottom: 20),
+            padding: const EdgeInsets.only(top:20,left: 10,right: 10,bottom: 20),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                apiinforlist.length != 0 ? Text("Invite friends & get up to "+ apiinforlist[0].invitePrice ,style: TextStyle(
+                apiinforlist.isNotEmpty ? Text("Invite friends & get up to ${apiinforlist[0].invitePrice}" ,style: const TextStyle(
                   fontSize: 16,
                   color: primarycolor,
                   fontWeight: FontWeight.w600,
-                ),textAlign: TextAlign.center):Text(""),
-                ListTile(
+                ),textAlign: TextAlign.center):const Text(""),
+                const ListTile(
                   subtitle: Text('Introduce your friends to the fastest way to get things done.',textAlign: TextAlign.center,),
                 ),
                 ElevatedButton(
@@ -85,7 +88,7 @@ margin: EdgeInsets.only(left: 5.0,right: 5.0),
                           box.localToGlobal(Offset.zero) &
                           box.size);
                     },
-                  child: Text(
+                  child: const Text(
                     "INVITE",
                     style: TextStyle(fontSize: 14.0),
                   ),

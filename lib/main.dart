@@ -11,10 +11,12 @@ void main() async {
   ByteData data = await PlatformAssetBundle().load('assets/ca/lets-encrypt-r3.pem');
   SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -25,7 +27,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Cowdiar',
       theme: Constants.lightTheme,
-      home:  AnimatedSplashScreen(),
+      home:  const AnimatedSplashScreen(),
       //home: DetailPage(),
     );
   }

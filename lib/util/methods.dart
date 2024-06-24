@@ -3,7 +3,7 @@ const String emailPattern =
 
 class Util {
   static bool emailValidate(String email) {
-    RegExp regex = new RegExp(emailPattern);
+    RegExp regex = RegExp(emailPattern);
     return regex.hasMatch(email);
   }
 }

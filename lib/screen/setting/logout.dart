@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cowdiar/services/api.dart';
 
 class logout extends StatefulWidget {
+  const logout({super.key});
+
   @override
   State<StatefulWidget> createState() => logoutState();
 }
@@ -18,7 +20,7 @@ class logoutState extends State<logout>
     super.initState();
 
     controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 450));
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 450));
     scaleAnimation =
         CurvedAnimation(parent: controller, curve: Curves.elasticInOut);
 
@@ -38,8 +40,8 @@ class logoutState extends State<logout>
           scale: scaleAnimation,
           child: Center(
             child: Container(
-              margin: EdgeInsets.all(20.0),
-              padding: EdgeInsets.all(15.0),
+              margin: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(15.0),
               height: 250.0,
               decoration: ShapeDecoration(
                   color: Colors.blueGrey,
@@ -47,19 +49,19 @@ class logoutState extends State<logout>
                     borderRadius: BorderRadius.circular(5.0),)),
               child: Column(
                 children: <Widget>[
-                  Icon(Icons.exit_to_app,size: 60.0,color: primarycolor,),
-                  Padding(
-                    padding: const EdgeInsets.only(
+                  const Icon(Icons.exit_to_app,size: 60.0,color: primarycolor,),
+                  const Padding(
+                    padding: EdgeInsets.only(
                         top: 30.0, left: 20.0, right: 20.0),
                     child: Text(
                       "Logout",
                       style: TextStyle(color: Colors.white, fontSize: 18.0),
                     ),
                   ),
-                  Column(
+                  const Column(
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.only(
+                        padding: EdgeInsets.only(
                             top: 10.0, left: 20.0, right: 20.0),
                         child: Text(
                           "Are you want to logout?",
@@ -75,7 +77,7 @@ class logoutState extends State<logout>
                           minWidth: 110.0,
                           child: ElevatedButton(
                             onPressed: (){  Navigator.pop(context);},
-                            child: Text(
+                            child: const Text(
                               'No',
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -97,11 +99,11 @@ class logoutState extends State<logout>
                               prefs.remove("token");
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) =>MyHomePage(0)),
+                                MaterialPageRoute(builder: (context) =>const MyHomePage(0)),
                               );
 
                             },
-                            child: Text(
+                            child: const Text(
                               'Yes',
                               textAlign: TextAlign.center,
                               style: TextStyle(

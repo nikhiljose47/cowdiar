@@ -10,7 +10,6 @@ import 'package:cowdiar/util/appinfo.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:cowdiar/util/home.dart';
 import 'package:cowdiar/services/api.dart';
 import 'package:cowdiar/screen/category/category.dart';
@@ -21,6 +20,8 @@ import 'package:flutter/services.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -61,28 +62,28 @@ class _HomeState extends State<Home> {
     setState(() {
       if(mMessage =="inbox"){
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => MyHomePage(1)));
+            MaterialPageRoute(builder: (BuildContext context) => const MyHomePage(1)));
       }else if(mMessage =="ordermessages"){
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => manageorder()));
+            MaterialPageRoute(builder: (BuildContext context) => const manageorder()));
       }else if(mMessage =="orders"){
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => manageorder()));
+            MaterialPageRoute(builder: (BuildContext context) => const manageorder()));
       }else if(mMessage =="notifications"){
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => MyHomePage(2)));
+            MaterialPageRoute(builder: (BuildContext context) => const MyHomePage(2)));
       }else if(mMessage =="requests"){
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => manageeq()));
+            MaterialPageRoute(builder: (BuildContext context) => const manageeq()));
       }else if(mMessage =="proposals"){
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => manageeq()));
+            MaterialPageRoute(builder: (BuildContext context) => const manageeq()));
       }else if(mMessage =="accounts"){
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => MyHomePage(4)));
+            MaterialPageRoute(builder: (BuildContext context) => const MyHomePage(4)));
       }else{
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => MyHomePage(0)));
+            MaterialPageRoute(builder: (BuildContext context) => const MyHomePage(0)));
       }
     });
   }
@@ -112,7 +113,7 @@ class _HomeState extends State<Home> {
 
   Future<Null> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    bool _seen =  await preferences.setBool('seen', true);
+    bool seen =  await preferences.setBool('seen', true);
     setState(() {
       token = preferences.getString("token");
     });
@@ -196,9 +197,9 @@ class _HomeState extends State<Home> {
   Widget review(context){
     return Column(
       children: <Widget>[
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        const Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Padding(
-            padding: const EdgeInsets.only(left: 10.0, top: 10.00,bottom: 10),
+            padding: EdgeInsets.only(left: 10.0, top: 10.00,bottom: 10),
             child: Text('Recently Viewes & more',
                 style: TextStyle(
                   fontSize: 16,
@@ -211,7 +212,7 @@ class _HomeState extends State<Home> {
         Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(bottom: 5, top: 5),
+                padding: const EdgeInsets.only(bottom: 5, top: 5),
                 // alignment: FractionalOffset(1.0, 1.0),
                 width: MediaQuery
                     .of(context)
@@ -219,7 +220,7 @@ class _HomeState extends State<Home> {
                     .width,
                 height: 300,
                 child: loading
-                    ? Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
+                    ? const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
                     : ListView.builder(
                   scrollDirection: Axis.horizontal,
                   primary: false,
@@ -229,17 +230,17 @@ class _HomeState extends State<Home> {
                     String statusin =  nplacesList.onlineStatus;
                     return GestureDetector(
                       child: Container(
-                        margin: EdgeInsets.only(
+                        margin: const EdgeInsets.only(
                             left: 5.00, top: 5.00, right: 5.00),
                         width: 250,
                         decoration: myBoxDecorationfirst(),
 
                         child: Column(children: <Widget>[
-                          Container(
+                          SizedBox(
                             height: 150,
                             child: Column(
                               children: <Widget>[
-                                Container(
+                                SizedBox(
                                   //height: 150,
                                   width: double.infinity,
                                   child: Image.network(
@@ -251,7 +252,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 10.00,
+                            padding: const EdgeInsets.only(left: 10.00,
                                 right: 10.00,
                                 top: 10.00,
                                 bottom: 5.00),
@@ -262,22 +263,22 @@ class _HomeState extends State<Home> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
-                                      new Container(
+                                      Container(
                                           width: 50.0,
                                           height: 50.0,
-                                          decoration: new BoxDecoration(
+                                          decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              image: new DecorationImage(
+                                              image: DecorationImage(
                                                   fit: BoxFit.fill,
-                                                  image: new NetworkImage(
+                                                  image: NetworkImage(
                                                       nplacesList.sellerImage))),
-                                          child: new Stack(
+                                          child: Stack(
                                             children: <Widget>[
                                               if (statusin == 'online')
-                                                new Positioned(
+                                                const Positioned(
                                                   right: 0.0,
                                                   bottom: 0.0,
-                                                  child: new  Icon(
+                                                  child: Icon(
                                                     Icons.fiber_manual_record,
                                                     size: 15.0,
                                                     color: primarycolor,
@@ -285,10 +286,10 @@ class _HomeState extends State<Home> {
                                                 ),
                                 
                                               if (statusin == 'offline')
-                                                new Positioned(
+                                                const Positioned(
                                                   right: 0.0,
                                                   bottom: 0.0,
-                                                  child: new   Icon(
+                                                  child: Icon(
                                                     Icons.fiber_manual_record,
                                                     size: 15.0,
                                                     color: Colors.grey,
@@ -300,7 +301,7 @@ class _HomeState extends State<Home> {
                                       ),
                                       Expanded(
                                         child: Container(
-                                            padding: EdgeInsets.only(left: 5.00),
+                                            padding: const EdgeInsets.only(left: 5.00),
                                             child: Column(
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -321,7 +322,7 @@ class _HomeState extends State<Home> {
                                                     size: 18.0,
                                                     color:
                                                         nplacesList.isFavourite==1
-                                                            ? Color.fromARGB(255, 255, 166, 0)
+                                                            ? const Color.fromARGB(255, 255, 166, 0)
                                                             : Colors.grey,
                                                   ),
                                                 ),
@@ -335,7 +336,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(right: 10.00, left: 10.00),
+                            padding: const EdgeInsets.only(right: 10.00, left: 10.00),
                             child: Column(
                                 children: <Widget>[
                                   Row(
@@ -345,7 +346,7 @@ class _HomeState extends State<Home> {
                                         child: Padding(
                                           padding: const EdgeInsets.only(
                                               left: 10.0, top: 5),
-                                          child: Text(nplacesList.title.length > 25 ? nplacesList.title.substring(0,25)+"...":nplacesList.title),
+                                          child: Text(nplacesList.title.length > 25 ? "${nplacesList.title.substring(0,25)}...":nplacesList.title),
                                         ),
 
                                       ),
@@ -357,7 +358,7 @@ class _HomeState extends State<Home> {
 
                           ),
                           Container(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 right: 10.00, left: 10.00, top: 10.00),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -365,11 +366,11 @@ class _HomeState extends State<Home> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
-                                    new Container(
-                                        padding: EdgeInsets.only(left: 10),
+                                    Container(
+                                        padding: const EdgeInsets.only(left: 10),
                                         child: Row(children: <Widget>[
                                     
-                                          Text(
+                                          const Text(
                                             "From ",
                                             style: TextStyle(
                                               fontSize: 15,
@@ -380,7 +381,7 @@ class _HomeState extends State<Home> {
                                           ),
                                           Text(
                                             "${nplacesList.price}",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 18,
                                               color: primarycolor,
                                             ),
@@ -394,16 +395,16 @@ class _HomeState extends State<Home> {
                                   ],
                                 ),
                                 Row(children: <Widget>[
-                                  new Container(
+                                  Container(
                                       child: Row(children: <Widget>[
-                                        Icon(
+                                        const Icon(
                                           Icons.star,
                                           size: 14,
                                           color: Colors.orangeAccent,
                                         ),
                                         Text(
                                           "${nplacesList.rating.averageRatting}",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.orangeAccent,
                                           ),
@@ -412,7 +413,7 @@ class _HomeState extends State<Home> {
                                         ),
                                         Text(
                                           "(${nplacesList.rating.totalReviews})",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.black38,
                                           ),
@@ -445,11 +446,11 @@ class _HomeState extends State<Home> {
 
   Widget custorsec(context){
 
-    return customlist.length != 0 ? Column(
+    return customlist.isNotEmpty ? Column(
       children: <Widget>[
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 15.0, top: 15.00,bottom: 0),
+          const Padding(
+            padding: EdgeInsets.only(left: 15.0, top: 15.00,bottom: 0),
             child: Text('My Custom Offers',
                 style: TextStyle(
                   fontSize: 16,
@@ -460,14 +461,14 @@ class _HomeState extends State<Home> {
           Padding(
             padding: const EdgeInsets.only(right: 15.0, top: 8.00),
             child: InkWell(
-                child: Text("See all",
+                child: const Text("See all",
                     style: TextStyle(
                       fontSize: 16,
                       color: primarycolor,
                     )),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => manageeq()));
+                      MaterialPageRoute(builder: (context) => const manageeq()));
 
                 }),
           ),
@@ -476,7 +477,7 @@ class _HomeState extends State<Home> {
         Column(
             children: <Widget>[
               Container(
-                  padding: EdgeInsets.only(bottom: 5, top: 5),
+                  padding: const EdgeInsets.only(bottom: 5, top: 5),
                   // alignment: FractionalOffset(1.0, 1.0),
                   width: MediaQuery
                       .of(context)
@@ -484,7 +485,7 @@ class _HomeState extends State<Home> {
                       .width,
                   height: 300,
                   child: loading
-                      ? Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
+                      ? const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
                       : ListView.builder(
                     scrollDirection: Axis.horizontal,
                     primary: false,
@@ -494,36 +495,36 @@ class _HomeState extends State<Home> {
                       String statusin =  nplacesList.onlineStatus;
                       return GestureDetector(
                         child: Container(
-                            margin: EdgeInsets.only(left: 5.00, top: 10.00, right: 5.00),
+                            margin: const EdgeInsets.only(left: 5.00, top: 10.00, right: 5.00),
 
                             height: 200,
                             width: 280,
                             decoration: myBoxDecorationfirst(),
                             child: Column(children: <Widget>[
                               Container(
-                                padding: EdgeInsets.only(left: 10.00, right: 10.00, top: 10.00),
+                                padding: const EdgeInsets.only(left: 10.00, right: 10.00, top: 10.00),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: <Widget>[
-                                        new Container(
+                                        Container(
 
                                             width: 50.0,
                                             height: 50.0,
-                                            decoration: new BoxDecoration(
+                                            decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                image: new DecorationImage(
+                                                image: DecorationImage(
                                                     fit: BoxFit.fill,
-                                                    image: new NetworkImage(nplacesList.sellerImage))),
-                                            child: new Stack(
+                                                    image: NetworkImage(nplacesList.sellerImage))),
+                                            child: Stack(
                                               children: <Widget>[
                                                 if (statusin == 'online')
-                                                  new Positioned(
+                                                  const Positioned(
                                                     right: 0.0,
                                                     bottom: 0.0,
-                                                    child: new  Icon(
+                                                    child: Icon(
                                                       Icons.fiber_manual_record,
                                                       size: 15.0,
                                                       color: primarycolor,
@@ -531,10 +532,10 @@ class _HomeState extends State<Home> {
                                                   ),
 
                                                 if (statusin == 'offline')
-                                                  new Positioned(
+                                                  const Positioned(
                                                     right: 0.0,
                                                     bottom: 0.0,
-                                                    child: new   Icon(
+                                                    child: Icon(
                                                       Icons.fiber_manual_record,
                                                       size: 15.0,
                                                       color: Colors.grey,
@@ -543,15 +544,15 @@ class _HomeState extends State<Home> {
                                               ],
                                             )
                                         ),
-                                        new Container(
-                                          padding: EdgeInsets.only(left: 5.00),
-                                          child: new Text(nplacesList.sellerName),
+                                        Container(
+                                          padding: const EdgeInsets.only(left: 5.00),
+                                          child: Text(nplacesList.sellerName),
                                         ),
                                       ],
                                     ),
                                     Row(children: <Widget>[
-                                      new Container(
-                                        child: new Text(nplacesList.offerBudget, style: TextStyle(
+                                      Container(
+                                        child: Text(nplacesList.offerBudget, style: const TextStyle(
                                           color: primarycolor,
                                           fontSize: 20,
                                         ),),
@@ -562,7 +563,7 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.only(left: 10.00, right: 10.00, top: 10.00),
+                                padding: const EdgeInsets.only(left: 10.00, right: 10.00, top: 10.00),
                                 child: Column(
                                     children: <Widget>[
                                       Row(
@@ -578,7 +579,7 @@ class _HomeState extends State<Home> {
                                           Flexible(
                                             child: Padding(
                                               padding: const EdgeInsets.only(left: 10.0, top: 5),
-                                              child: Text(nplacesList.offerDescription.length > 45 ? nplacesList.offerDescription.substring(0,45)+"...": nplacesList.offerDescription ),
+                                              child: Text(nplacesList.offerDescription.length > 45 ? "${nplacesList.offerDescription.substring(0,45)}...": nplacesList.offerDescription ),
                                             ),
 
                                           ),
@@ -589,20 +590,20 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                               Container(
-                                  padding: EdgeInsets.only(left: 10.00, right: 10.00,top: 20.00, bottom: 20.00),
+                                  padding: const EdgeInsets.only(left: 10.00, right: 10.00,top: 20.00, bottom: 20.00),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
-                                      Text("Delivery " + nplacesList.offerDuration ),
+                                      Text("Delivery ${nplacesList.offerDuration}" ),
                                     ],
                                   )),
-                              Divider(
+                              const Divider(
                                 color: Colors.black26,
                               ),
                               Container(
-                                  padding: EdgeInsets.only(top: 10),
+                                  padding: const EdgeInsets.only(top: 10),
                                   child: Column(children: <Widget>[
-                                    Text(
+                                    const Text(
                                       "Offer valid at all time. Lucky you! ",
                                       textAlign: TextAlign.right,
                                     ),
@@ -610,7 +611,7 @@ class _HomeState extends State<Home> {
                                       padding: const EdgeInsets.only(left: 5.0, top: 10.0),
                                       child: Row(children: <Widget>[
                                         Container(
-                                            padding: EdgeInsets.only(
+                                            padding: const EdgeInsets.only(
                                                 left: 15, right: 10),
                                             child: Column(children: <Widget>[
                                               ElevatedButton(
@@ -623,7 +624,7 @@ class _HomeState extends State<Home> {
                                                     },
                                                   ),
                                                 );},
-                                                child: Text('OPEN IN CHAT',
+                                                child: const Text('OPEN IN CHAT',
                                                     style: TextStyle(
                                                       fontSize: 14,
                                                       letterSpacing: 1,
@@ -640,7 +641,7 @@ class _HomeState extends State<Home> {
                                               ),
                                             );
                                           },
-                                          child: Text('REVIEW',
+                                          child: const Text('REVIEW',
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 letterSpacing: 1,
@@ -667,11 +668,11 @@ class _HomeState extends State<Home> {
     }
 
   Widget topview(context){
-    return firtlist.length !=0 ? Column(
+    return firtlist.isNotEmpty ? Column(
       children: <Widget>[
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        const Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Padding(
-            padding: const EdgeInsets.only(left: 10.0, top: 10.00,bottom: 10),
+            padding: EdgeInsets.only(left: 10.0, top: 10.00,bottom: 10),
             child: Text('Top Featured Proposals/Services',
                 style: TextStyle(
                   fontSize: 16,
@@ -684,7 +685,7 @@ class _HomeState extends State<Home> {
         Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(bottom: 5, top: 5),
+                padding: const EdgeInsets.only(bottom: 5, top: 5),
                 // alignment: FractionalOffset(1.0, 1.0),
                 width: MediaQuery
                     .of(context)
@@ -692,7 +693,7 @@ class _HomeState extends State<Home> {
                     .width,
                 height: 300,
                 child: loading
-                    ? Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
+                    ? const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
                     : ListView.builder(
                   scrollDirection: Axis.horizontal,
                   primary: false,
@@ -702,17 +703,17 @@ class _HomeState extends State<Home> {
                     String statusin =  nplacesList.onlineStatus;
                     return GestureDetector(
                       child: Container(
-                        margin: EdgeInsets.only(
+                        margin: const EdgeInsets.only(
                             left: 5.00, top: 5.00, right: 5.00),
                         width: 250,
                         decoration: myBoxDecorationfirst(),
 
                         child: Column(children: <Widget>[
-                          Container(
+                          SizedBox(
                             height: 150,
                             child: Column(
                               children: <Widget>[
-                                Container(
+                                SizedBox(
                                   //height: 150,
                                   width: double.infinity,
                                   child: Image.network(
@@ -724,7 +725,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: 10.00,
+                            padding: const EdgeInsets.only(left: 10.00,
                                 right: 10.00,
                                 top: 10.00,
                                 bottom: 5.00),
@@ -735,22 +736,22 @@ class _HomeState extends State<Home> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
-                                      new Container(
+                                      Container(
                                           width: 50.0,
                                           height: 50.0,
-                                          decoration: new BoxDecoration(
+                                          decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              image: new DecorationImage(
+                                              image: DecorationImage(
                                                   fit: BoxFit.fill,
-                                                  image: new NetworkImage(
+                                                  image: NetworkImage(
                                                       nplacesList.sellerImage))),
-                                          child: new Stack(
+                                          child: Stack(
                                             children: <Widget>[
                                               if (statusin == 'online')
-                                                new Positioned(
+                                                const Positioned(
                                                   right: 0.0,
                                                   bottom: 0.0,
-                                                  child: new  Icon(
+                                                  child: Icon(
                                                     Icons.fiber_manual_record,
                                                     size: 15.0,
                                                     color: primarycolor,
@@ -758,10 +759,10 @@ class _HomeState extends State<Home> {
                                                 ),
                                 
                                               if (statusin == 'offline')
-                                                new Positioned(
+                                                const Positioned(
                                                   right: 0.0,
                                                   bottom: 0.0,
-                                                  child: new   Icon(
+                                                  child: Icon(
                                                     Icons.fiber_manual_record,
                                                     size: 15.0,
                                                     color: Colors.grey,
@@ -772,7 +773,7 @@ class _HomeState extends State<Home> {
                                       ),
                                       Expanded(
                                         child: Container(
-                                            padding: EdgeInsets.only(left: 5.00),
+                                            padding: const EdgeInsets.only(left: 5.00),
                                             child: Column(
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -793,7 +794,7 @@ class _HomeState extends State<Home> {
                                                       size: 18.0,
                                                       color:
                                                           nplacesList.isFavourite==1
-                                                              ? Color.fromARGB(255, 255, 166, 0)
+                                                              ? const Color.fromARGB(255, 255, 166, 0)
                                                               : Colors.grey,
                                                     ),
                                                   ),
@@ -808,7 +809,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(right: 10.00, left: 10.00),
+                            padding: const EdgeInsets.only(right: 10.00, left: 10.00),
                             child: Column(
                                 children: <Widget>[
                                   Row(
@@ -818,7 +819,7 @@ class _HomeState extends State<Home> {
                                         child: Padding(
                                           padding: const EdgeInsets.only(
                                               left: 10.0, top: 5),
-                                          child: Text(nplacesList.title.length > 25 ? nplacesList.title.substring(0,25)+"...":nplacesList.title),
+                                          child: Text(nplacesList.title.length > 25 ? "${nplacesList.title.substring(0,25)}...":nplacesList.title),
                                         ),
 
                                       ),
@@ -830,7 +831,7 @@ class _HomeState extends State<Home> {
 
                           ),
                           Container(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 right: 10.00, left: 10.00, top: 10.00),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -838,10 +839,10 @@ class _HomeState extends State<Home> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
-                                    new Container(
-                                        padding: EdgeInsets.only(left: 10),
+                                    Container(
+                                        padding: const EdgeInsets.only(left: 10),
                                         child: Row(children: <Widget>[
-                                          Text(
+                                          const Text(
                                             "From ",
                                             style: TextStyle(
                                               fontSize: 15,
@@ -852,7 +853,7 @@ class _HomeState extends State<Home> {
                                           ),
                                           Text(
                                             "${nplacesList.price}",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 18,
                                               color: primarycolor,
                                             ),
@@ -865,16 +866,16 @@ class _HomeState extends State<Home> {
                                   ],
                                 ),
                                 Row(children: <Widget>[
-                                  new Container(
+                                  Container(
                                       child: Row(children: <Widget>[
-                                        Icon(
+                                        const Icon(
                                           Icons.star,
                                           size: 14,
                                           color: Colors.orangeAccent,
                                         ),
                                         Text(
                                           "${nplacesList.rating.averageRatting}",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.orangeAccent,
                                           ),
@@ -883,7 +884,7 @@ class _HomeState extends State<Home> {
                                         ),
                                         Text(
                                           "(${nplacesList.rating.totalReviews})",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.black38,
                                           ),
@@ -923,25 +924,25 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white,
     )
     );
     var index = 0;
-    return new Scaffold(
+    return Scaffold(
       appBar: AppBar(
         leading: Container(
           width:0,
         ),
-        title: apiinforlist.length != 0 ? Image.network(apiinforlist[0].appLogo,width: 100,height: 100,):Text(""),
+        title: apiinforlist.isNotEmpty ? Image.network(apiinforlist[0].appLogo,width: 100,height: 100,):const Text(""),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
-            icon: new Image.asset('assets/icons/cat.png', width: 20,height: 20, fit:BoxFit.fill),
+            icon: Image.asset('assets/icons/cat.png', width: 20,height: 20, fit:BoxFit.fill),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => category()),
+                MaterialPageRoute(builder: (context) => const category()),
               );
 
             },
@@ -955,28 +956,28 @@ class _HomeState extends State<Home> {
           Column(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(left: 20.00, right: 20.00, top: 10.0),
-                decoration: new BoxDecoration(
+                margin: const EdgeInsets.only(left: 20.00, right: 20.00, top: 10.0),
+                decoration: BoxDecoration(
                     color: Colors.white,
-                    border: new Border.all(
+                    border: Border.all(
                         color: Colors.grey, width: 1.0, style: BorderStyle.solid),
-                    borderRadius: new BorderRadius.all(new Radius.circular(10.0))),
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0))),
                 child:
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                   GestureDetector(
                     child: Container(
-                      padding: EdgeInsets.only(left: 10.00),
+                      padding: const EdgeInsets.only(left: 10.00),
                       //width: 280,
                       height: 45,
 
-                      child: Row(
+                      child: const Row(
                         children: <Widget>[
                           Icon(
                             Icons.search,
                             size: 20.0,
                             color: Colors.black,
                           ),
-                          new Text("  What are you looking for?"),
+                          Text("  What are you looking for?"),
                         ],
                       ),
                     ),
@@ -985,16 +986,16 @@ class _HomeState extends State<Home> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              MyHomePage(2),
+                              const MyHomePage(2),
                         ),
                       );
                     },
                   ),
                   GestureDetector(
                     child: Container(
-                      padding: EdgeInsets.only(right: 10.00),
+                      padding: const EdgeInsets.only(right: 10.00),
                       height: 45,
-                      child: Row(
+                      child: const Row(
                         children: <Widget>[
 
                         ],
@@ -1009,8 +1010,8 @@ class _HomeState extends State<Home> {
             ],
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0 ,top: 10.00,bottom: 5),
+            const Padding(
+              padding: EdgeInsets.only(left: 15.0 ,top: 10.00,bottom: 5),
               child: Text('Popular Professional Services',
                   style: TextStyle(
                     fontSize: 16,
@@ -1021,26 +1022,26 @@ class _HomeState extends State<Home> {
             Padding(
               padding: const EdgeInsets.only(right: 15.0, top: 10.00,bottom: 10),
               child: InkWell(
-                  child: Text("See all",
+                  child: const Text("See all",
                       style: TextStyle(
                         fontSize: 16,
                         color: primarycolor,
                       )),
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => category()));
+                        MaterialPageRoute(builder: (context) => const category()));
 
                   }),
             ),
           ]),
           Column(
               children: <Widget>[ Container(
-                padding: EdgeInsets.only(bottom: 15, top: 10.00),
+                padding: const EdgeInsets.only(bottom: 15, top: 10.00),
                 //alignment: FractionalOffset(1.0, 1.0),
                 width: MediaQuery.of(context).size.width,
                 height: 220,
                 child: loading
-                    ? Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
+                    ? const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
                     : ListView.builder(
                   scrollDirection: Axis.horizontal,
                   primary: false,
@@ -1050,28 +1051,28 @@ class _HomeState extends State<Home> {
                     return GestureDetector(
                       child: Container(
                         // alignment: Alignment(-1.0, -1.0),
-                        padding: EdgeInsets.only(top: 0, left: 10),
+                        padding: const EdgeInsets.only(top: 0, left: 10),
                         height: 220,
                         width: 120,
                         child: Container(
-                          constraints: new BoxConstraints.expand(
+                          constraints: const BoxConstraints.expand(
                             height: 200.0,
                           ),
-                          decoration: new BoxDecoration(
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            image: new DecorationImage(
-                              image: new NetworkImage(nDataList.image),
+                            image: DecorationImage(
+                              image: NetworkImage(nDataList.image),
                               fit: BoxFit.cover,
                             ),
                           ),
                           child: Center(
                             child: Container(
 
-                              padding: EdgeInsets.only(top:0),
-                              alignment: Alignment(0.0, -0.7),
+                              padding: const EdgeInsets.only(top:0),
+                              alignment: const Alignment(0.0, -0.7),
                               child: Text(
                                 nDataList.title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),textAlign: TextAlign.center,
                               ),
@@ -1094,8 +1095,8 @@ class _HomeState extends State<Home> {
               ),
               ]),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0, top: 10.00,bottom: 10),
+            const Padding(
+              padding: EdgeInsets.only(left: 15.0, top: 10.00,bottom: 10),
               child: Text('Explore The Marketplace',
                   style: TextStyle(
                     fontSize: 16,
@@ -1106,14 +1107,14 @@ class _HomeState extends State<Home> {
             Padding(
               padding: const EdgeInsets.only(right: 15.0, top: 10.00,bottom: 10),
               child: InkWell(
-                  child: Text("See all",
+                  child: const Text("See all",
                       style: TextStyle(
                         fontSize: 16,
                         color: primarycolor,
                       )),
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => category()));
+                        MaterialPageRoute(builder: (context) => const category()));
                   }
               ),
             ),
@@ -1121,12 +1122,12 @@ class _HomeState extends State<Home> {
           Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(bottom: 0, top: 5),
+                padding: const EdgeInsets.only(bottom: 0, top: 5),
                 // alignment: FractionalOffset(1.0, 1.0),
                 width: MediaQuery.of(context).size.width,
                 height: Theme.of(context).textTheme.displayLarge.fontSize * 1.1 +  25,
                 child: loading
-                    ? Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
+                    ? const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
                     : ListView.builder(
                   scrollDirection: Axis.horizontal,
                   primary: false,
@@ -1138,14 +1139,14 @@ class _HomeState extends State<Home> {
                     return GestureDetector(
                       child: Container(
                         // alignment: Alignment(0.0, 0.0),
-                        padding: EdgeInsets.only(top: 0, left: 10),
+                        padding: const EdgeInsets.only(top: 0, left: 10),
                         height: 150,
                         width: 110,
                         child: Container(
-                          constraints: new BoxConstraints.expand(
+                          constraints: const BoxConstraints.expand(
                             height: 150.0,
                           ),
-                          decoration: new BoxDecoration(
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
                             border: Border.all(
@@ -1153,24 +1154,24 @@ class _HomeState extends State<Home> {
                           ),
                           child: Center(
                             child: Container(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   bottom: 10.0, top: 20.0),
-                              alignment: Alignment(0.0, 1.0),
+                              alignment: const Alignment(0.0, 1.0),
                               child: Column(
                                 children: <Widget>[
                                   Image(
-                                    image: new NetworkImage(
-                                      nplacesList.image != null ? nplacesList.image :"https://www.cowdiar.com//cat_images/p8.png",
+                                    image: NetworkImage(
+                                      nplacesList.image ?? "https://www.cowdiar.com//cat_images/p8.png",
                                     ),width: 50,
                                     height: 50,
 
                                   ),
                                   Container(
                                     width: 80,
-                                    padding: EdgeInsets.only(top: 10),
+                                    padding: const EdgeInsets.only(top: 10),
                                     child: Text(
                                       nplacesList.title.length > 21 ? nplacesList.title.substring(0,21): nplacesList.title,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 12
@@ -1202,7 +1203,7 @@ class _HomeState extends State<Home> {
           custorsec(context),
           topview(context),
           review(context),
-          invitePage(),
+          const invitePage(),
         ]
         ),
       ),

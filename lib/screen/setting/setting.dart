@@ -3,6 +3,9 @@ import 'package:cowdiar/screen/setting/account_settings.dart';
 import 'package:cowdiar/screen/setting/profile_settings.dart';
 
 class Setting extends StatefulWidget {
+  const Setting({super.key});
+
+  @override
   _SettingState createState() => _SettingState();
 }
 
@@ -11,7 +14,7 @@ class _SettingState extends State<Setting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Settings',
           style: TextStyle(color: Colors.black87),
         ),
@@ -20,7 +23,7 @@ class _SettingState extends State<Setting> {
       body: Column(
         children: <Widget>[
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 bottom: BorderSide(
@@ -31,7 +34,7 @@ class _SettingState extends State<Setting> {
             ),
           ),
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -45,22 +48,22 @@ class _SettingState extends State<Setting> {
               ),
             ),
             child: ListTile(
-              title: Text('Profile Settings',
+              title: const Text('Profile Settings',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.black,
                   )),
-              trailing: Icon(Icons.arrow_forward_ios),
+              trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProfileSettings(),
+                  builder: (context) => const ProfileSettings(),
                 ),
               ),
             ),
           ),
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -74,21 +77,21 @@ class _SettingState extends State<Setting> {
               ),
             ),
             child: ListTile(
-              title: Text('Account Settings',
+              title: const Text('Account Settings',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.black,
                   )),
-              trailing: Icon(Icons.arrow_forward_ios),
+              trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AccountSettings(),
+                  builder: (context) => const AccountSettings(),
                 ),
               ),
             ),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(
                 left: 10.0, right: 10.0, top: 25.0, bottom: 10.0),
             child: Text(

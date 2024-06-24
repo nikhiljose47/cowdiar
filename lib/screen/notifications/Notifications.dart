@@ -8,14 +8,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 class Notifications extends StatefulWidget {
-  Notifications({Key? key, this.title}) : super(key: key);
+  const Notifications({super.key, this.title});
   final String? title;
   @override
   _NotificationspageState createState() => _NotificationspageState();
 }
 
 class _NotificationspageState extends State<Notifications> {
-  int _selectedIndex = 0;
+  final int _selectedIndex = 0;
   String token = "";
   List<NotificationsArr> listSCArr = [];
   String? choice;
@@ -109,7 +109,8 @@ class _NotificationspageState extends State<Notifications> {
   Widget slideRightBackground() {
     return Container(
       color: primarycolor,
-      child: Align(
+      child: const Align(
+        alignment: Alignment.centerLeft,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -126,14 +127,14 @@ class _NotificationspageState extends State<Notifications> {
             ),
           ],
         ),
-        alignment: Alignment.centerLeft,
       ),
     );
   }
   Widget slideLeftBackground() {
     return Container(
       color: primarycolor,
-      child: Align(
+      child: const Align(
+        alignment: Alignment.centerRight,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
@@ -150,7 +151,6 @@ class _NotificationspageState extends State<Notifications> {
             ),
           ],
         ),
-        alignment: Alignment.centerRight,
       ),
     );
   }
@@ -161,9 +161,9 @@ class _NotificationspageState extends State<Notifications> {
       appBar: AppBar(
         leading: Container(),
         elevation: 0.0,
-        title: Container(
+        title: SizedBox(
             width: MediaQuery.of(context).size.width/1.7,
-            child: Center(child: Text("Notification"))
+            child: const Center(child: Text("Notification"))
         ),
         actions: <Widget>[
           PopupMenuButton<String>(
@@ -181,8 +181,8 @@ class _NotificationspageState extends State<Notifications> {
 
       ),
       // backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
-      body:  loading ? Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
-          : listSCArr.length != 0 ? ListView.builder(
+      body:  loading ? const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
+          : listSCArr.isNotEmpty ? ListView.builder(
           itemCount: listSCArr.length,
           itemBuilder: (context, i) {
             final nDataList = listSCArr[i];
@@ -190,108 +190,6 @@ class _NotificationspageState extends State<Notifications> {
             print(fName);
             return Dismissible(
                 key: Key(nDataList.senderName),
-                child: InkWell(
-                    child:  Column(children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: 14.0, right: 14.0, top: 5.0, bottom: 5.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                                width: 50.0,
-                                height: 50.0,
-                                decoration: new BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: new DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: new NetworkImage(nDataList.senderImage)
-                                    )
-                                ),
-                                child: new Stack(
-                                  children: <Widget>[
-                                    if (fName == 'online')
-                                      new Positioned(
-                                        right: 0.0,
-                                        bottom: 0.0,
-                                        child: new  Icon(
-                                          Icons.fiber_manual_record,
-                                          size: 15.0,
-                                          color: primarycolor,
-                                        ),
-                                      ),
-
-                                    if (fName == 'offline')
-                                      new Positioned(
-                                        right: 0.0,
-                                        bottom: 0.0,
-                                        child: new   Icon(
-                                          Icons.fiber_manual_record,
-                                          size: 15.0,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                  ],
-                                )
-                            ),
-
-
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 10.0),
-                                child: Column(
-                                  children: <Widget>[
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Text(
-                                          nDataList.senderName,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.black87,
-                                              fontSize: 17.0),
-                                        ),
-                                        Text(
-                                          nDataList.dateTime,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.black54,
-                                              fontSize: 13.5),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Container(
-                                              width: MediaQuery.of(context).size.width/1.4,
-                                              child: Text(
-                                                nDataList.message,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Colors.black54,
-                                                    fontSize: 15.5),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Divider(),
-                    ]
-                    )
-                ),
                 background: slideRightBackground(),
                 secondaryBackground: slideLeftBackground(),
                 confirmDismiss: (direction) async {
@@ -300,11 +198,11 @@ class _NotificationspageState extends State<Notifications> {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            content: Text(
+                            content: const Text(
                                 "Are you sure you want to unread ?"),
                             actions: <Widget>[
                               TextButton(
-                                child: Text(
+                                child: const Text(
                                   "No",
                                   style: TextStyle(color: Colors.black),
                                 ),
@@ -313,7 +211,7 @@ class _NotificationspageState extends State<Notifications> {
                                 },
                               ),
                               TextButton(
-                                child: Text(
+                                child: const Text(
                                   "Yes",
                                   style: TextStyle(color: Colors.red),
                                 ),
@@ -338,11 +236,11 @@ class _NotificationspageState extends State<Notifications> {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            content: Text(
+                            content: const Text(
                                 "Are you sure you want to unread ?"),
                             actions: <Widget>[
                               TextButton(
-                                child: Text(
+                                child: const Text(
                                   "No",
                                   style: TextStyle(color: Colors.black),
                                 ),
@@ -351,7 +249,7 @@ class _NotificationspageState extends State<Notifications> {
                                 },
                               ),
                               TextButton(
-                                child: Text(
+                                child: const Text(
                                   "Yes",
                                   style: TextStyle(color: Colors.red),
                                 ),
@@ -371,11 +269,113 @@ class _NotificationspageState extends State<Notifications> {
                     // TODO: Navigate to edit page;
                   }
                   return null;
-                }
+                },
+                child: InkWell(
+                    child:  Column(children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 14.0, right: 14.0, top: 5.0, bottom: 5.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                                width: 50.0,
+                                height: 50.0,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: NetworkImage(nDataList.senderImage)
+                                    )
+                                ),
+                                child: Stack(
+                                  children: <Widget>[
+                                    if (fName == 'online')
+                                      const Positioned(
+                                        right: 0.0,
+                                        bottom: 0.0,
+                                        child: Icon(
+                                          Icons.fiber_manual_record,
+                                          size: 15.0,
+                                          color: primarycolor,
+                                        ),
+                                      ),
+
+                                    if (fName == 'offline')
+                                      const Positioned(
+                                        right: 0.0,
+                                        bottom: 0.0,
+                                        child: Icon(
+                                          Icons.fiber_manual_record,
+                                          size: 15.0,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                  ],
+                                )
+                            ),
+
+
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 10.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          nDataList.senderName,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black87,
+                                              fontSize: 17.0),
+                                        ),
+                                        Text(
+                                          nDataList.dateTime,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black54,
+                                              fontSize: 13.5),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            SizedBox(
+                                              width: MediaQuery.of(context).size.width/1.4,
+                                              child: Text(
+                                                nDataList.message,
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Colors.black54,
+                                                    fontSize: 15.5),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(),
+                    ]
+                    )
+                )
             );
 
           }):Container(
-        child: Center(
+        child: const Center(
           child:Text("No Notification Are Avaliable", style: TextStyle(
             color: primarycolor,
             fontWeight: FontWeight.w700,

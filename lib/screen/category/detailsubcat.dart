@@ -9,7 +9,7 @@ import 'package:cowdiar/util/subcat.dart';
 
 class subcatDetails extends StatefulWidget {
   final String subcatlink, title;//if you have multiple values add here
-  subcatDetails(this.subcatlink, this.title, {Key? key}): super(key: key);
+  const subcatDetails(this.subcatlink, this.title, {super.key});
 
   @override
   _subcatDetailsState createState() => _subcatDetailsState();
@@ -24,7 +24,7 @@ class _subcatDetailsState extends State<subcatDetails> {
     setState(() {
       loading = true;
     });
-    final linkdata = '/'+ widget.subcatlink;
+    final linkdata = '/${widget.subcatlink}';
     print(baseurl + version  + linkdata);
     final responseData = await http.get(Uri.parse(baseurl + version  + linkdata));
     if (responseData.statusCode == 200) {
@@ -74,20 +74,20 @@ class _subcatDetailsState extends State<subcatDetails> {
     //   }
     // }
 
-    return new Scaffold(
+    return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
             leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.black),
+              icon: const Icon(Icons.arrow_back, color: Colors.black),
               onPressed: () =>  Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (BuildContext context) => category())),
+                  MaterialPageRoute(builder: (BuildContext context) => const category())),
             ),
           title: Text(widget.title),
           centerTitle: true,
 
         ),
         body: loading
-            ? Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
+            ? const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
             : ListView(
           children: [
             Column(
@@ -100,10 +100,10 @@ class _subcatDetailsState extends State<subcatDetails> {
                 //         children: <Widget>[image(),]
                 //     )
                 // ),
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height-30,
                   child: loading
-                      ? Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
+                      ? const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
                       : ListView.builder(
 
                     scrollDirection: Axis.vertical,
@@ -112,7 +112,7 @@ class _subcatDetailsState extends State<subcatDetails> {
                     itemBuilder: (context, i) {
                       final nDataList = listSCArr[i];
                       return Container(
-                        decoration: new BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.white10,
                           border: Border(
                             bottom: BorderSide(
@@ -124,9 +124,9 @@ class _subcatDetailsState extends State<subcatDetails> {
                         ),
                         child: ListTile(
                           title: Text(nDataList.title),
-                          trailing: Icon(Icons.keyboard_arrow_right),
+                          trailing: const Icon(Icons.keyboard_arrow_right),
                           onTap: () {
-                            print("nikil"+nDataList.link);
+                            print("nikil${nDataList.link}");
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (BuildContext context){

@@ -120,7 +120,7 @@ class FProposal {
     price: json["price"],
     sellerName: json["seller_name"],
     sellerImage: json["seller_image"],
-    onlineStatus: json["online_status"] == null ? null : json["online_status"],
+    onlineStatus: json["online_status"],
     sellerLevel: json["seller_level"],
     rating: Rating.fromMap(json["rating"]),
     link: json["link"],
@@ -133,7 +133,7 @@ class FProposal {
     "price": price,
     "seller_name": sellerName,
     "seller_image": sellerImage,
-    "online_status": onlineStatus == null ? null : onlineStatus,
+    "online_status": onlineStatus,
     "seller_level": sellerLevel,
     "rating": rating.toMap(),
     "link": link,
@@ -223,7 +223,7 @@ class RView {
     price: json["price"],
     sellerName: json["seller_name"],
     sellerImage: json["seller_image"],
-    onlineStatus: json["online_status"] == null ? null : json["online_status"],
+    onlineStatus: json["online_status"],
     sellerLevel: json["seller_level"],
     rating: Rating.fromMap(json["rating"]),
     link: json["link"],
@@ -236,7 +236,7 @@ class RView {
     "price": price,
     "seller_name": sellerName,
     "seller_image": sellerImage,
-    "online_status": onlineStatus == null ? null : onlineStatus,
+    "online_status": onlineStatus,
     "seller_level": sellerLevel,
     "rating": rating.toMap(),
     "link": link,
@@ -308,7 +308,7 @@ class ODetail {
         sellerImage: json["seller_image"],
       messagegroupid: json["message_group_id"],
       checkouturl: json["checkout_url"],
-      onlineStatus: json["online_status"] == null ? null : json["online_status"],
+      onlineStatus: json["online_status"],
     );
 
     Map<String, dynamic> toMap() => {
@@ -324,6 +324,6 @@ class ODetail {
         "seller_image": sellerImage,
       "checkout_url":checkouturl,
       "message_group_id": messagegroupid,
-      "online_status": onlineStatus == null ? null : onlineStatus,
+      "online_status": onlineStatus,
     };
 }

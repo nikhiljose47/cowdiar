@@ -121,7 +121,7 @@ class InboxArr {
     senderMessage: json["sender_message"],
     dateTime: json["date_time"],
     messageStatus: json["message_status"],
-    onlineStatus: json["online_status"] == null ? null : json["online_status"],
+    onlineStatus: json["online_status"],
   );
 
   Map<String, dynamic> toMap() => {
@@ -132,6 +132,6 @@ class InboxArr {
     "sender_message": senderMessage,
     "date_time": dateTime,
     "message_status": messageStatus,
-    "online_status": onlineStatus == null ? null : onlineStatus,
+    "online_status": onlineStatus,
   };
 }

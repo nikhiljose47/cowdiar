@@ -8,6 +8,8 @@ import 'package:cowdiar/services/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class manageeq extends StatefulWidget {
+  const manageeq({super.key});
+
   @override
   _manageeqState createState() => _manageeqState();
 }
@@ -133,7 +135,7 @@ print(listdeafult);
       appBar: AppBar(
 
         title:
-            Text("Manage Request"),
+            const Text("Manage Request"),
         centerTitle: true,
 
       ),
@@ -142,9 +144,9 @@ print(listdeafult);
           Column(
               children: <Widget>[ Container(
                 height: 50,
-                padding: EdgeInsets.only(bottom: 10, top: 1.00),
+                padding: const EdgeInsets.only(bottom: 10, top: 1.00),
                 child: loading
-                    ? Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator())
                     : ListView.builder(
                   scrollDirection: Axis.horizontal,
                   primary: false,
@@ -164,16 +166,16 @@ print(listdeafult);
                           ),
                         ),
                         // alignment: Alignment(-1.0, -1.0),
-                        margin: EdgeInsets.only(top: 0, left: 5, bottom: 5),
-                        padding: EdgeInsets.only(top: 0, left: 5, bottom: 5),
+                        margin: const EdgeInsets.only(top: 0, left: 5, bottom: 5),
+                        padding: const EdgeInsets.only(top: 0, left: 5, bottom: 5),
                         child: Center(
                           child: Container(
 
                             width: 125,
                             height: 80,
-                            alignment: Alignment(0.0, 1.0),
+                            alignment: const Alignment(0.0, 1.0),
                             child: Text(
-                              nDataList.requestStatus.substring(0,1).toUpperCase() +nDataList.requestStatus.substring(1) + " ("+nDataList.count+")",
+                              "${nDataList.requestStatus.substring(0,1).toUpperCase()}${nDataList.requestStatus.substring(1)} (${nDataList.count})",
                               style: TextStyle(
                                 color: _selectedIndex == i
                                     ? primarycolor
@@ -199,29 +201,29 @@ print(listdeafult);
               child:  loading2
                   ? Container(
           color: Colors.white,
-          padding: EdgeInsets.only(bottom: 70, top: 8.00),
+          padding: const EdgeInsets.only(bottom: 70, top: 8.00),
           //alignment: FractionalOffset(1.0, 1.0),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height/1.1,
-    child: Center( child: CircularProgressIndicator())
+    child: const Center( child: CircularProgressIndicator())
               ):
               Column(
                 children: <Widget>[
                   Container(
                     color: Colors.white,
-                    padding: EdgeInsets.only(bottom: 70, top: 8.00),
+                    padding: const EdgeInsets.only(bottom: 70, top: 8.00),
                     //alignment: FractionalOffset(1.0, 1.0),
                     width: MediaQuery.of(context).size.width,
                     height: listvalues.isEmpty && listdeafultval.isEmpty ? 1:MediaQuery.of(context).size.height/1.1,
-                    child:  listvalues.length == 0 ? ListView.builder(
+                    child:  listvalues.isEmpty ? ListView.builder(
                         scrollDirection: Axis.vertical,
                         itemCount: listdeafultval.length,
                         itemBuilder: (context, i) {
                           final datacard2 = listdeafultval[i];
                           return Container(
-                              padding: EdgeInsets.only(bottom: 20),
+                              padding: const EdgeInsets.only(bottom: 20),
 
-                              margin:  EdgeInsets.only(left: 10, right: 10,bottom: 8),
+                              margin:  const EdgeInsets.only(left: 10, right: 10,bottom: 8),
                               child: GestureDetector(
                                 child: Card(
                                   elevation: 0,
@@ -241,24 +243,24 @@ print(listdeafult);
                                                     children: <Widget>[
                                                       Container(
                                                           width: MediaQuery.of(context).size.width/2.5,
-                                                          margin:  EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
+                                                          margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
                                                           child: Text(datacard2.requestDate)),
                                                       Container(
 
                                                           width: MediaQuery.of(context).size.width/3,
-                                                          margin:  EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
+                                                          margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
                                                           child: Container( color: primarycolor[500],
-                                                              padding: EdgeInsets.all(3),
-                                                              child: Text(datacard2.requestStatus.toUpperCase(),style: TextStyle(
+                                                              padding: const EdgeInsets.all(3),
+                                                              child: Text(datacard2.requestStatus.toUpperCase(),style: const TextStyle(
                                                                 color: Colors.white,
 
                                                                 fontSize: 14,
                                                               ),textAlign: TextAlign.center,))),
                                                       Container(
                                                           width: MediaQuery.of(context).size.width/10,
-                                                          margin:  EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
+                                                          margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
                                                           child: IconButton(
-                                                            icon: Icon(Icons.clear),
+                                                            icon: const Icon(Icons.clear),
                                                             color: Colors.grey,
                                                             onPressed: () {
                                                               active(datacard2.requestId,"delete");
@@ -273,9 +275,9 @@ print(listdeafult);
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: <Widget>[
                                                     Container(
-                                                      padding: EdgeInsets.all(8),
+                                                      padding: const EdgeInsets.all(8),
                                                       color: Colors.grey[200],
-                                                        margin:  EdgeInsets.only(bottom: 8),
+                                                        margin:  const EdgeInsets.only(bottom: 8),
                                                         width: MediaQuery.of(context).size.width/1.2,
                                                         child: Text(datacard2.requestDescription)),
                                                     ],
@@ -284,35 +286,35 @@ print(listdeafult);
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: <Widget>[
                                                       Container(
-                                                          margin:  EdgeInsets.only(bottom: 8),
+                                                          margin:  const EdgeInsets.only(bottom: 8),
                                                           width: MediaQuery.of(context).size.width/1.2,
                                                           child:  Row(
                                                               crossAxisAlignment: CrossAxisAlignment.center,
                                                               children: <Widget>[
-                                                               Icon(
+                                                               const Icon(
                                                                   Icons.access_time,
                                                                 ),
-                                                                Text("Duration ",style: TextStyle(
+                                                                const Text("Duration ",style: TextStyle(
                                                                   color: Colors.black,
 
                                                                   fontSize: 16,
                                                                 ),),
-                                                                Text(datacard2.deliveryDuration,style: TextStyle(
+                                                                Text(datacard2.deliveryDuration,style: const TextStyle(
                                                                   color: Colors.black,
 
                                                                   fontSize: 16,
                                                                 ),),
                                                     ])),
                                                     ],
-                                                  ):Text(""),
+                                                  ):const Text(""),
 
                                                   datacard2.requestStatus=="active" ? Row(
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: <Widget>[
-                                                      Container(
+                                                      SizedBox(
                                                         width: MediaQuery.of(context).size.width/1.1,
                                                         child:  TextButton(
-                                                          child: Center (child: Text('NO OFFER YET')),
+                                                          child: const Center (child: Text('NO OFFER YET')),
                                                           onPressed: () {
                                                             active(datacard2.requestId,"pause");
                                                             getData();
@@ -325,10 +327,10 @@ print(listdeafult);
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: <Widget>[
                                                       Container(
-                                                        margin: EdgeInsets.only(left: 2,right: 2),
+                                                        margin: const EdgeInsets.only(left: 2,right: 2),
                                                         width: MediaQuery.of(context).size.width/3.4,
                                                         child: TextButton(
-                                                          child: Center (
+                                                          child: const Center (
                                                               child: Text('Active')
                                                           ),
                                                           onPressed: () {
@@ -337,10 +339,10 @@ print(listdeafult);
                                                             getListViewItems("active");
                                                           },
                                                         ),),
-                                                      Container(
+                                                      SizedBox(
                                                         width: MediaQuery.of(context).size.width/3.4,
                                                         child: TextButton(
-                                                          child: Center (child: Text('Dalete')),
+                                                          child: const Center (child: Text('Dalete')),
                                                           onPressed: () {
                                                             active(datacard2.requestId,"delete");
                                                             getData();
@@ -351,10 +353,10 @@ print(listdeafult);
                                                   ): datacard2.requestStatus=="pending" ? Row(
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: <Widget>[
-                                                      Container(
+                                                      SizedBox(
                                                         width: MediaQuery.of(context).size.width/3.4,
                                                         child: TextButton(
-                                                          child: Center (child: Text('Dalete')),
+                                                          child: const Center (child: Text('Dalete')),
                                                           onPressed: () {
                                                             active(datacard2.requestId,"delete");
                                                             getData();
@@ -365,10 +367,10 @@ print(listdeafult);
                                                   ):Row(
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: <Widget>[
-                                                      Container(
+                                                      SizedBox(
                                                         width: MediaQuery.of(context).size.width/3.4,
                                                         child: TextButton(
-                                                          child: Center (child: Text('Dalete')),
+                                                          child: const Center (child: Text('Dalete')),
                                                           onPressed: () {
                                                             active(datacard2.requestId,"delete");
                                                             getData();
@@ -399,9 +401,9 @@ print(listdeafult);
                           print("first");
                           final datacard = listvalues[i];
                           return Container(
-                              padding: EdgeInsets.only(bottom: 20),
+                              padding: const EdgeInsets.only(bottom: 20),
 
-                              margin:  EdgeInsets.only(left: 10, right: 10,bottom: 8),
+                              margin:  const EdgeInsets.only(left: 10, right: 10,bottom: 8),
                               child: GestureDetector(
                                 child: Card(
                                   elevation: 0,
@@ -421,24 +423,24 @@ print(listdeafult);
                                                     children: <Widget>[
                                                       Container(
                                                           width: MediaQuery.of(context).size.width/2.5,
-                                                          margin:  EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
+                                                          margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
                                                           child: Text(datacard.requestDate)),
                                                       Container(
 
                                                           width: MediaQuery.of(context).size.width/3,
-                                                          margin:  EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
+                                                          margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
                                                           child: Container( color: primarycolor[500],
-                                                              padding: EdgeInsets.all(3),
-                                                              child: Text(datacard.requestStatus.toUpperCase(),style: TextStyle(
+                                                              padding: const EdgeInsets.all(3),
+                                                              child: Text(datacard.requestStatus.toUpperCase(),style: const TextStyle(
                                                                 color: Colors.white,
 
                                                                 fontSize: 14,
                                                               ),textAlign: TextAlign.center,))),
                                                       Container(
                                                           width: MediaQuery.of(context).size.width/10,
-                                                          margin:  EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
+                                                          margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
                                                           child: IconButton(
-                                                            icon: Icon(Icons.clear),
+                                                            icon: const Icon(Icons.clear),
                                                             color: Colors.grey,
                                                             onPressed: () {
                                                               active(datacard.requestId,"delete");
@@ -453,9 +455,9 @@ print(listdeafult);
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: <Widget>[
                                                       Container(
-                                                          padding: EdgeInsets.all(8),
+                                                          padding: const EdgeInsets.all(8),
                                                           color: Colors.grey[200],
-                                                          margin:  EdgeInsets.only(bottom: 8),
+                                                          margin:  const EdgeInsets.only(bottom: 8),
                                                           width: MediaQuery.of(context).size.width/1.2,
                                                           child: Text(datacard.requestDescription)),
                                                     ],
@@ -464,35 +466,35 @@ print(listdeafult);
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: <Widget>[
                                                       Container(
-                                                          margin:  EdgeInsets.only(bottom: 8),
+                                                          margin:  const EdgeInsets.only(bottom: 8),
                                                           width: MediaQuery.of(context).size.width/1.2,
                                                           child:  Row(
                                                               crossAxisAlignment: CrossAxisAlignment.center,
                                                               children: <Widget>[
-                                                                Icon(
+                                                                const Icon(
                                                                   Icons.access_time,
                                                                 ),
-                                                                Text("Duration ",style: TextStyle(
+                                                                const Text("Duration ",style: TextStyle(
                                                                   color: Colors.black,
 
                                                                   fontSize: 16,
                                                                 ),),
-                                                                Text(datacard.deliveryDuration,style: TextStyle(
+                                                                Text(datacard.deliveryDuration,style: const TextStyle(
                                                                   color: Colors.black,
 
                                                                   fontSize: 16,
                                                                 ),),
                                                               ])),
                                                     ],
-                                                  ):Text(""),
+                                                  ):const Text(""),
 
                                                   datacard.requestStatus=="active" ? Row(
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: <Widget>[
-                                                      Container(
+                                                      SizedBox(
                                                         width: MediaQuery.of(context).size.width/1.1,
                                                         child:  TextButton(
-                                                          child: Center (child: Text('NO OFFER YET')),
+                                                          child: const Center (child: Text('NO OFFER YET')),
                                                           onPressed: () {
                                                             active(datacard.requestId,"pause");
                                                             getListViewItems("active");
@@ -504,10 +506,10 @@ print(listdeafult);
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: <Widget>[
                                                       Container(
-                                                        margin: EdgeInsets.only(left: 2,right: 2),
+                                                        margin: const EdgeInsets.only(left: 2,right: 2),
                                                         width: MediaQuery.of(context).size.width/1.1,
                                                         child: TextButton(
-                                                          child: Center (
+                                                          child: const Center (
                                                               child: Text('Active')),
                                                           onPressed: () {
                                                             active(datacard.requestId, "active");
@@ -520,10 +522,10 @@ print(listdeafult);
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: <Widget>[
                                                       Container(
-                                                        margin: EdgeInsets.only(left: 2,right: 2),
+                                                        margin: const EdgeInsets.only(left: 2,right: 2),
                                                         width: MediaQuery.of(context).size.width/1.1,
                                                         child: TextButton(
-                                                          child: Center (
+                                                          child: const Center (
                                                               child: Text('Active')
                                                           ),
                                                           onPressed: () {
@@ -536,10 +538,10 @@ print(listdeafult);
                                                   ):Row(
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: <Widget>[
-                                                      Container(
+                                                      SizedBox(
                                                         width: MediaQuery.of(context).size.width/1.1,
                                                         child: TextButton(
-                                                          child: Center (child: Text('Dalete')),
+                                                          child: const Center (child: Text('Dalete')),
                                                           onPressed: () {
                                                             active(datacard.requestId,"delete");
                                                             getListViewItems("active");
@@ -567,11 +569,11 @@ print(listdeafult);
 
                   ),
                   Container(          color: Colors.white,
-                    padding: EdgeInsets.only(bottom: 70, top: 8.00),
+                    padding: const EdgeInsets.only(bottom: 70, top: 8.00),
                     //alignment: FractionalOffset(1.0, 1.0),
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height/1,
-                    child: Center(
+                    child: const Center(
                         child: Text("No Request Are Avaliable", style: TextStyle(
                           color: primarycolor,
                           fontWeight: FontWeight.w700,

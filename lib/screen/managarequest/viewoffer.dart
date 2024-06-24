@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class viewoffer extends StatefulWidget {
   final String? orderid;//if you have multiple values add here
-  viewoffer(this.orderid, {Key? key}): super(key: key);
+  const viewoffer(this.orderid, {super.key});
   @override
   _viewofferState createState() => _viewofferState();
 }
@@ -57,12 +57,13 @@ class _viewofferState extends State<viewoffer> {
     getData();
 
   }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        title:Container(
+        title:SizedBox(
         width: MediaQuery.of(context).size.width/1.6,
-    child: Center(child: Text("View Offers"))
+    child: const Center(child: Text("View Offers"))
     ),
     ),
     body: ListView(
@@ -72,17 +73,17 @@ class _viewofferState extends State<viewoffer> {
               child: loading
                   ? Container(
                   color: Colors.white,
-                  padding: EdgeInsets.only(bottom: 70, top: 8.00),
+                  padding: const EdgeInsets.only(bottom: 70, top: 8.00),
                   //alignment: FractionalOffset(1.0, 1.0),
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height/1.1,
-                  child: Center( child: CircularProgressIndicator())
+                  child: const Center( child: CircularProgressIndicator())
               ):
         Column(
         children: <Widget>[
         Container(
               color: Colors.white,
-              padding: EdgeInsets.only(bottom: 10, top: 8.00),
+              padding: const EdgeInsets.only(bottom: 10, top: 8.00),
               //alignment: FractionalOffset(1.0, 1.0),
               width: MediaQuery.of(context).size.width,
               height: offerlistdata.isEmpty && offerlistdata.isEmpty ? 1:MediaQuery.of(context).size.height/3.1,
@@ -92,7 +93,7 @@ class _viewofferState extends State<viewoffer> {
                   itemBuilder: (context, i) {
                     final datacard2 = offerlistdata[i];
                     return Container(
-                        padding: EdgeInsets.only(bottom: 20),
+                        padding: const EdgeInsets.only(bottom: 20),
                         decoration:BoxDecoration(
                           border: Border.all(
                             color: primarycolor,
@@ -100,7 +101,7 @@ class _viewofferState extends State<viewoffer> {
                           ),
 
                         ),
-                        margin:  EdgeInsets.only(left: 10, right: 10,bottom: 8),
+                        margin:  const EdgeInsets.only(left: 10, right: 10,bottom: 8),
                         child: GestureDetector(
                           child: Card(
                             elevation: 0,
@@ -116,15 +117,15 @@ class _viewofferState extends State<viewoffer> {
                                           children: <Widget>[
                                             Container(
                                                 width: MediaQuery.of(context).size.width/1.2,
-                                                margin:  EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
-                                                child: Center(child: Text("Request Description"))
+                                                margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
+                                                child: const Center(child: Text("Request Description"))
                                             ),
                                             Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: <Widget>[
                                                 Container(
                                                     width: MediaQuery.of(context).size.width/1.2,
-                                                    margin:  EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
+                                                    margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
                                                     child: Text(datacard2.requestTitle)),
 
                                               ],
@@ -133,36 +134,36 @@ class _viewofferState extends State<viewoffer> {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Container(
-                                                    margin:  EdgeInsets.only(bottom: 8),
+                                                    margin:  const EdgeInsets.only(bottom: 8),
                                                     width: MediaQuery.of(context).size.width/1.2,
-                                                    child: Text("Request Budget: "+datacard2.requestBudget)),
+                                                    child: Text("Request Budget: ${datacard2.requestBudget}")),
                                               ],
                                             ),
                                             Row(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Container(
-                                                    margin:  EdgeInsets.only(bottom: 8),
+                                                    margin:  const EdgeInsets.only(bottom: 8),
                                                     width: MediaQuery.of(context).size.width/1.2,
-                                                    child: Text("Request Date: "+datacard2.requestDate)),
+                                                    child: Text("Request Date: ${datacard2.requestDate}")),
                                               ],
                                             ),
                                             Row(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Container(
-                                                    margin:  EdgeInsets.only(bottom: 8),
+                                                    margin:  const EdgeInsets.only(bottom: 8),
                                                     width: MediaQuery.of(context).size.width/1.2,
-                                                    child: Text("Request Duration: "+datacard2.requestDuration)),
+                                                    child: Text("Request Duration: ${datacard2.requestDuration}")),
                                               ],
                                             ),
                                             Row(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Container(
-                                                    margin:  EdgeInsets.only(bottom: 8),
+                                                    margin:  const EdgeInsets.only(bottom: 8),
                                                     width: MediaQuery.of(context).size.width/1.2,
-                                                    child: Text("Request Category: "+datacard2.requestCategory)),
+                                                    child: Text("Request Category: ${datacard2.requestCategory}")),
                                               ],
                                             ),
 
@@ -185,7 +186,7 @@ class _viewofferState extends State<viewoffer> {
         ),
           Container(
                 color: Colors.white,
-                padding: EdgeInsets.only(bottom: 70, top: 8.00),
+                padding: const EdgeInsets.only(bottom: 70, top: 8.00),
                 //alignment: FractionalOffset(1.0, 1.0),
                 width: MediaQuery.of(context).size.width,
                 height: productlistdata.isEmpty && productlistdata.isEmpty ? 1:MediaQuery.of(context).size.height/1,
@@ -195,7 +196,7 @@ class _viewofferState extends State<viewoffer> {
                     itemBuilder: (context, i) {
                       final datacard2 = productlistdata[i];
                       return Container(
-                          padding: EdgeInsets.only(bottom: 20),
+                          padding: const EdgeInsets.only(bottom: 20),
                           decoration:BoxDecoration(
                             border: Border.all(
                               color: primarycolor,
@@ -203,7 +204,7 @@ class _viewofferState extends State<viewoffer> {
                             ),
 
                           ),
-                          margin:  EdgeInsets.only(left: 10, right: 10,bottom: 8),
+                          margin:  const EdgeInsets.only(left: 10, right: 10,bottom: 8),
                           child: GestureDetector(
                             child: Card(
                               elevation: 0,
@@ -236,7 +237,7 @@ class _viewofferState extends State<viewoffer> {
                                                   Container(
 
                                                       width: MediaQuery.of(context).size.width/1.2,
-                                                      margin:  EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
+                                                      margin:  const EdgeInsets.only(left: 10, top: 8.00,bottom: 8),
                                                       child: Text(datacard2.offerTitle)),
 
                                                 ],
@@ -245,7 +246,7 @@ class _viewofferState extends State<viewoffer> {
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Container(
-                                                      margin:  EdgeInsets.only(bottom: 8),
+                                                      margin:  const EdgeInsets.only(bottom: 8),
                                                       width: MediaQuery.of(context).size.width/1.2,
                                                       child: Text(datacard2.offerDescription)),
                                                 ],
@@ -254,18 +255,18 @@ class _viewofferState extends State<viewoffer> {
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Container(
-                                                      margin:  EdgeInsets.only(bottom: 8),
+                                                      margin:  const EdgeInsets.only(bottom: 8),
                                                       width: MediaQuery.of(context).size.width/1.2,
-                                                      child: Text("Offer Budget: "+datacard2.offerBudget)),
+                                                      child: Text("Offer Budget: ${datacard2.offerBudget}")),
                                                 ],
                                               ),
                                               Row(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Container(
-                                                      margin:  EdgeInsets.only(bottom: 8),
+                                                      margin:  const EdgeInsets.only(bottom: 8),
                                                       width: MediaQuery.of(context).size.width/1.2,
-                                                      child: Text("Offer Duration: "+datacard2.offerDuration)),
+                                                      child: Text("Offer Duration: ${datacard2.offerDuration}")),
                                                 ],
                                               ),
 

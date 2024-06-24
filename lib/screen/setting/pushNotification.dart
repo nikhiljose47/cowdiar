@@ -8,6 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class PushNotification extends StatefulWidget{
+  const PushNotification({super.key});
+
   @override
   _PushNotificationState createState(){
     return _PushNotificationState();
@@ -26,10 +28,10 @@ class _PushNotificationState extends State<PushNotification> {
   void initState() {
     getData();
     super.initState();
-    flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
-    var android = new AndroidInitializationSettings('@mipmap/ic_launcher');
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    var android = const AndroidInitializationSettings('@mipmap/ic_launcher');
    // var iOS = new IOSInitializationSettings();
-    var initSetttings = new InitializationSettings(android: android);
+    var initSetttings = InitializationSettings(android: android);
     flutterLocalNotificationsPlugin.initialize(initSetttings);
   }
   Future<Null> getData() async{
@@ -112,21 +114,22 @@ class _PushNotificationState extends State<PushNotification> {
   Future onSelectNotification(String payload) {
     debugPrint("payload : $payload");
   }
+  @override
   Widget build(BuildContext context) {
     print(inboxMessages);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Text("Push Notifications",style: TextStyle(
+        title: const Text("Push Notifications",style: TextStyle(
           color: Colors.black,
         ),),
         centerTitle: true,
       ),
-      body: inboxMessages == null && orderMessages == null && orderUpdates == null && buyerRequests == null && myProposals== null && myAccounts== null ?  Container(alignment: Alignment.center,child: CircularProgressIndicator()) : Column(
+      body: inboxMessages == null && orderMessages == null && orderUpdates == null && buyerRequests == null && myProposals== null && myAccounts== null ?  Container(alignment: Alignment.center,child: const CircularProgressIndicator()) : Column(
         children: <Widget>[
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 bottom: BorderSide(
@@ -136,9 +139,9 @@ class _PushNotificationState extends State<PushNotification> {
               ),
             ),
           ),
-          SizedBox(height: 60),
+          const SizedBox(height: 60),
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -152,7 +155,7 @@ class _PushNotificationState extends State<PushNotification> {
               ),
             ),
             child:ListTile(
-              title: Text(
+              title: const Text(
                 "Inbox Messages",
                 style: TextStyle(fontSize: 18,color: Colors.black),
               ),
@@ -174,7 +177,7 @@ class _PushNotificationState extends State<PushNotification> {
               ),
             ),),
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -188,7 +191,7 @@ class _PushNotificationState extends State<PushNotification> {
               ),
             ),
             child:ListTile(
-              title: Text(
+              title: const Text(
                 "Order Messages",
                 style: TextStyle(fontSize: 18,color: Colors.black),
               ),
@@ -210,7 +213,7 @@ class _PushNotificationState extends State<PushNotification> {
               ),
             ),),
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -224,7 +227,7 @@ class _PushNotificationState extends State<PushNotification> {
               ),
             ),
             child:ListTile(
-              title: Text(
+              title: const Text(
                 "Order Updates",
                 style: TextStyle(fontSize: 18,color: Colors.black),
               ),
@@ -246,7 +249,7 @@ class _PushNotificationState extends State<PushNotification> {
               ),
             ),),
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -260,7 +263,7 @@ class _PushNotificationState extends State<PushNotification> {
               ),
             ),
             child:ListTile(
-              title: Text(
+              title: const Text(
                 "Buyer Requestes",
                 style: TextStyle(fontSize: 18,color: Colors.black),
               ),
@@ -283,7 +286,7 @@ class _PushNotificationState extends State<PushNotification> {
             ),
           ),
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -297,7 +300,7 @@ class _PushNotificationState extends State<PushNotification> {
               ),
             ),
             child:ListTile(
-              title: Text(
+              title: const Text(
                 "My Propsals",
                 style: TextStyle(fontSize: 18,color: Colors.black),
               ),
@@ -319,7 +322,7 @@ class _PushNotificationState extends State<PushNotification> {
               ),
             ),),
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -333,7 +336,7 @@ class _PushNotificationState extends State<PushNotification> {
               ),
             ),
             child:ListTile(
-              title: Text(
+              title: const Text(
                 "My Accounts",
                 style: TextStyle(fontSize: 18,color: Colors.black),
               ),
@@ -360,19 +363,19 @@ class _PushNotificationState extends State<PushNotification> {
               alignment: FractionalOffset.bottomCenter,
               child: ElevatedButton(
                 onPressed: showNotification,
-                child: Text('TEST PUSH NOTIFICATION',style:TextStyle(fontSize: 15.0),),
+                child: const Text('TEST PUSH NOTIFICATION',style:TextStyle(fontSize: 15.0),),
               ),),):Container(),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
         ],
       ),
     );
   }
   showNotification() async {
-    var android = new AndroidNotificationDetails(
+    var android = const AndroidNotificationDetails(
         'channel id', 'channel NAME',
         priority: Priority.high,importance: Importance.max
     );
-    var platform = new NotificationDetails(android: android);
+    var platform = NotificationDetails(android: android);
     await flutterLocalNotificationsPlugin.show(
         0, 'Push Test', 'Push Test Success', platform,
         payload: 'Push Test Success');

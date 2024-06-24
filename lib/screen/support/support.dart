@@ -10,15 +10,16 @@ import 'package:file_picker/file_picker.dart';
 
 class support extends StatefulWidget{
   final int? index;
-  support(this.index);
+  const support(this.index, {super.key});
+  @override
   _supportState createState()=>_supportState();
 }
 class _supportState extends State<support>{
-  final _key = new GlobalKey<FormState>();
-  FocusNode subjectFocusNode = new FocusNode();
-  FocusNode messageFocusNode = new FocusNode();
-  FocusNode ordernumberFocusNode = new FocusNode();
-  FocusNode rollFocusNode = new FocusNode();
+  final _key = GlobalKey<FormState>();
+  FocusNode subjectFocusNode = FocusNode();
+  FocusNode messageFocusNode = FocusNode();
+  FocusNode ordernumberFocusNode = FocusNode();
+  FocusNode rollFocusNode = FocusNode();
   String? subject;
   String? Message;
   String? ordernumber;
@@ -27,8 +28,8 @@ class _supportState extends State<support>{
   var loading = false;
   String? _mySelection;
   String token = "";
-  String _path = '...';
-  String _fileName = '...';
+  final String _path = '...';
+  final String _fileName = '...';
   FileType? _pickingType;
   String? _extension;
   final subjectHolder = TextEditingController();
@@ -226,6 +227,7 @@ class _supportState extends State<support>{
 
   }
 
+  @override
   void initState(){
     super.initState();
     getData();
@@ -237,7 +239,7 @@ class _supportState extends State<support>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Support', style: TextStyle(color: Colors.black87),),
+        title: const Text('Support', style: TextStyle(color: Colors.black87),),
         backgroundColor: Colors.white,
         centerTitle: true,
       ),
@@ -247,16 +249,17 @@ class _supportState extends State<support>{
 
             color: Colors.white,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: new DropdownButton(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: DropdownButton(
 
                 isExpanded: true,
-                hint:  Text("Choose a Category"),
+                hint:  const Text("Choose a Category"),
                 items: listService.map((item) {
-                  return new DropdownMenuItem(
+                  return DropdownMenuItem(
 
-                    child: new Text(item.enquiryTitle),
                     value: item.enquiryType.toString(),
+
+                    child: Text(item.enquiryTitle),
 
                   );
                 }).toList(),
@@ -278,14 +281,14 @@ class _supportState extends State<support>{
               color: Colors.transparent,
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Form(
                       key: _key,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width / 1.1,
                             child: TextFormField(
                               controller: subjectHolder,
@@ -297,13 +300,13 @@ class _supportState extends State<support>{
                                 return null;
                               },
                               onSaved: (e) => subject = e,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 //height: 1,
                                 color: primarycolor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: primarycolor),
                                   ),
@@ -314,8 +317,8 @@ class _supportState extends State<support>{
                                   )),
                             ),
                           ),
-                          SizedBox(height: 15),
-                          Container(
+                          const SizedBox(height: 15),
+                          SizedBox(
                             width: MediaQuery.of(context).size.width / 1.1,
 
                             child: TextFormField(
@@ -330,13 +333,13 @@ class _supportState extends State<support>{
                                 return null;
                               },
                               onSaved: (e) => Message = e,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 //height: 1,
                                 color: primarycolor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: primarycolor),
                                   ),
@@ -347,8 +350,8 @@ class _supportState extends State<support>{
                                   )),
                             ),
                           ),
-                          SizedBox(height: 15),
-                          Container(
+                          const SizedBox(height: 15),
+                          SizedBox(
                             width: MediaQuery.of(context).size.width / 1.1,
                             child: TextFormField(
                               controller: ordernumberHolder,
@@ -360,14 +363,14 @@ class _supportState extends State<support>{
                                 return null;
                               },
                               onSaved: (e) => roll = e,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 //height: 1,
                                 color: primarycolor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
 
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: primarycolor),
                                   ),
@@ -378,8 +381,8 @@ class _supportState extends State<support>{
                                   )),
                             ),
                           ),
-                          SizedBox(height: 15),
-                          Container(
+                          const SizedBox(height: 15),
+                          SizedBox(
                             width: MediaQuery.of(context).size.width / 1.1,
                             child: TextFormField(
                               controller: rollHolder,
@@ -391,13 +394,13 @@ class _supportState extends State<support>{
                                 return null;
                               },
                               onSaved: (e) => ordernumber = e,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 //height: 1,
                                 color: primarycolor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: primarycolor),
                                   ),
@@ -408,20 +411,20 @@ class _supportState extends State<support>{
                                   )),
                             ),
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           OutlinedButton(
 
                             onPressed: () {
                               _openFileExplorer();
                             },
-                            child: Text('Choose File'),
+                            child: const Text('Choose File'),
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: Container(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(100)),
+                                      borderRadius: const BorderRadius.all(Radius.circular(100)),
                                       gradient: LinearGradient(
                                           begin: Alignment.topRight,
                                           end: Alignment.topLeft,
@@ -430,7 +433,7 @@ class _supportState extends State<support>{
                                     width: double.infinity,
                                     child:TextButton(
 
-                                      child: Text(
+                                      child: const Text(
                                         "Submit Request",
                                         style: TextStyle(
                                             color: Colors.white,
@@ -455,14 +458,14 @@ class _supportState extends State<support>{
               color: Colors.transparent,
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Form(
                       key: _key,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width / 1.1,
                             child: TextFormField(
                               controller: subjectHolder,
@@ -474,13 +477,13 @@ class _supportState extends State<support>{
                                 return null;
                               },
                               onSaved: (e) => subject = e,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 //height: 1,
                                 color: primarycolor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: primarycolor),
                                   ),
@@ -491,8 +494,8 @@ class _supportState extends State<support>{
                                   )),
                             ),
                           ),
-                          SizedBox(height: 15),
-                          Container(
+                          const SizedBox(height: 15),
+                          SizedBox(
                             width: MediaQuery.of(context).size.width / 1.1,
 
                             child: TextFormField(
@@ -507,13 +510,13 @@ class _supportState extends State<support>{
                                 return null;
                               },
                               onSaved: (e) => Message = e,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 //height: 1,
                                 color: primarycolor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: primarycolor),
                                   ),
@@ -525,20 +528,20 @@ class _supportState extends State<support>{
                             ),
                           ),
 
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           ElevatedButton(
 
                             onPressed: () {
                               _openFileExplorer();
                             },
-                            child: Text('Choose File'),
+                            child: const Text('Choose File'),
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: Container(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(100)),
+                                      borderRadius: const BorderRadius.all(Radius.circular(100)),
                                       gradient: LinearGradient(
                                           begin: Alignment.topRight,
                                           end: Alignment.topLeft,
@@ -547,7 +550,7 @@ class _supportState extends State<support>{
                                     width: double.infinity,
                                     child:TextButton(
 
-                                      child: Text(
+                                      child: const Text(
                                         "Submit Request",
                                         style: TextStyle(
                                             color: Colors.white,
@@ -573,14 +576,14 @@ class _supportState extends State<support>{
               color: Colors.transparent,
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Form(
                       key: _key,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width / 1.1,
                             child: TextFormField(
                               controller: subjectHolder,
@@ -592,13 +595,13 @@ class _supportState extends State<support>{
                                 return null;
                               },
                               onSaved: (e) => subject = e,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 //height: 1,
                                 color: primarycolor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: primarycolor),
                                   ),
@@ -609,8 +612,8 @@ class _supportState extends State<support>{
                                   )),
                             ),
                           ),
-                          SizedBox(height: 15),
-                          Container(
+                          const SizedBox(height: 15),
+                          SizedBox(
                             width: MediaQuery.of(context).size.width / 1.1,
 
                             child: TextFormField(
@@ -625,13 +628,13 @@ class _supportState extends State<support>{
                                 return null;
                               },
                               onSaved: (e) => Message = e,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 //height: 1,
                                 color: primarycolor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: primarycolor),
                                   ),
@@ -643,20 +646,20 @@ class _supportState extends State<support>{
                             ),
                           ),
 
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           OutlinedButton(
 
                             onPressed: () {
                               _openFileExplorer();
                             },
-                            child: Text('Choose File'),
+                            child: const Text('Choose File'),
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: Container(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(100)),
+                                      borderRadius: const BorderRadius.all(Radius.circular(100)),
                                       gradient: LinearGradient(
                                           begin: Alignment.topRight,
                                           end: Alignment.topLeft,
@@ -665,7 +668,7 @@ class _supportState extends State<support>{
                                     width: double.infinity,
                                     child:TextButton(
 
-                                      child: Text(
+                                      child: const Text(
                                         "Submit Request",
                                         style: TextStyle(
                                             color: Colors.white,
@@ -691,14 +694,14 @@ class _supportState extends State<support>{
               color: Colors.transparent,
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Form(
                       key: _key,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width / 1.1,
                             child: TextFormField(
                               controller: subjectHolder,
@@ -710,13 +713,13 @@ class _supportState extends State<support>{
                                 return null;
                               },
                               onSaved: (e) => subject = e,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 //height: 1,
                                 color: primarycolor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: primarycolor),
                                   ),
@@ -727,8 +730,8 @@ class _supportState extends State<support>{
                                   )),
                             ),
                           ),
-                          SizedBox(height: 15),
-                          Container(
+                          const SizedBox(height: 15),
+                          SizedBox(
                             width: MediaQuery.of(context).size.width / 1.1,
 
                             child: TextFormField(
@@ -743,13 +746,13 @@ class _supportState extends State<support>{
                                 return null;
                               },
                               onSaved: (e) => Message = e,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 //height: 1,
                                 color: primarycolor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               ),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: primarycolor),
                                   ),
@@ -761,20 +764,20 @@ class _supportState extends State<support>{
                             ),
                           ),
 
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           OutlinedButton(
 
                             onPressed: () {
                               _openFileExplorer();
                             },
-                            child: Text('Choose File'),
+                            child: const Text('Choose File'),
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: Container(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(100)),
+                                      borderRadius: const BorderRadius.all(Radius.circular(100)),
                                       gradient: LinearGradient(
                                           begin: Alignment.topRight,
                                           end: Alignment.topLeft,
@@ -783,7 +786,7 @@ class _supportState extends State<support>{
                                     width: double.infinity,
                                     child:TextButton(
 
-                                      child: Text(
+                                      child: const Text(
                                         "Submit Request",
                                         style: TextStyle(
                                             color: Colors.white,

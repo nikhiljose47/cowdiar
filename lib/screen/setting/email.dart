@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cowdiar/services/api.dart';
 
 class email extends StatefulWidget{
+  const email({super.key});
+
   @override
   _emailState createState(){
     return _emailState();
@@ -18,14 +20,14 @@ class _emailState extends State<email> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios, size: 28,color: Colors.black87 ),
-        title: Text('Email Notification',style: TextStyle(color: Colors.black87),),
+        leading: const Icon(Icons.arrow_back_ios, size: 28,color: Colors.black87 ),
+        title: const Text('Email Notification',style: TextStyle(color: Colors.black87),),
         centerTitle: true,
       ),
       body: Column(
         children: <Widget>[
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
 
@@ -36,9 +38,9 @@ class _emailState extends State<email> {
               ),
             ),
           ),
-          SizedBox(height: 60),
+          const SizedBox(height: 60),
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -52,7 +54,7 @@ class _emailState extends State<email> {
               ),
             ),
             child:ListTile(
-              title:   Text(
+              title:   const Text(
                 "Order Messages",
                 style: TextStyle(fontSize: 18,color: Colors.black),
               ),
@@ -64,7 +66,7 @@ class _emailState extends State<email> {
           ),
 
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -78,7 +80,7 @@ class _emailState extends State<email> {
               ),
             ),
             child:ListTile(
-              title: Text('Order Updates', style: TextStyle(fontSize: 18,color: Colors.black),),
+              title: const Text('Order Updates', style: TextStyle(fontSize: 18,color: Colors.black),),
               trailing: Switch(
                 activeColor: primarycolor,
                 onChanged: (bool newval) => setState(() => _newisSwitched = newval),
@@ -87,7 +89,7 @@ class _emailState extends State<email> {
           ),
 
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -101,7 +103,7 @@ class _emailState extends State<email> {
               ),
             ),
             child: ListTile(
-              title: Text('Inbox Messages', style: TextStyle(fontSize: 18,color: Colors.black),),
+              title: const Text('Inbox Messages', style: TextStyle(fontSize: 18,color: Colors.black),),
               trailing: Switch(
                 activeColor: primarycolor,
                 onChanged: (bool newval) => setState(() => _onSwitched = newval),
@@ -116,7 +118,7 @@ class _emailState extends State<email> {
         currentIndex: _index,
         type: BottomNavigationBarType.fixed,
         fixedColor: primarycolor,
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), activeIcon: Text("Home",style: TextStyle(color: Colors.black87),)),
           BottomNavigationBarItem(icon: Icon(Icons.mail_outline), activeIcon: Text("Inbox",style: TextStyle(color: Colors.black87),)),
           BottomNavigationBarItem(icon: Icon(Icons.search), activeIcon: Text("Explore",style: TextStyle(color: Colors.black87),)),

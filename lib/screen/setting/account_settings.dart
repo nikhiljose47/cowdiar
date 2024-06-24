@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AccountSettings extends StatefulWidget {
+  const AccountSettings({super.key});
+
   @override
   _AccountSettingsState createState() => _AccountSettingsState();
 }

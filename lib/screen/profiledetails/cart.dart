@@ -10,6 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class cart extends StatefulWidget {
+  const cart({super.key});
+
   @override
   cartPage createState() => cartPage();
 }
@@ -117,6 +119,7 @@ class cartPage extends State<cart> {
         }
   }
 
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -129,14 +132,14 @@ class cartPage extends State<cart> {
       backgroundColor: Colors.grey.shade100,
         appBar:  AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () =>  Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (BuildContext context) => MyHomePage(0))),
+                MaterialPageRoute(builder: (BuildContext context) => const MyHomePage(0))),
           ),
           elevation: 0.0,
-        title: Container(
+        title: SizedBox(
         width: MediaQuery.of(context).size.width/1.8,
-  child: Center(child:Text("Cart")
+  child: const Center(child:Text("Cart")
   )
   ),
         ),
@@ -150,36 +153,36 @@ class cartPage extends State<cart> {
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 itemCount: datacart.length,
                 itemBuilder: (BuildContext context, int index) {
                   final datavalue = datacart[index];
                   return loading
-                      ? Center(
+                      ? const Center(
                       child: CircularProgressIndicator(
                           valueColor:
-                          new AlwaysStoppedAnimation<Color>(primarycolor)))
+                          AlwaysStoppedAnimation<Color>(primarycolor)))
                       : Stack(
                     children: <Widget>[
                       Container(
                         width: double.infinity,
-                        margin: EdgeInsets.only(
+                        margin: const EdgeInsets.only(
                             right: 30.0, bottom: 10.0),
                         child: Material(
                           borderRadius:
                           BorderRadius.circular(5.0),
                           elevation: 3.0,
                           child: Container(
-                            padding: EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(16.0),
                             child: Row(
                               children: <Widget>[
-                                Container(
+                                SizedBox(
                                   height: 80,
                                   child: Image.network(
                                       datacart[index]
                                           .proposalImage),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10.0,
                                 ),
                                 Expanded(
@@ -190,16 +193,16 @@ class cartPage extends State<cart> {
                                       Text(
                                         datacart[index]
                                             .proposalTitle,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 16.0,
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10.0,
                                       ),
                                       Text(
                                         datacart[index].price,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontWeight:
                                             FontWeight.bold,
                                             fontSize: 18.0),
@@ -208,22 +211,22 @@ class cartPage extends State<cart> {
                                         children: <Widget>[
                                           datacart[index]
                                               .proposalQuantity == "2"
-                                              ? new IconButton(
-                                            icon: new Icon(Icons.remove,color: primarycolor,),
+                                              ? IconButton(
+                                            icon: const Icon(Icons.remove,color: primarycolor,),
                                             onPressed: () => setState(() {
                                              String value = (int.parse(datacart[index].proposalQuantity)-1).toString();
                                                 addquenty(datacart[index]
                                                     .proposalId,
                                                     value);}),)
-                                              : new Container(),
-                                          new Text(datacart[index]
+                                              : Container(),
+                                          Text(datacart[index]
                                               .proposalQuantity ,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontWeight:
                                                 FontWeight.bold,
                                                 fontSize: 18.0)),
-                                          new IconButton(
-                                              icon: new Icon(Icons.add,color: primarycolor),
+                                          IconButton(
+                                              icon: const Icon(Icons.add,color: primarycolor),
                                               onPressed: () =>
                                                   setState(() {
                                                     String value = (int.parse(datacart[index].proposalQuantity)+1).toString();
@@ -251,9 +254,9 @@ class cartPage extends State<cart> {
                             shape: RoundedRectangleBorder(
                                 borderRadius:
                                 BorderRadius.circular(5.0)),
-                            padding: EdgeInsets.all(0.0),
+                            padding: const EdgeInsets.all(0.0),
                             color: Colors.red,
-                            child: Icon(
+                            child: const Icon(
                               Icons.delete,
                               color: Colors.white,
                             ),
@@ -272,13 +275,13 @@ class cartPage extends State<cart> {
               ),
             ),
             loading
-                ? Center(
+                ? const Center(
                 child: CircularProgressIndicator(
                     valueColor:
-                    new AlwaysStoppedAnimation<Color>(primarycolor)))
+                    AlwaysStoppedAnimation<Color>(primarycolor)))
                 : Container(
               width: double.infinity,
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -295,9 +298,9 @@ class cartPage extends State<cart> {
                         directcontent[0].subTotalPrice,
                         style: TextStyle(
                             color: Colors.grey.shade700, fontSize: 16.0),
-                      ):Text(''),
+                      ):const Text(''),
                     ],),
-                  SizedBox(
+                  const SizedBox(
                     height: 5.0,
                   ),
                   Row(
@@ -313,10 +316,10 @@ class cartPage extends State<cart> {
                         directcontent[0].processingFee,
                         style: TextStyle(
                             color: Colors.grey.shade700, fontSize: 16.0),
-                      ):Text(''),
+                      ):const Text(''),
                     ],),
 
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
                   Row(
@@ -331,9 +334,9 @@ class cartPage extends State<cart> {
                         directcontent[0].totalPrice,
                         style: TextStyle(
                             color: Colors.grey.shade700, fontSize: 16.0),
-                      ):Text(''),
+                      ):const Text(''),
                     ],),
-                  SizedBox(
+                  const SizedBox(
                     height: 20.0,
                   ),
                   SizedBox(
@@ -343,7 +346,7 @@ class cartPage extends State<cart> {
                           color: primarycolor,
                           child: Text(
                             "Checkout".toUpperCase(),
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                           onPressed: () {
                             Navigator.push(

@@ -7,6 +7,8 @@ import 'package:cowdiar/util/searchcall.dart';
 import 'package:cowdiar/Widget/recentvariable.dart';
 
 class search extends StatefulWidget {
+  const search({super.key});
+
   @override
   _searchState createState() => _searchState();
 }
@@ -62,20 +64,20 @@ class _searchState extends State<search> {
   myBoxDecorationfirst() {
     return BoxDecoration(
       color: Colors.white,
-      border: new Border.all(
+      border: Border.all(
           color: Colors.grey, width: 0.5, style: BorderStyle.solid),
-      borderRadius: new BorderRadius.vertical(
-        bottom: new Radius.circular(10.0),
+      borderRadius: const BorderRadius.vertical(
+        bottom: Radius.circular(10.0),
         //bottom: new Radius.circular(20.0),
       ),
     );
   }
 
   final bottomContentText = Container(
-    padding: EdgeInsets.only(left: 10.00, top: 10.00, bottom: 10.00),
+    padding: const EdgeInsets.only(left: 10.00, top: 10.00, bottom: 10.00),
     child: Column(
       children: <Widget>[
-        Row(
+        const Row(
           children: <Widget>[
             Text(
               "Shop By",
@@ -89,7 +91,7 @@ class _searchState extends State<search> {
               padding: const EdgeInsets.all(0.0),
               child: TextButton(
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   "Style",
                   style: TextStyle(
                     fontSize: 14.0,
@@ -101,7 +103,7 @@ class _searchState extends State<search> {
               padding: const EdgeInsets.only(left: 2, right: 2),
               child: TextButton(
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   "Seller's Experience",
                   style: TextStyle(
                     fontSize: 14.0,
@@ -113,7 +115,7 @@ class _searchState extends State<search> {
               padding: const EdgeInsets.all(0.0),
               child: TextButton(
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   "Editiable",
                   style: TextStyle(
                     fontSize: 14.0,
@@ -145,7 +147,7 @@ class _searchState extends State<search> {
                 decoration: myBoxDecorationfirst(),
 
                 child: Column(children: <Widget>[
-                  Container(
+                  SizedBox(
                     height: 150,
                     width: double.infinity,
                     child: ClipRRect(
@@ -157,7 +159,7 @@ class _searchState extends State<search> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                         left: 10.00, right: 10.00, top: 5.00, bottom: 5.00),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -165,17 +167,17 @@ class _searchState extends State<search> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            new Container(
+                            Container(
                                 width: 30.0,
                                 height: 30.0,
-                                decoration: new BoxDecoration(
+                                decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    image: new DecorationImage(
+                                    image: DecorationImage(
                                         fit: BoxFit.fill,
-                                        image: new NetworkImage(
+                                        image: NetworkImage(
                                             nplacesList.sellerImage!)))),
-                            new Container(
-                                padding: EdgeInsets.only(left: 5.00),
+                            Container(
+                                padding: const EdgeInsets.only(left: 5.00),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
@@ -190,7 +192,7 @@ class _searchState extends State<search> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(right: 10.00, left: 10.00),
+                    padding: const EdgeInsets.only(right: 10.00, left: 10.00),
                     child: Column(children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -200,7 +202,7 @@ class _searchState extends State<search> {
                               padding:
                                   const EdgeInsets.only(left: 10.0, top: 5),
                               child: Text(nplacesList.title!.length > 30
-                                  ? nplacesList.title!.substring(0, 30) + "..."
+                                  ? "${nplacesList.title!.substring(0, 30)}..."
                                   : nplacesList.title!),
                             ),
                           ),
@@ -210,17 +212,17 @@ class _searchState extends State<search> {
                   ),
                   Container(
                     padding:
-                        EdgeInsets.only(right: 10.00, top: 10.00),
+                        const EdgeInsets.only(right: 10.00, top: 10.00),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            new Container(
-                                padding: EdgeInsets.only(left: 10),
+                            Container(
+                                padding: const EdgeInsets.only(left: 10),
                                 child: Row(children: <Widget>[
-                                  Text(
+                                  const Text(
                                     "From ",
                                     style: TextStyle(
                                       fontSize: 15,
@@ -231,7 +233,7 @@ class _searchState extends State<search> {
                                   ),
                                   Text(
                                     "${nplacesList.price}",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 18,
                                       color: primarycolor,
                                     ),
@@ -242,16 +244,16 @@ class _searchState extends State<search> {
                           ],
                         ),
                         Row(children: <Widget>[
-                          new Container(
+                          Container(
                               child: Row(children: <Widget>[
-                            Icon(
+                            const Icon(
                               Icons.star,
                               size: 14,
                               color: Colors.orangeAccent,
                             ),
                             Text(
                               "${nplacesList.rating!.totalReviews} ",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 15,
                                 color: Colors.orangeAccent,
                               ),
@@ -260,7 +262,7 @@ class _searchState extends State<search> {
                             ),
                             Text(
                               "(${nplacesList.rating!.averageRatting})",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 15,
                                 color: Colors.black38,
                               ),
@@ -313,7 +315,7 @@ class _searchState extends State<search> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                   left: 10.00, right: 10.00, top: 10.00, bottom: 5.00),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -321,17 +323,17 @@ class _searchState extends State<search> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      new Container(
+                      Container(
                           width: 30.0,
                           height: 30.0,
-                          decoration: new BoxDecoration(
+                          decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              image: new DecorationImage(
+                              image: DecorationImage(
                                   fit: BoxFit.fill,
-                                  image: new AssetImage(recent.profileimg!)))),
-                      new Container(
-                        padding: EdgeInsets.only(left: 5.00),
-                        child: new Text(recent.name!),
+                                  image: AssetImage(recent.profileimg!)))),
+                      Container(
+                        padding: const EdgeInsets.only(left: 5.00),
+                        child: Text(recent.name!),
                       ),
                     ],
                   ),
@@ -339,7 +341,7 @@ class _searchState extends State<search> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(right: 10.00, left: 10.00),
+              padding: const EdgeInsets.only(right: 10.00, left: 10.00),
               child: Column(children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -355,17 +357,17 @@ class _searchState extends State<search> {
               ]),
             ),
             Container(
-              padding: EdgeInsets.only(right: 10.00, left: 10.00, top: 10.00),
+              padding: const EdgeInsets.only(right: 10.00, left: 10.00, top: 10.00),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      new Container(
-                          padding: EdgeInsets.only(left: 10),
+                      Container(
+                          padding: const EdgeInsets.only(left: 10),
                           child: Row(children: <Widget>[
-                            Text(
+                            const Text(
                               "From ",
                               style: TextStyle(
                                 fontSize: 15,
@@ -376,7 +378,7 @@ class _searchState extends State<search> {
                             ),
                             Text(
                               "${recent.price}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 18,
                                 color: primarycolor,
                               ),
@@ -387,16 +389,16 @@ class _searchState extends State<search> {
                     ],
                   ),
                   Row(children: <Widget>[
-                    new Container(
+                    Container(
                         child: Row(children: <Widget>[
-                      Icon(
+                      const Icon(
                         Icons.star,
                         size: 14,
                         color: Colors.orangeAccent,
                       ),
                       Text(
                         "${recent.rating} ",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 15,
                           color: Colors.orangeAccent,
                         ),
@@ -405,7 +407,7 @@ class _searchState extends State<search> {
                       ),
                       Text(
                         "(${recent.ratingcount})",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 15,
                           color: Colors.black38,
                         ),
@@ -421,6 +423,7 @@ class _searchState extends State<search> {
         ),
       );
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -429,12 +432,12 @@ class _searchState extends State<search> {
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width / 1.1,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0),
-                  side: BorderSide(
+                  side: const BorderSide(
                     color: Colors.grey,
                     width: 1.0,
                   ),
@@ -443,19 +446,19 @@ class _searchState extends State<search> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Container(
+                    SizedBox(
                       width: 250,
                       height: 45,
                       child: TextField(
                         onChanged: onSearchTextChanged,
                         controller: editingController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: "Search",
                           prefixIcon: Icon(
                             Icons.search,
                             color: Colors.black38,
                           ),
-                          enabledBorder: new UnderlineInputBorder(
+                          enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                                 color: Colors.white,
                                 width: 1.0,

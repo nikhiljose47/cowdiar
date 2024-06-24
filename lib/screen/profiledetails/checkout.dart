@@ -8,9 +8,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class checkout extends StatefulWidget {
   final String checkoutlink ,token;//if you have multiple values add here
-  checkout(this.checkoutlink, this.token, {Key? key}): super(key: key);
+  const checkout(this.checkoutlink, this.token, {super.key});
   @override
-  _checkoutState createState() => new _checkoutState();
+  _checkoutState createState() => _checkoutState();
 }
 
 class _checkoutState extends State<checkout> {
@@ -24,11 +24,11 @@ class _checkoutState extends State<checkout> {
   
   void makeRequest() {
     setState(() {
-      url = baseurl + version +'/';
+      url = '$baseurl$version/';
       checkoutpar = widget.checkoutlink;
       tokens = widget.token;
     });
-    print(url+checkoutpar+'&Auth='+tokens);
+    print('$url$checkoutpar&Auth=$tokens');
     _controller = WebViewController()
   ..setJavaScriptMode(JavaScriptMode.unrestricted)
   ..setBackgroundColor(const Color(0x00000000))
@@ -49,14 +49,14 @@ class _checkoutState extends State<checkout> {
               showDialog(
                   context: context,
                   builder: (context) {
-                    Future.delayed(Duration(seconds: 5), () {
+                    Future.delayed(const Duration(seconds: 5), () {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  manageorder()));
+                                  const manageorder()));
                     });
-                    return CustomDialog(
+                    return const CustomDialog(
                       title: "Order Completed Successfuly!",
                       content:
                       "We've sent you an email with the order information",
@@ -71,14 +71,14 @@ class _checkoutState extends State<checkout> {
                   barrierDismissible: false,
                   context: context,
                   builder: (context) {
-                    Future.delayed(Duration(seconds: 3), () {
+                    Future.delayed(const Duration(seconds: 3), () {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  cart()));
+                                  const cart()));
                     });
-                    return CustomDialog(
+                    return const CustomDialog(
                       title: "Your Order Failed!",
                       content:
                       "Please try again",
@@ -98,7 +98,7 @@ class _checkoutState extends State<checkout> {
       },
     ),
   )
-  ..loadRequest(Uri.parse(url+checkoutpar+'&Auth='+tokens));
+  ..loadRequest(Uri.parse('$url$checkoutpar&Auth=$tokens'));
   }
 
 
@@ -118,20 +118,20 @@ class _checkoutState extends State<checkout> {
   @override
   Widget build(BuildContext context) {
     print("sdsdsdsd");
-    print(url+checkoutpar+'&Auth='+tokens);
+    print('$url$checkoutpar&Auth=$tokens');
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Checkout"),
+          title: const Text("Checkout"),
           centerTitle: true,
         ),
         body: Container(
             child: Column(children: <Widget>[
               Container(
-                  padding: EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: progress < 1.0
                       ? LinearProgressIndicator(value: progress, valueColor:
-                  new AlwaysStoppedAnimation<Color>(primarycolor))
+                  const AlwaysStoppedAnimation<Color>(primarycolor))
                       : Container()),
               Expanded(
                 child: webvies(),

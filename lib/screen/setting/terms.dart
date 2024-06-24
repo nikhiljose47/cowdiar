@@ -3,12 +3,14 @@ import 'package:cowdiar/services/api.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class terms extends StatefulWidget {
+  const terms({super.key});
+
   @override
-  termsState createState() => new termsState();
+  termsState createState() => termsState();
 }
 
 class termsState extends State<terms> {
-  var _controller = WebViewController()
+  final _controller = WebViewController()
   ..setJavaScriptMode(JavaScriptMode.unrestricted)
   ..setBackgroundColor(const Color(0x00000000))
   ..setNavigationDelegate(
@@ -34,7 +36,7 @@ class termsState extends State<terms> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Text("Terms of Service",style: TextStyle(
+        title: const Text("Terms of Service",style: TextStyle(
           color: Colors.black,
         ),),
         centerTitle: true,

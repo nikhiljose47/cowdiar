@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:collection' show? Queue;
+Queue;
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -131,7 +131,7 @@ class MyBottomNavigationBar extends StatefulWidget {
   /// [ThemeData.primaryColor], is used. However if [BottomNavigationBar.type] is
   /// [MyBottomNavigationBarType.shifting] then [fixedColor] is ignored.
   MyBottomNavigationBar({
-    Key? key,
+    super.key,
     this.items,
     this.onTap,
     this.currentIndex = 0,
@@ -144,8 +144,7 @@ class MyBottomNavigationBar extends StatefulWidget {
         'Every item must have a non-null title',
         ),
         assert(0 <= currentIndex && currentIndex < items.length),
-        type = type ?? (items.length <= 3 ? MyBottomNavigationBarType.fixed : MyBottomNavigationBarType.shifting),
-        super(key: key);
+        type = type ?? (items.length <= 3 ? MyBottomNavigationBarType.fixed : MyBottomNavigationBarType.shifting);
 
   /// The interactive items laid out within the bottom navigation bar where each item has an icon and title.
   final List<BottomNavigationBarItem>? items;
@@ -374,10 +373,12 @@ class _BottomNavigationBarState extends State<MyBottomNavigationBar> with Ticker
   static final Animatable<double> _flexTween = Tween<double>(begin: 1.0, end: 1.5);
 
   void _resetState() {
-    for (AnimationController controller in _controllers)
+    for (AnimationController controller in _controllers) {
       controller.dispose();
-    for (_Circle circle in _circles)
+    }
+    for (_Circle circle in _circles) {
       circle.dispose();
+    }
     _circles.clear();
 
     _controllers = List<AnimationController>.generate(widget.items.length, (int index) {
@@ -412,10 +413,12 @@ class _BottomNavigationBarState extends State<MyBottomNavigationBar> with Ticker
 
   @override
   void dispose() {
-    for (AnimationController controller in _controllers)
+    for (AnimationController controller in _controllers) {
       controller.dispose();
-    for (_Circle circle in _circles)
+    }
+    for (_Circle circle in _circles) {
       circle.dispose();
+    }
     super.dispose();
   }
 
@@ -471,8 +474,9 @@ class _BottomNavigationBarState extends State<MyBottomNavigationBar> with Ticker
       _controllers[oldWidget.currentIndex].reverse();
       _controllers[widget.currentIndex].forward();
     } else {
-      if (_backgroundColor != widget.items[widget.currentIndex].backgroundColor)
+      if (_backgroundColor != widget.items[widget.currentIndex].backgroundColor) {
         _backgroundColor = widget.items[widget.currentIndex].backgroundColor;
+      }
     }
   }
 
@@ -670,15 +674,20 @@ class _RadialPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_RadialPainter oldPainter) {
-    if (textDirection != oldPainter.textDirection)
+    if (textDirection != oldPainter.textDirection) {
       return true;
-    if (circles == oldPainter.circles)
+    }
+    if (circles == oldPainter.circles) {
       return false;
-    if (circles.length != oldPainter.circles.length)
+    }
+    if (circles.length != oldPainter.circles.length) {
       return true;
-    for (int i = 0; i < circles.length; i += 1)
-      if (circles[i] != oldPainter.circles[i])
+    }
+    for (int i = 0; i < circles.length; i += 1) {
+      if (circles[i] != oldPainter.circles[i]) {
         return true;
+    }
+      }
     return false;
   }
 

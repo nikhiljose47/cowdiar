@@ -8,12 +8,12 @@ import 'package:cowdiar/screen/search/search.dart';
 import 'package:cowdiar/services/api.dart';
 
 void main() async {
-  runApp(MyHomePage(0));
+  runApp(const MyHomePage(0));
 }
 
 class MyHomePage extends StatefulWidget {
   final int? menulink; //if you have multiple values add here
-  MyHomePage(this.menulink, {Key? key}) : super(key: key);
+  const MyHomePage(this.menulink, {super.key});
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -49,19 +49,19 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget? child;
     switch (menuvalue) {
       case 0:
-        child = Home();
+        child = const Home();
         break;
       case 1:
         child = Inboxpage();
         break;
       case 2:
-        child = search();
+        child = const search();
         break;
       case 3:
         child = Notifications();
         break;
       case 4:
-        child = Others();
+        child = const Others();
         break;
     }
 
@@ -70,13 +70,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Scaffold(
           backgroundColor: Colors.blueGrey.shade200,
           body: SizedBox.expand(child: child),
-          bottomNavigationBar: new Theme(
+          bottomNavigationBar: Theme(
               data: Theme.of(context).copyWith(
                   canvasColor: Colors.white,
                   primaryColor: Colors.red,
                   textTheme: Theme.of(context)
                       .textTheme
-                      .copyWith(bodySmall: new TextStyle(color: Colors.black))),
+                      .copyWith(bodySmall: const TextStyle(color: Colors.black))),
               child: BottomNavigationBar(
                 onTap: (newIndex) => setState(() => menuvalue = newIndex),
                 currentIndex: menuvalue,
@@ -85,9 +85,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 items: [
                   //N-Replaced by activeIcon
                   BottomNavigationBarItem(
-                    icon: new Image.asset('assets/icons/home.png',
+                    icon: Image.asset('assets/icons/home.png',
                         width: 22, height: 22, fit: BoxFit.fill),
-                    activeIcon: new Image.asset('assets/icons/home.png',
+                    activeIcon: Image.asset('assets/icons/home.png',
                         width: 22,
                         height: 22,
                         color: iconcolor,
@@ -95,9 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     label: "",
                   ),
                   BottomNavigationBarItem(
-                    icon: new Image.asset('assets/icons/inbox.png',
+                    icon: Image.asset('assets/icons/inbox.png',
                         width: 22, height: 22, fit: BoxFit.fill),
-                    activeIcon: new Image.asset('assets/icons/inbox.png',
+                    activeIcon: Image.asset('assets/icons/inbox.png',
                         width: 22,
                         height: 22,
                         color: iconcolor,
@@ -105,9 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     label: "",
                   ),
                   BottomNavigationBarItem(
-                    icon: new Image.asset('assets/icons/search.png',
+                    icon: Image.asset('assets/icons/search.png',
                         width: 22, height: 22, fit: BoxFit.fill),
-                    activeIcon: new Image.asset('assets/icons/search.png',
+                    activeIcon: Image.asset('assets/icons/search.png',
                         width: 22,
                         height: 22,
                         color: iconcolor,
@@ -115,9 +115,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     label: "",
                   ),
                   BottomNavigationBarItem(
-                    icon: new Image.asset('assets/icons/note.png',
+                    icon: Image.asset('assets/icons/note.png',
                         width: 20, height: 20, fit: BoxFit.fill),
-                    activeIcon: new Image.asset('assets/icons/note.png',
+                    activeIcon: Image.asset('assets/icons/note.png',
                         width: 20,
                         height: 20,
                         color: iconcolor,
@@ -125,9 +125,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     label: "",
                   ),
                   BottomNavigationBarItem(
-                    icon: new Image.asset('assets/icons/profile.png',
+                    icon: Image.asset('assets/icons/profile.png',
                         width: 22, height: 22, fit: BoxFit.fill),
-                    activeIcon: new Image.asset('assets/icons/profile.png',
+                    activeIcon: Image.asset('assets/icons/profile.png',
                         width: 22,
                         height: 22,
                         color: iconcolor,

@@ -11,28 +11,28 @@ class Cat {
 
 class catDetailPage extends StatelessWidget {
   final Cat? cat;
-  catDetailPage({ Key? key,  this.cat}) : super(key: key);
+  const catDetailPage({ super.key,  this.cat});
   @override
   Widget build(BuildContext context) {
     final topContentText = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(height: 80.0),
-        Icon(
+        const SizedBox(height: 80.0),
+        const Icon(
           Icons.directions_car,
           color: Colors.white,
           size: 40.0,
         ),
-        Container(
+        const SizedBox(
           width: 90.0,
-          child: new Divider(color: primarycolor),
+          child: Divider(color: primarycolor),
         ),
-        SizedBox(height: 10.0),
+        const SizedBox(height: 10.0),
         Container(
-          padding: EdgeInsets.only(bottom: 20.00),
+          padding: const EdgeInsets.only(bottom: 20.00),
           child: Text(
             cat.name,
-            style: TextStyle(color: Colors.white, fontSize: 45.0),
+            style: const TextStyle(color: Colors.white, fontSize: 45.0),
           ),
         ),
       ],
@@ -43,9 +43,9 @@ class catDetailPage extends StatelessWidget {
 
         Container(
           height: MediaQuery.of(context).size.height * 0.5,
-          padding: EdgeInsets.all(40.0),
+          padding: const EdgeInsets.all(40.0),
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, .9)),
+          decoration: const BoxDecoration(color: Color.fromRGBO(58, 66, 86, .9)),
           child: Center(
             child: topContentText,
           ),
@@ -54,13 +54,13 @@ class catDetailPage extends StatelessWidget {
           left: 4.0,
           top: 20.0,
           child: Container(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: InkWell(
 
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Icon(Icons.arrow_back, color: Colors.white),
+              child: const Icon(Icons.arrow_back, color: Colors.white),
             ),
           ),
         )
@@ -70,11 +70,11 @@ class catDetailPage extends StatelessWidget {
     final bottomContentText = Stack(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.all(20.00),
+          padding: const EdgeInsets.all(20.00),
           child: Center(
             child: Text(
               cat.name,
-              style: TextStyle(fontSize: 18.0),
+              style: const TextStyle(fontSize: 18.0),
             ),
           ),
         ),

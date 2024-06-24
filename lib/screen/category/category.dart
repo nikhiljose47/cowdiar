@@ -8,6 +8,8 @@ import 'package:cowdiar/services/api.dart';
 import 'package:cowdiar/screen/category/detailsubcat.dart';
 
 class category extends StatefulWidget {
+  const category({super.key});
+
   @override
   _categoryState createState() => _categoryState();
 }
@@ -56,11 +58,11 @@ class _categoryState extends State<category> {
       appBar: AppBar(
         elevation: 0.0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (BuildContext context) => MyHomePage(0))),
+                  builder: (BuildContext context) => const MyHomePage(0))),
         ),
         leadingWidth: 20,
         actions: <Widget>[
@@ -71,15 +73,15 @@ class _categoryState extends State<category> {
         Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(bottom: 20, top: 20.00),
+              padding: const EdgeInsets.only(bottom: 20, top: 20.00),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 1,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: loading
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(
-                            valueColor: new AlwaysStoppedAnimation<Color>(
+                            valueColor: AlwaysStoppedAnimation<Color>(
                                 primarycolor)))
                     : ListView.builder(
                         scrollDirection: Axis.vertical,
@@ -90,7 +92,7 @@ class _categoryState extends State<category> {
                           return nDataList.image == null
                               ? Container()
                               : Container(
-                                  decoration: new BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Colors.white10,
                                     border: Border(
                                       bottom: BorderSide(
@@ -105,7 +107,7 @@ class _categoryState extends State<category> {
                                       height: 50,
                                       padding: const EdgeInsets.all(10.0),
                                       child: Image(
-                                        image: new NetworkImage(
+                                        image: NetworkImage(
                                           nDataList.image,
                                         ),
                                         height: 30,
@@ -114,7 +116,7 @@ class _categoryState extends State<category> {
                                       ),
                                     ),
                                     title: Container(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             top: 10, bottom: 10),
                                         child: Column(
                                           crossAxisAlignment:
@@ -126,15 +128,13 @@ class _categoryState extends State<category> {
                                                           .sCArr[0]
                                                           .subCategoryTitle ==
                                                       null
-                                                  ? listService[i]
+                                                  ? '${listService[i]
                                                           .sCArr[0]
-                                                          .subCategoryTitle +
-                                                      ' , ' +
-                                                      listService[i]
+                                                          .subCategoryTitle} , ${listService[i]
                                                           .sCArr[1]
-                                                          .subCategoryTitle
+                                                          .subCategoryTitle}'
                                                   : "",
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 12,
                                               ),
@@ -142,7 +142,7 @@ class _categoryState extends State<category> {
                                           ],
                                         )),
                                     //subtitle: Text((listsubcat[i].subCategoryTitle[i])),
-                                    trailing: Icon(Icons.keyboard_arrow_right),
+                                    trailing: const Icon(Icons.keyboard_arrow_right),
                                     onTap: () {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
@@ -170,32 +170,32 @@ Widget searchsec(context) {
   return Row(
     children: <Widget>[
       Container(
-        margin: EdgeInsets.only(top: 8.00, right: 5.00, bottom: 8.0),
-        decoration: new BoxDecoration(
+        margin: const EdgeInsets.only(top: 8.00, right: 5.00, bottom: 8.0),
+        decoration: BoxDecoration(
             color: Colors.white,
-            border: new Border.all(
+            border: Border.all(
                 color: Colors.grey, width: 1.0, style: BorderStyle.solid),
             borderRadius:
-                new BorderRadius.all(new Radius.circular(10.0))),
+                const BorderRadius.all(Radius.circular(10.0))),
         child: InkWell(
           child: Container(
-            padding: EdgeInsets.only(left: 10.00, right: 65),
+            padding: const EdgeInsets.only(left: 10.00, right: 65),
             height: 40,
-            child: Row(
+            child: const Row(
               children: <Widget>[
                 Icon(
                   Icons.search,
                   size: 20.0,
                   color: Colors.black,
                 ),
-                new Text("  What are you looking for?"),
+                Text("  What are you looking for?"),
               ],
             ),
           ),
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MyHomePage(2)),
+              MaterialPageRoute(builder: (context) => const MyHomePage(2)),
             );
           },
         ),

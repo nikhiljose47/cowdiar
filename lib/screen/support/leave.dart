@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:cowdiar/services/api.dart';
 
 class leave extends StatefulWidget{
+  const leave({super.key});
+
+  @override
   _leaveState createState()=>_leaveState();
 }
 class _leaveState extends State<leave>{
@@ -11,14 +14,14 @@ class _leaveState extends State<leave>{
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios, size: 28,color: Colors.black87 ,),
-        title: Text('Leave Feedback',style: TextStyle(color:Colors.black87),),
+        leading: const Icon(Icons.arrow_back_ios, size: 28,color: Colors.black87 ,),
+        title: const Text('Leave Feedback',style: TextStyle(color:Colors.black87),),
         centerTitle: true,
       ),
       body:Column(
         children: <Widget>[
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 bottom: BorderSide(
@@ -28,9 +31,9 @@ class _leaveState extends State<leave>{
               ),
             ),
           ),
-          SizedBox(height: 60),
+          const SizedBox(height: 60),
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -44,17 +47,17 @@ class _leaveState extends State<leave>{
               ),
             ),
             child: ListTile(
-              title: Text('Happy',
+              title: const Text('Happy',
                   style:TextStyle(
                     fontSize: 20,
                     color: Colors.black,
                   )),
-              trailing: Icon(Icons.arrow_forward_ios),
+              trailing: const Icon(Icons.arrow_forward_ios),
               onTap: (){},
             ),),
 
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -68,17 +71,17 @@ class _leaveState extends State<leave>{
               ),
             ),
             child: ListTile(
-              title: Text('Confused',
+              title: const Text('Confused',
                   style:TextStyle(
                     fontSize: 20,
                     color: Colors.black,
                   )),
-              trailing :Icon(Icons.arrow_forward_ios),
+              trailing :const Icon(Icons.arrow_forward_ios),
               onTap: (){},
             ),),
 
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white10,
               border: Border(
                 top: BorderSide(
@@ -93,12 +96,12 @@ class _leaveState extends State<leave>{
             ),
 
             child:ListTile(
-              title: Text('Unhappy',
+              title: const Text('Unhappy',
                   style:TextStyle(
                     fontSize: 20,
                     color: Colors.black,
                   )),
-              trailing: Icon(Icons.arrow_forward_ios),
+              trailing: const Icon(Icons.arrow_forward_ios),
               onTap: (){},
             ),
           ),
@@ -109,7 +112,7 @@ class _leaveState extends State<leave>{
         currentIndex: _index,
         type: BottomNavigationBarType.fixed,
         fixedColor: primarycolor,
-        items: [
+        items: const [
                     //N-title:Text()
           BottomNavigationBarItem(icon: Icon(Icons.home), activeIcon: Text("Home",style: TextStyle(color: Colors.black87),)),
           BottomNavigationBarItem(icon: Icon(Icons.mail_outline), activeIcon: Text("Inbox",style: TextStyle(color: Colors.black87),)),

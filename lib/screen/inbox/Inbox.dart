@@ -8,14 +8,14 @@ import 'package:cowdiar/services/api.dart';
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 class Inboxpage extends StatefulWidget {
-  Inboxpage({Key? key, this.title}) : super(key: key);
+  const Inboxpage({super.key, this.title});
   final String? title;
   @override
   _InboxpageState createState() => _InboxpageState();
 }
 
 class _InboxpageState extends State<Inboxpage> {
-  int _selectedIndex = 0;
+  final int _selectedIndex = 0;
   String token = "";
   List<InboxArr> listSCArr = [];
   String? choice;
@@ -111,7 +111,8 @@ class _InboxpageState extends State<Inboxpage> {
   Widget slideRightBackground() {
     return Container(
       color: primarycolor,
-      child: Align(
+      child: const Align(
+        alignment: Alignment.centerLeft,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -128,7 +129,6 @@ class _InboxpageState extends State<Inboxpage> {
             ),
           ],
         ),
-        alignment: Alignment.centerLeft,
       ),
     );
   }
@@ -136,7 +136,8 @@ class _InboxpageState extends State<Inboxpage> {
   Widget slideLeftBackground() {
     return Container(
       color: Colors.red,
-      child: Align(
+      child: const Align(
+        alignment: Alignment.centerRight,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
@@ -153,7 +154,6 @@ class _InboxpageState extends State<Inboxpage> {
             ),
           ],
         ),
-        alignment: Alignment.centerRight,
       ),
     );
   }
@@ -163,9 +163,9 @@ class _InboxpageState extends State<Inboxpage> {
       appBar: AppBar(
         leading: Container(),
         elevation: 0.0,
-        title: Container(
+        title: SizedBox(
             width: MediaQuery.of(context).size.width/1.7,
-            child: Center(child: Text("Inbox"))
+            child: const Center(child: Text("Inbox"))
         ),
         actions: <Widget>[
           PopupMenuButton<String>(
@@ -183,20 +183,99 @@ class _InboxpageState extends State<Inboxpage> {
 
       ),
       // backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
-      body: loading ? Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
-          : listSCArr.length != 0 ? ListView.builder(
+      body: loading ? const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
+          : listSCArr.isNotEmpty ? ListView.builder(
           itemCount: listSCArr.length,
           itemBuilder: (context, i) {
             final nDataList = listSCArr[i];
             String statusin =  nDataList.onlineStatus;
             return Dismissible(
               key: Key(nDataList.senderName),
+              background: slideRightBackground(),
+              secondaryBackground: slideLeftBackground(),
+              confirmDismiss: (direction) async {
+                if (direction == DismissDirection.endToStart) {
+                  final bool res = await showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: const Text(
+                              "Are you sure you want to delete ?"),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text(
+                                "Cancel",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            TextButton(
+                              child: const Text(
+                                "Delete",
+                                style: TextStyle(color: Colors.red),
+                              ),
+                              onPressed: () {
+                                // TODO: Delete the item from DB etc..
+                                setState(() {
+                                  action(nDataList.messageGroupId,"delete");
+                                });
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      });
+                  return res;
+                } else {
+                  // TODO: Navigate to edit page;
+                }
+                if (direction == DismissDirection.startToEnd) {
+                  final bool res = await showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: const Text(
+                              "Are you sure you want to archive ?"),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text(
+                                "No",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            TextButton(
+                              child: const Text(
+                                "Yes",
+                                style: TextStyle(color: Colors.red),
+                              ),
+                              onPressed: () {
+                                // TODO: Delete the item from DB etc..
+                                setState(() {
+                                  action(nDataList.messageGroupId,"archive");
+                                });
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      });
+                  return res;
+                }else{
+
+                }
+                return null;
+              },
               child: InkWell(
                   child: GestureDetector(
                     child: Column(
                         children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 left: 14.0, right: 14.0, top: 5.0, bottom: 5.0),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -204,21 +283,21 @@ class _InboxpageState extends State<Inboxpage> {
                                 Container(
                                   width: 50.0,
                                   height: 50.0,
-                                  decoration: new BoxDecoration(
+                                  decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      image: new DecorationImage(
+                                      image: DecorationImage(
                                           fit: BoxFit.fill,
-                                          image: new NetworkImage(
+                                          image: NetworkImage(
                                               nDataList.senderImage)
                                       )
                                   ),
-                                    child: new Stack(
+                                    child: Stack(
                                       children: <Widget>[
                                         if (statusin == 'online')
-                                          new Positioned(
+                                          const Positioned(
                                             right: 0.0,
                                             bottom: 0.0,
-                                            child: new  Icon(
+                                            child: Icon(
                                               Icons.fiber_manual_record,
                                               size: 15.0,
                                               color: primarycolor,
@@ -226,10 +305,10 @@ class _InboxpageState extends State<Inboxpage> {
                                           ),
 
                                         if (statusin == 'offline')
-                                          new Positioned(
+                                          const Positioned(
                                             right: 0.0,
                                             bottom: 0.0,
-                                            child: new   Icon(
+                                            child: Icon(
                                               Icons.fiber_manual_record,
                                               size: 15.0,
                                               color: Colors.grey,
@@ -249,14 +328,14 @@ class _InboxpageState extends State<Inboxpage> {
                                           children: <Widget>[
                                             Text(
                                               nDataList.senderName.length > 21 ? nDataList.senderName.substring(0,21): nDataList.senderName,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   color: Colors.black87,
                                                   fontSize: 17.0),
                                             ),
                                             Text(
                                               nDataList.dateTime,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   color: Colors.black54,
                                                   fontSize: 12),
@@ -273,14 +352,14 @@ class _InboxpageState extends State<Inboxpage> {
                                               crossAxisAlignment: CrossAxisAlignment
                                                   .start,
                                               children: <Widget>[
-                                                Container(
+                                                SizedBox(
                                                   width: MediaQuery
                                                       .of(context)
                                                       .size
                                                       .width / 1.8,
                                                   child: Text(
                                                     nDataList.senderMessage,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontWeight: FontWeight.w400,
                                                         color: Colors.black54,
                                                         fontSize: 15.5),
@@ -298,7 +377,7 @@ class _InboxpageState extends State<Inboxpage> {
                               ],
                             ),
                           ),
-                          Divider(),
+                          const Divider(),
                         ]
                     ),
                     onLongPress: () async {
@@ -306,11 +385,11 @@ class _InboxpageState extends State<Inboxpage> {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              content: Text(
+                              content: const Text(
                                   "Are you sure you want to make unread it ?"),
                               actions: <Widget>[
                                 TextButton(
-                                  child: Text(
+                                  child: const Text(
                                     "No",
                                     style: TextStyle(color: Colors.black),
                                   ),
@@ -319,7 +398,7 @@ class _InboxpageState extends State<Inboxpage> {
                                   },
                                 ),
                                 TextButton(
-                                  child: Text(
+                                  child: const Text(
                                     "Yes",
                                     style: TextStyle(color: Colors.red),
                                   ),
@@ -347,88 +426,9 @@ class _InboxpageState extends State<Inboxpage> {
                       );
                     },
                   )),
-              background: slideRightBackground(),
-              secondaryBackground: slideLeftBackground(),
-              confirmDismiss: (direction) async {
-                if (direction == DismissDirection.endToStart) {
-                  final bool res = await showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          content: Text(
-                              "Are you sure you want to delete ?"),
-                          actions: <Widget>[
-                            TextButton(
-                              child: Text(
-                                "Cancel",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                            TextButton(
-                              child: Text(
-                                "Delete",
-                                style: TextStyle(color: Colors.red),
-                              ),
-                              onPressed: () {
-                                // TODO: Delete the item from DB etc..
-                                setState(() {
-                                  action(nDataList.messageGroupId,"delete");
-                                });
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      });
-                  return res;
-                } else {
-                  // TODO: Navigate to edit page;
-                }
-                if (direction == DismissDirection.startToEnd) {
-                  final bool res = await showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          content: Text(
-                              "Are you sure you want to archive ?"),
-                          actions: <Widget>[
-                            TextButton(
-                              child: Text(
-                                "No",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                            TextButton(
-                              child: Text(
-                                "Yes",
-                                style: TextStyle(color: Colors.red),
-                              ),
-                              onPressed: () {
-                                // TODO: Delete the item from DB etc..
-                                setState(() {
-                                  action(nDataList.messageGroupId,"archive");
-                                });
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      });
-                  return res;
-                }else{
-
-                }
-                return null;
-              },
             );
           }):Container(
-        child: Center(
+        child: const Center(
           child:Text("No Inbox Are Avaliable", style: TextStyle(
             color: primarycolor,
             fontWeight: FontWeight.w700,

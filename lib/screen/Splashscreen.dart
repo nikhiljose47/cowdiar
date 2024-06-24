@@ -4,8 +4,10 @@ import 'mainscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AnimatedSplashScreen extends StatefulWidget {
+  const AnimatedSplashScreen({super.key});
+
   @override
-  SplashScreenState createState() => new SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
 class SplashScreenState extends State<AnimatedSplashScreen>
@@ -16,18 +18,18 @@ class SplashScreenState extends State<AnimatedSplashScreen>
   Animation<double>? animation;
 
   startTime() async {
-      var _duration = new Duration(seconds: 3);
-      return new Timer(_duration, navigationPage);
+      var duration = const Duration(seconds: 3);
+      return Timer(duration, navigationPage);
   }
   Future navigationPage() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    bool _seen = (preferences.getBool('seen') ?? false);
-    if(_seen == true) {
+    bool seen = (preferences.getBool('seen') ?? false);
+    if(seen == true) {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) => MyHomePage(0)));
+          MaterialPageRoute(builder: (BuildContext context) => const MyHomePage(0)));
     }else{
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) => MyHomePage(0)));
+          MaterialPageRoute(builder: (BuildContext context) => const MyHomePage(0)));
     }
 
   }
@@ -36,12 +38,12 @@ class SplashScreenState extends State<AnimatedSplashScreen>
   @override
   void initState() {
     super.initState();
-    animationController = new AnimationController(
-        vsync: this, duration: new Duration(seconds: 2));
+    animationController = AnimationController(
+        vsync: this, duration: const Duration(seconds: 2));
     animation =
-    new CurvedAnimation(parent: animationController, curve: Curves.easeOut);
+    CurvedAnimation(parent: animationController, curve: Curves.easeOut);
 
-    animation.addListener(() => this.setState(() {}));
+    animation.addListener(() => setState(() {}));
     animationController.forward();
 
     setState(() {
@@ -56,10 +58,10 @@ class SplashScreenState extends State<AnimatedSplashScreen>
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          new Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new Image.asset(
+              Image.asset(
                 'assets/logo/cowdiar_logo.png',
                 width: animation!.value * 250,
                 height: animation!.value * 250,

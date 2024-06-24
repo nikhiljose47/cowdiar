@@ -4,11 +4,11 @@ class Constants {
   static String appName = "first app";
 
   //Colors for theme
-  static Color lightPrimary = Color(0xfffcfcff);
+  static Color lightPrimary = const Color(0xfffcfcff);
   static Color darkPrimary = Colors.black;
   static Color lightAccent = Colors.blue;
   static Color darkAccent = Colors.blueAccent;
-  static Color lightBG = Color(0xfffcfcff);
+  static Color lightBG = const Color(0xfffcfcff);
   static Color darkBG = Colors.black;
   static Color badgeColor = Colors.red;
 

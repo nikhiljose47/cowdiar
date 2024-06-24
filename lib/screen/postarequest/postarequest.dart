@@ -11,7 +11,7 @@ import 'package:cowdiar/services/api.dart';
 
 class postarequest extends StatefulWidget {
   final int? sellerVerificationStatus;//if you have multiple values add here
-  postarequest(this.sellerVerificationStatus,{Key? key}): super(key: key);
+  const postarequest(this.sellerVerificationStatus,{super.key});
 
   @override
   _postarequestState createState() => _postarequestState();
@@ -26,12 +26,12 @@ class _postarequestState extends State<postarequest> {
   var loading = false;
   String _mySelection, _mySelection2,_mySelectiondata,datacurrenct;
   String? newVal;
-  final _key = new GlobalKey<FormState>();
+  final _key = GlobalKey<FormState>();
   String? selectedCountry;
-  FocusNode titlenode = new FocusNode();
-  FocusNode descriptionnode = new FocusNode();
-  FocusNode delivertimenode = new FocusNode();
-  FocusNode budgetnode = new FocusNode();
+  FocusNode titlenode = FocusNode();
+  FocusNode descriptionnode = FocusNode();
+  FocusNode delivertimenode = FocusNode();
+  FocusNode budgetnode = FocusNode();
   String title,description,delivertime,budget;
 
   check() {
@@ -162,12 +162,12 @@ class _postarequestState extends State<postarequest> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('Post a Request', style: TextStyle(color: Colors.black87),),
+        title: const Text('Post a Request', style: TextStyle(color: Colors.black87),),
         centerTitle: true,
       ),
       body: loading
-          ? Center(child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(primarycolor)))
-          : widget.sellerVerificationStatus == 0 ? Center(child: Text("Please confirm your email to use this feature.",style: TextStyle(color: primarycolor,
+          ? const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
+          : widget.sellerVerificationStatus == 0 ? const Center(child: Text("Please confirm your email to use this feature.",style: TextStyle(color: primarycolor,
         fontWeight: FontWeight.w700,
         fontSize: 18,
       ),textAlign: TextAlign.center,)): ListView(
@@ -186,7 +186,7 @@ class _postarequestState extends State<postarequest> {
 
 
                               border: Border(
-                                bottom: BorderSide(
+                                bottom: const BorderSide(
                                   color: Colors.white,
                                   width: 1.0,
                                 ),
@@ -195,7 +195,7 @@ class _postarequestState extends State<postarequest> {
                                   width: 1.0,
                                 ),
                               ),),
-                            child: ListTile(
+                            child: const ListTile(
                               title: Text('Add Title',
                                   style: TextStyle(height: 3.0, color: Colors
                                       .black, fontSize: 18.0),
@@ -206,7 +206,7 @@ class _postarequestState extends State<postarequest> {
                             color: Colors.white,
                             child: Padding(
 
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: Material(
                                 elevation: 0.0,
                                 child: TextFormField(
@@ -216,7 +216,7 @@ class _postarequestState extends State<postarequest> {
                                   focusNode: titlenode,
                                   validator: (e) {
                                     if (e.isEmpty) {
-                                      Text txt = Text("Please Enter Description",
+                                      Text txt = const Text("Please Enter Description",
                                           textAlign: TextAlign.center,
                                           textDirection: TextDirection.ltr);
                                       var fullname = txt.data;
@@ -225,12 +225,12 @@ class _postarequestState extends State<postarequest> {
                                     return null;
                                   },
                                   onSaved: (e) => title = e,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w300,
                                   ),
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                       counterText: "",
                                       //contentPadding: EdgeInsets.all(15),
                                       labelText: "Enter Title",
@@ -263,7 +263,7 @@ class _postarequestState extends State<postarequest> {
                                   width: 1.0,
                                 ),
                               ),),
-                            child: ListTile(
+                            child: const ListTile(
                               title: Text('Add Description',
                                   style: TextStyle(color: Colors.black,
                                       fontSize: 18.0),
@@ -273,7 +273,7 @@ class _postarequestState extends State<postarequest> {
                           Container(
                             color: Colors.white,
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: Material(
                                 elevation: 0.0,
                                 child: TextFormField(
@@ -283,7 +283,7 @@ class _postarequestState extends State<postarequest> {
                                   focusNode: descriptionnode,
                                   validator: (e) {
                                     if (e.isEmpty) {
-                                      Text txt = Text("Please Enter Description",
+                                      Text txt = const Text("Please Enter Description",
                                           textAlign: TextAlign.center,
                                           textDirection: TextDirection.ltr);
                                       var fullname = txt.data;
@@ -292,12 +292,12 @@ class _postarequestState extends State<postarequest> {
                                     return null;
                                   },
                                   onSaved: (e) => description = e,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w300,
                                   ),
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                       counterText: "",
                                       //contentPadding: EdgeInsets.all(15),
                                       labelText: "300 chart max",
@@ -331,7 +331,7 @@ class _postarequestState extends State<postarequest> {
                                   width: 1.0,
                                 ),
                               ),),
-                            child: ListTile(
+                            child: const ListTile(
                               title: Text('Choose a Category',
                                   style: TextStyle( color: Colors
                                       .black, fontSize: 18.0),
@@ -342,16 +342,17 @@ class _postarequestState extends State<postarequest> {
 
                             color: Colors.white,
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: new DropdownButton(
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              child: DropdownButton(
 
                                 isExpanded: true,
-                                hint:  Text("Choose a Category"),
+                                hint:  const Text("Choose a Category"),
                                 items: listService.map((item) {
-                                  return new DropdownMenuItem(
+                                  return DropdownMenuItem(
 
-                                    child: new Text(item.title),
                                     value: item.catId.toString(),
+
+                                    child: Text(item.title),
 
                                   );
                                 }).toList(),
@@ -371,16 +372,16 @@ class _postarequestState extends State<postarequest> {
                           Container(
                             color: Colors.white,
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: _mySelection == null ? Container() :
-                              new DropdownButton(
+                              DropdownButton(
                                 isExpanded: true,
-                                hint:  Text("Choose a Subcategory"),
+                                hint:  const Text("Choose a Subcategory"),
 
                                 items: listsubcat.map((item) {
-                                  return new DropdownMenuItem(
+                                  return DropdownMenuItem(
                                     value: item.childId,
-                                    child: new Text(item.title),
+                                    child: Text(item.title),
 
 
                                   );
@@ -414,7 +415,7 @@ class _postarequestState extends State<postarequest> {
                                   width: 1.0,
                                 ),
                               ),),
-                            child: ListTile(
+                            child: const ListTile(
                               title: Text('Prefer service delivery time',
                                   style: TextStyle( color: Colors
                                       .black, fontSize: 18.0),
@@ -430,16 +431,17 @@ class _postarequestState extends State<postarequest> {
 
                                 color: Colors.white,
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: new DropdownButton(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  child: DropdownButton(
 
                                     isExpanded: true,
-                                    hint:  Text("Choose a delivery time"),
+                                    hint:  const Text("Choose a delivery time"),
                                     items: datarime.map((item) {
-                                      return new DropdownMenuItem(
+                                      return DropdownMenuItem(
 
-                                        child: new Text(item.deliveryProposalTitle),
                                         value: item.deliveryProposalTitle,
+
+                                        child: Text(item.deliveryProposalTitle),
 
                                       );
                                     }).toList(),
@@ -471,7 +473,7 @@ class _postarequestState extends State<postarequest> {
                                   width: 1.0,
                                 ),
                               ),),
-                            child: ListTile(
+                            child: const ListTile(
                               title: Text('What is your budget ?(optional)',
                                   style: TextStyle( color: Colors
                                       .black, fontSize: 18.0),
@@ -481,7 +483,7 @@ class _postarequestState extends State<postarequest> {
                           Container(
                             color: Colors.white,
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: Material(
                                 elevation: 0.0,
                                 child:    Row(
@@ -493,14 +495,14 @@ class _postarequestState extends State<postarequest> {
                                         ),
                                       ),
                                       width: MediaQuery.of(context).size.width/15,
-                                      padding: EdgeInsets.only(top: 29,bottom: 12),
-                                      child:Text(datacurrenct ,style: TextStyle(
+                                      padding: const EdgeInsets.only(top: 29,bottom: 12),
+                                      child:Text(datacurrenct ,style: const TextStyle(
     color: Colors.black,
     fontSize: 18,
     fontWeight: FontWeight.w300,
     ),),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width: MediaQuery.of(context).size.width/1.3,
                                        child:TextFormField(
                                       maxLength: 200,
@@ -508,7 +510,7 @@ class _postarequestState extends State<postarequest> {
                                       focusNode: budgetnode,
                                       validator: (e) {
                                         if (e.isEmpty) {
-                                          Text txt = Text("Please Enter budget",
+                                          Text txt = const Text("Please Enter budget",
                                               textAlign: TextAlign.center,
                                               textDirection: TextDirection.ltr);
                                           var fullname = txt.data;
@@ -517,12 +519,12 @@ class _postarequestState extends State<postarequest> {
                                         return null;
                                       },
                                       onSaved: (e) => budget = e,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.w300,
                                       ),
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                           counterText: "",
                                           //contentPadding: EdgeInsets.all(15),
                                           labelText: "Budget(Min \$5)",
@@ -542,18 +544,18 @@ class _postarequestState extends State<postarequest> {
                         ],
                       ),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 50),
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
                           child: Container(
-                              margin: EdgeInsets.only(top:10.0, bottom: 20),
+                              margin: const EdgeInsets.only(top:10.0, bottom: 20),
 
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(100)),
                               color: primarycolor),
                               child: SizedBox(
                                 width: double.infinity,
                                 child: TextButton(
 
-                                  child: Text(
+                                  child: const Text(
                                     "SUBMIT YOUR REQUEST",
                                     style: TextStyle(
                                         color: Colors.white,

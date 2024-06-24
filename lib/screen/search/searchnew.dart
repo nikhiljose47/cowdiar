@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 
 class searchnew extends StatefulWidget {
-  searchnew({Key? key, this.title}) : super(key: key);
+  const searchnew({super.key, this.title});
   final String? title;
 
   @override
-  _searchnewPageState createState() => new _searchnewPageState();
+  _searchnewPageState createState() => _searchnewPageState();
 }
 
 class _searchnewPageState extends State<searchnew> {
@@ -26,11 +26,11 @@ class _searchnewPageState extends State<searchnew> {
     dummySearchList.addAll(duplicateItems);
     if(query.isNotEmpty) {
       List<String> dummyListData = [];
-      dummySearchList.forEach((item) {
+      for (var item in dummySearchList) {
         if(item.contains(query)) {
           dummyListData.add(item);
         }
-      });
+      }
       setState(() {
         items.clear();
         items.addAll(dummyListData);
@@ -47,8 +47,8 @@ class _searchnewPageState extends State<searchnew> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+      appBar: AppBar(
         //title: new Text(widget.title),
       ),
       body: Container(
@@ -61,7 +61,7 @@ class _searchnewPageState extends State<searchnew> {
                   filterSearchResults(value);
                 },
                 controller: editingController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: "Search",
                     hintText: "Search",
                     prefixIcon: Icon(Icons.search),

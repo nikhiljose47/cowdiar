@@ -21,6 +21,8 @@ import '../setting/pushNotification.dart';
 import '../setting/setting.dart';
 
 class Others extends StatefulWidget {
+  const Others({super.key});
+
   @override
   _OthersState createState() => _OthersState();
 }
@@ -107,7 +109,7 @@ class _OthersState extends State<Others> {
   List<Widget> sharedSettings() {
     return [
       Container(
-          decoration: new BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -117,15 +119,15 @@ class _OthersState extends State<Others> {
             ),
           ),
           child: ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.language,
             ),
-            title: Text('Language'),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: const Text('Language'),
+            trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () {},
           )),
       Container(
-          decoration: new BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -135,15 +137,15 @@ class _OthersState extends State<Others> {
             ),
           ),
           child: ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.currency_exchange,
             ),
-            title: Text('Currency'),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: const Text('Currency'),
+            trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () {},
           )),
       Container(
-          decoration: new BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -153,15 +155,15 @@ class _OthersState extends State<Others> {
             ),
           ),
           child: ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.policy,
             ),
-            title: Text('About'),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: const Text('About'),
+            trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () {},
           )),
       Container(
-        decoration: new BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white10,
           border: Border(
             bottom: BorderSide(
@@ -171,21 +173,21 @@ class _OthersState extends State<Others> {
           ),
         ),
         child: ListTile(
-          leading: Icon(
+          leading: const Icon(
             Icons.format_indent_decrease,
           ),
-          title: Text('Terms of services'),
-          trailing: Icon(Icons.keyboard_arrow_right),
+          title: const Text('Terms of services'),
+          trailing: const Icon(Icons.keyboard_arrow_right),
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => terms()),
+              MaterialPageRoute(builder: (context) => const terms()),
             );
           },
         ),
       ),
       Container(
-          decoration: new BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -195,15 +197,15 @@ class _OthersState extends State<Others> {
             ),
           ),
           child: ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.business,
             ),
-            title: Text('Become a Seller'),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: const Text('Become a Seller'),
+            trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () {},
           )),
       Container(
-          decoration: new BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -213,11 +215,11 @@ class _OthersState extends State<Others> {
             ),
           ),
           child: ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.display_settings,
             ),
-            title: Text('Appearence'),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: const Text('Appearence'),
+            trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () {},
           ))
     ];
@@ -231,14 +233,14 @@ class _OthersState extends State<Others> {
             Container(
                 width: double.maxFinite,
                 height: 180,
-                decoration: new BoxDecoration(
+                decoration: const BoxDecoration(
                   color: primarycolor,
                 ),
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: loading
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(
-                            valueColor: new AlwaysStoppedAnimation<Color>(
+                            valueColor: AlwaysStoppedAnimation<Color>(
                                 primarycolor)))
                     : ListView.builder(
                         scrollDirection: Axis.vertical,
@@ -251,7 +253,7 @@ class _OthersState extends State<Others> {
                                 Align(
                                   alignment: AlignmentDirectional.topEnd,
                                   child: InkWell(
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.settings,
                                       size: 30.0,
                                       color: Colors.white,
@@ -260,7 +262,7 @@ class _OthersState extends State<Others> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => Setting(),
+                                          builder: (context) => const Setting(),
                                         ),
                                       );
                                     },
@@ -273,11 +275,11 @@ class _OthersState extends State<Others> {
                                         NetworkImage(datacard.sellerImage),
                                   ),
                                 ),
-                                SizedBox(height: 7),
+                                const SizedBox(height: 7),
                                 Center(
                                   child: Text(
                                     datacard.sellerName,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 18,
                                     ),
@@ -288,8 +290,8 @@ class _OthersState extends State<Others> {
           ],
         ),
         Container(
-          padding: EdgeInsets.only(top: 15, bottom: 16, left: 20),
-          decoration: new BoxDecoration(
+          padding: const EdgeInsets.only(top: 15, bottom: 16, left: 20),
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -298,7 +300,7 @@ class _OthersState extends State<Others> {
               ),
             ),
           ),
-          child: Text(
+          child: const Text(
             "Buying",
             style: TextStyle(
               fontSize: 18,
@@ -308,7 +310,7 @@ class _OthersState extends State<Others> {
           ),
         ),
         Container(
-          decoration: new BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -318,23 +320,23 @@ class _OthersState extends State<Others> {
             ),
           ),
           child: ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.reorder,
             ),
-            title: Text('Manage Orders'),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: const Text('Manage Orders'),
+            trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => manageorder(),
+                  builder: (context) => const manageorder(),
                 ),
               );
             },
           ),
         ),
         Container(
-          decoration: new BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -344,23 +346,23 @@ class _OthersState extends State<Others> {
             ),
           ),
           child: ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.list,
             ),
-            title: Text('Manage Requests'),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: const Text('Manage Requests'),
+            trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => manageeq(),
+                  builder: (context) => const manageeq(),
                 ),
               );
             },
           ),
         ),
         Container(
-          decoration: new BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -369,14 +371,14 @@ class _OthersState extends State<Others> {
               ),
             ),
           ),
-          child: listService.length == 0
-              ? Text("")
+          child: listService.isEmpty
+              ? const Text("")
               : ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.open_in_new,
                   ),
-                  title: Text('Post a Request '),
-                  trailing: Icon(Icons.keyboard_arrow_right),
+                  title: const Text('Post a Request '),
+                  trailing: const Icon(Icons.keyboard_arrow_right),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -388,12 +390,12 @@ class _OthersState extends State<Others> {
                   },
                 ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Container(
-          padding: EdgeInsets.only(top: 6, bottom: 16, left: 20),
-          decoration: new BoxDecoration(
+          padding: const EdgeInsets.only(top: 6, bottom: 16, left: 20),
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -402,7 +404,7 @@ class _OthersState extends State<Others> {
               ),
             ),
           ),
-          child: Text(
+          child: const Text(
             "Selling",
             style: TextStyle(
               fontSize: 18,
@@ -412,7 +414,7 @@ class _OthersState extends State<Others> {
           ),
         ),
         Container(
-          decoration: new BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -422,27 +424,27 @@ class _OthersState extends State<Others> {
             ),
           ),
           child: ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.reorder,
             ),
-            title: Text('Manage Orders'),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: const Text('Manage Orders'),
+            trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SellingOrder(),
+                  builder: (context) => const SellingOrder(),
                 ),
               );
             },
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Container(
-          padding: EdgeInsets.only(top: 6, bottom: 16, left: 20),
-          decoration: new BoxDecoration(
+          padding: const EdgeInsets.only(top: 6, bottom: 16, left: 20),
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -451,7 +453,7 @@ class _OthersState extends State<Others> {
               ),
             ),
           ),
-          child: Text(
+          child: const Text(
             "General",
             style: TextStyle(
               fontSize: 18,
@@ -461,7 +463,7 @@ class _OthersState extends State<Others> {
           ),
         ),
         Container(
-          decoration: new BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -471,23 +473,23 @@ class _OthersState extends State<Others> {
             ),
           ),
           child: ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.notifications,
             ),
-            title: Text(
+            title: const Text(
               'Push Notification',
             ),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PushNotification()),
+                MaterialPageRoute(builder: (context) => const PushNotification()),
               );
             },
           ),
         ),
         Container(
-          decoration: new BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -497,11 +499,11 @@ class _OthersState extends State<Others> {
             ),
           ),
           child: ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.cached,
             ),
-            title: Text('Online Status'),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: const Text('Online Status'),
+            trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () {
               getstatus();
               print(listservicesstus);
@@ -510,7 +512,7 @@ class _OthersState extends State<Others> {
         ),
         linkdata != ""
             ? Container(
-                decoration: new BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white10,
                   border: Border(
                     bottom: BorderSide(
@@ -520,11 +522,11 @@ class _OthersState extends State<Others> {
                   ),
                 ),
                 child: ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.rotate_left,
                   ),
-                  title: Text('Invite Friends'),
-                  trailing: Icon(Icons.keyboard_arrow_right),
+                  title: const Text('Invite Friends'),
+                  trailing: const Icon(Icons.keyboard_arrow_right),
                   onTap: () {
                     final RenderBox box = context.findRenderObject();
                     Share.share(linkdata,
@@ -537,7 +539,7 @@ class _OthersState extends State<Others> {
                 height: 0,
               ),
         Container(
-          decoration: new BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white10,
             border: Border(
               bottom: BorderSide(
@@ -547,54 +549,54 @@ class _OthersState extends State<Others> {
             ),
           ),
           child: ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.call,
             ),
-            title: Text('Support'),
-            trailing: Icon(Icons.keyboard_arrow_right),
+            title: const Text('Support'),
+            trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => support(0)),
+                MaterialPageRoute(builder: (context) => const support(0)),
+              );
+            },
+          ),
+        ), ...sharedSettings(), Container(
+          decoration: const BoxDecoration(
+            color: Colors.white10,
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.grey,
+                width: 0.5,
+              ),
+            ),
+          ),
+          child: ListTile(
+            title: const Text(
+              'Logout',
+            ),
+            leading: const Icon(
+              Icons.logout,
+            ),
+            trailing: const Icon(Icons.keyboard_arrow_right),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const logout()),
               );
             },
           ),
         ),
       ]
-        ..addAll(sharedSettings())
-        ..add(Container(
-          decoration: new BoxDecoration(
-            color: Colors.white10,
-            border: Border(
-              bottom: BorderSide(
-                color: Colors.grey,
-                width: 0.5,
-              ),
-            ),
-          ),
-          child: ListTile(
-            title: Text(
-              'Logout',
-            ),
-            leading: Icon(
-              Icons.logout,
-            ),
-            trailing: Icon(Icons.keyboard_arrow_right),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => logout()),
-              );
-            },
-          ),
-        )),
+        
+        ,
     );
     }
 
   Future<bool> onWillPop() {
     setState(() {
       exitApp = !exitApp;
-      Future.delayed(Duration(seconds: 5), () {
+      Future.delayed(const Duration(seconds: 5), () {
         exitApp = !exitApp;
       });
     });
@@ -605,7 +607,7 @@ class _OthersState extends State<Others> {
         backgroundColor: Colors.blue,
         duration: const Duration(seconds: 1),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        content: Text("Are you sure to exit!"),
+        content: const Text("Are you sure to exit!"),
         margin: const EdgeInsets.all(60),
       ));
     } else {
@@ -618,6 +620,7 @@ class _OthersState extends State<Others> {
     return false as Future<bool>;
   }
 
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: onWillPop, child: Scaffold(body: othersec(context)));
