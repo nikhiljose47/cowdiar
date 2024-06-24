@@ -9,6 +9,7 @@ import 'package:cowdiar/screen/profiledetails/profiledetails.dart';
 import 'package:cowdiar/util/appinfo.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'dart:io';
 import 'dart:convert';
 import 'package:cowdiar/util/home.dart';
 import 'package:cowdiar/services/api.dart';
@@ -190,7 +191,7 @@ class _HomeState extends State<Home> {
     super.initState();
     getData();
     updateApp();
-    _firebaseMessaging.getToken().then((token) => print(token));
+    _firebaseMessaging!.getToken().then((token) => print(token));
     _configureFirebaseListeners();
   }
 
@@ -227,7 +228,7 @@ class _HomeState extends State<Home> {
                   itemCount: listreview.length,
                   itemBuilder: (context, i) {
                     final nplacesList = listreview[i];
-                    String statusin =  nplacesList.onlineStatus;
+                    String statusin =  nplacesList.onlineStatus!;
                     return GestureDetector(
                       child: Container(
                         margin: const EdgeInsets.only(
@@ -244,7 +245,7 @@ class _HomeState extends State<Home> {
                                   //height: 150,
                                   width: double.infinity,
                                   child: Image.network(
-                                    nplacesList.postImage,
+                                    nplacesList.postImage!,
                                     fit: BoxFit.contain,
                                   ),
                                 )
@@ -271,7 +272,7 @@ class _HomeState extends State<Home> {
                                               image: DecorationImage(
                                                   fit: BoxFit.fill,
                                                   image: NetworkImage(
-                                                      nplacesList.sellerImage))),
+                                                      nplacesList.sellerImage!))),
                                           child: Stack(
                                             children: <Widget>[
                                               if (statusin == 'online')
@@ -346,7 +347,7 @@ class _HomeState extends State<Home> {
                                         child: Padding(
                                           padding: const EdgeInsets.only(
                                               left: 10.0, top: 5),
-                                          child: Text(nplacesList.title.length > 25 ? "${nplacesList.title.substring(0,25)}...":nplacesList.title),
+                                          child: Text(nplacesList.title!.length > 25 ? "${nplacesList.title!.substring(0,25)}...":nplacesList.title!),
                                         ),
 
                                       ),
@@ -403,7 +404,7 @@ class _HomeState extends State<Home> {
                                           color: Colors.orangeAccent,
                                         ),
                                         Text(
-                                          "${nplacesList.rating.averageRatting}",
+                                          "${nplacesList.rating!.averageRatting}",
                                           style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.orangeAccent,
@@ -412,7 +413,7 @@ class _HomeState extends State<Home> {
                                           textAlign: TextAlign.left,
                                         ),
                                         Text(
-                                          "(${nplacesList.rating.totalReviews})",
+                                          "(${nplacesList.rating!.totalReviews})",
                                           style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.black38,
@@ -432,7 +433,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       onTap: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) { return profiledetailpage(nplacesList.link,"home","home","home","home"); }));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) { return profiledetailpage(nplacesList.link!,"home","home","home","home"); }));
                       },
                     );
                   },
@@ -492,7 +493,7 @@ class _HomeState extends State<Home> {
                     itemCount: customlist.length,
                     itemBuilder: (context, i) {
                       final nplacesList = customlist[i];
-                      String statusin =  nplacesList.onlineStatus;
+                      String statusin =  nplacesList.onlineStatus!;
                       return GestureDetector(
                         child: Container(
                             margin: const EdgeInsets.only(left: 5.00, top: 10.00, right: 5.00),
@@ -517,7 +518,7 @@ class _HomeState extends State<Home> {
                                                 shape: BoxShape.circle,
                                                 image: DecorationImage(
                                                     fit: BoxFit.fill,
-                                                    image: NetworkImage(nplacesList.sellerImage))),
+                                                    image: NetworkImage(nplacesList.sellerImage!))),
                                             child: Stack(
                                               children: <Widget>[
                                                 if (statusin == 'online')
@@ -574,12 +575,12 @@ class _HomeState extends State<Home> {
                                             height: 50,
                                             decoration: myBoxDecorationfirst(),
                                             child: Image.network(
-                                                nplacesList.offerImage, fit: BoxFit.cover),
+                                                nplacesList.offerImage!, fit: BoxFit.cover),
                                           ),
                                           Flexible(
                                             child: Padding(
                                               padding: const EdgeInsets.only(left: 10.0, top: 5),
-                                              child: Text(nplacesList.offerDescription.length > 45 ? "${nplacesList.offerDescription.substring(0,45)}...": nplacesList.offerDescription ),
+                                            child: Text(nplacesList.offerDescription!.length > 45 ? "${nplacesList.offerDescription!.substring(0,45)}...": nplacesList.offerDescription! ),
                                             ),
 
                                           ),
@@ -620,7 +621,7 @@ class _HomeState extends State<Home> {
                                                   MaterialPageRoute(
                                                     builder: (BuildContext context) {
                                                       return Inboxdetailpage(
-                                                          nplacesList.messagegroupid, nplacesList.sellerName);
+                                                          nplacesList.messagegroupid!, nplacesList.sellerName!);
                                                     },
                                                   ),
                                                 );},
@@ -636,7 +637,7 @@ class _HomeState extends State<Home> {
                                             Navigator.of(context).push(
                                               MaterialPageRoute(
                                                 builder: (BuildContext context){
-                                                  return checkout(nplacesList.checkouturl,token);
+                                                  return checkout(nplacesList.checkouturl!,token);
                                                 },
                                               ),
                                             );
@@ -700,7 +701,7 @@ class _HomeState extends State<Home> {
                   itemCount: firtlist.length,
                   itemBuilder: (context, i) {
                     final nplacesList = firtlist[i];
-                    String statusin =  nplacesList.onlineStatus;
+                    String statusin =  nplacesList.onlineStatus!;
                     return GestureDetector(
                       child: Container(
                         margin: const EdgeInsets.only(
@@ -717,7 +718,7 @@ class _HomeState extends State<Home> {
                                   //height: 150,
                                   width: double.infinity,
                                   child: Image.network(
-                                    nplacesList.postImage,
+                                    nplacesList.postImage!,
                                     fit: BoxFit.contain,
                                   ),
                                 )
@@ -744,7 +745,7 @@ class _HomeState extends State<Home> {
                                               image: DecorationImage(
                                                   fit: BoxFit.fill,
                                                   image: NetworkImage(
-                                                      nplacesList.sellerImage))),
+                                                      nplacesList.sellerImage!))),
                                           child: Stack(
                                             children: <Widget>[
                                               if (statusin == 'online')
@@ -819,7 +820,7 @@ class _HomeState extends State<Home> {
                                         child: Padding(
                                           padding: const EdgeInsets.only(
                                               left: 10.0, top: 5),
-                                          child: Text(nplacesList.title.length > 25 ? "${nplacesList.title.substring(0,25)}...":nplacesList.title),
+                                          child: Text(nplacesList.title!.length > 25 ? "${nplacesList.title!.substring(0,25)}...":nplacesList.title!),
                                         ),
 
                                       ),
@@ -874,7 +875,7 @@ class _HomeState extends State<Home> {
                                           color: Colors.orangeAccent,
                                         ),
                                         Text(
-                                          "${nplacesList.rating.averageRatting}",
+                                          "${nplacesList.rating!.averageRatting}",
                                           style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.orangeAccent,
@@ -883,7 +884,7 @@ class _HomeState extends State<Home> {
                                           textAlign: TextAlign.left,
                                         ),
                                         Text(
-                                          "(${nplacesList.rating.totalReviews})",
+                                          "(${nplacesList.rating!.totalReviews})",
                                           style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.black38,
@@ -906,7 +907,7 @@ class _HomeState extends State<Home> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context){
-                              return profiledetailpage(nplacesList.link, "home","home", "home","home");
+                              return profiledetailpage(nplacesList.link!, "home","home", "home","home");
                             },
                           ),
                         );
@@ -934,7 +935,7 @@ class _HomeState extends State<Home> {
         leading: Container(
           width:0,
         ),
-        title: apiinforlist.isNotEmpty ? Image.network(apiinforlist[0].appLogo,width: 100,height: 100,):const Text(""),
+        title: apiinforlist.isNotEmpty ? Image.network(apiinforlist[0].appLogo!,width: 100,height: 100,):const Text(""),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -1061,7 +1062,7 @@ class _HomeState extends State<Home> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
-                              image: NetworkImage(nDataList.image),
+                              image: NetworkImage(nDataList.image!),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -1084,7 +1085,7 @@ class _HomeState extends State<Home> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context){
-                              return catdetail(nDataList.link, nDataList.title, "home" ,"home");
+                              return catdetail(nDataList.link!, nDataList.title!, "home" ,"home");
                             },
                           ),
                         );
@@ -1125,7 +1126,7 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.only(bottom: 0, top: 5),
                 // alignment: FractionalOffset(1.0, 1.0),
                 width: MediaQuery.of(context).size.width,
-                height: Theme.of(context).textTheme.displayLarge.fontSize * 1.1 +  25,
+                height: Theme.of(context).textTheme.displayLarge!.fontSize! * 1.1 +  25,
                 child: loading
                     ? const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(primarycolor)))
                     : ListView.builder(
@@ -1135,7 +1136,7 @@ class _HomeState extends State<Home> {
                   itemBuilder: (context, i) {
 
                     final nplacesList = listplaces[i];
-                    print(  nplacesList.image.length);
+                    print(  nplacesList.image!.length);
                     return GestureDetector(
                       child: Container(
                         // alignment: Alignment(0.0, 0.0),
@@ -1170,7 +1171,7 @@ class _HomeState extends State<Home> {
                                     width: 80,
                                     padding: const EdgeInsets.only(top: 10),
                                     child: Text(
-                                      nplacesList.title.length > 21 ? nplacesList.title.substring(0,21): nplacesList.title,
+                                      nplacesList.title!.length > 21 ? nplacesList.title!.substring(0,21): nplacesList!.title!,
                                       style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
@@ -1189,7 +1190,7 @@ class _HomeState extends State<Home> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context){
-                              return subcatDetails(nplacesList.link,nplacesList.title);
+                              return subcatDetails(nplacesList.link!,nplacesList.title!);
                             },
                           ),
                         );

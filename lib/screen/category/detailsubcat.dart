@@ -130,7 +130,7 @@ class _subcatDetailsState extends State<subcatDetails> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (BuildContext context){
-                                  return catdetail(nDataList.link, nDataList.title, widget.subcatlink,widget.title);
+                                  return catdetail(nDataList.link!, nDataList.title!, widget.subcatlink,widget.title);
                                 },
                               ),
                             );

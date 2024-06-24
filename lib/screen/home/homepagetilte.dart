@@ -106,11 +106,6 @@ Widget marketplacetitle() {
   ]);
 }
 
-
-Widget recenttitle() {
-
-}
-
 // Serach section
 Widget searchsec() {
   return Column(

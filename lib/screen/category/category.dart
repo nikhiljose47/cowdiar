@@ -125,13 +125,13 @@ class _categoryState extends State<category> {
                                             Text(nDataList.title!),
                                             Text(
                                               listService[i]
-                                                          .sCArr[0]
+                                                          .sCArr![0]
                                                           .subCategoryTitle ==
                                                       null
                                                   ? '${listService[i]
-                                                          .sCArr[0]
+                                                          .sCArr![0]
                                                           .subCategoryTitle} , ${listService[i]
-                                                          .sCArr[1]
+                                                          .sCArr![1]
                                                           .subCategoryTitle}'
                                                   : "",
                                               style: const TextStyle(
@@ -147,8 +147,8 @@ class _categoryState extends State<category> {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (BuildContext context) {
-                                            return subcatDetails(nDataList.link,
-                                                nDataList.title);
+                                            return subcatDetails(nDataList.link!,
+                                                nDataList.title!);
                                           },
                                         ),
                                       );
