@@ -19,7 +19,7 @@ class ProfileSettings extends StatefulWidget {
 }
 
 class _ProfileSettingsState extends State<ProfileSettings> {
-  String name, username, email, phoneNumber, token, linkdata;
+  String? name, username, email, phoneNumber, token, linkdata;
   FocusNode nameFocusNode = FocusNode();
   FocusNode usernameFocusNode = FocusNode();
   FocusNode emailFocusNode = FocusNode();
@@ -63,7 +63,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
       linkdata = jsonDecode(dataapinfo)['content']['app_info'][0]['app_link'];
       setState(() {
         for (Map i in datalist) {
-          apiinforlist.add(AppInfo.fromMap(i));
+          apiinforlist.add(AppInfo.fromMap(i as Map<String, dynamic>));
         }
       });
     }
@@ -80,7 +80,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
     });
     print(token);
     final responseData =
-        await http.get(Uri.parse(baseurl + version + profile), headers: {'Auth': token});
+        await http.get(Uri.parse(baseurl + version + profile), headers: {'Auth': token!});
     if (responseData.statusCode == 200) {
       final data = responseData.body;
       var listservices = jsonDecode(data)['content']['mProfile'] as List;
@@ -88,7 +88,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
       print(listservices[0]);
       setState(() {
         for (Map i in listservices) {
-          listService.add(MProfile.fromMap(i));
+          listService.add(MProfile.fromMap(i as Map<String, dynamic>));
         }
         profileDetails = listService.first;
         loading = false;
@@ -100,8 +100,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
 
   getFile() async {
     hasProfilePicPicked = false;
-    FilePickerResult result = await FilePicker.platform.pickFiles(type:FileType.image);
-    File profileImgFile = File(result.files.single.path);
+    FilePickerResult? result = await FilePicker.platform.pickFiles(type:FileType.image);
+    File profileImgFile = File(result!.files.single.path!);
     setState(() {
       print(profileImgFile);
       hasProfilePicPicked = true;
@@ -116,7 +116,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
 
   check() {
     final form = _key.currentState;
-    if (form.validate()) {
+    if (form!.validate()) {
       form.save();
       setState(() {
         loading = true;
@@ -177,13 +177,13 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   child: FittedBox(
                                     fit: BoxFit.cover,
                                       child:
-                                          Image.file(File(profileImgFile.path))),
+                                          Image.file(File(profileImgFile!.path))),
                                 ),
                               )
                             : CircleAvatar(
                                 radius: 45.0,
                                 backgroundImage:
-                                    NetworkImage(profileDetails.sellerImage),
+                                    NetworkImage(profileDetails.sellerImage!),
                               ),
                         Positioned(
                           right: -15,
@@ -244,7 +244,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               child: TextFormField(
                                 //focusNode: nameFocusNode,
                                 //  initialValue: profileDetails.sellerName,
-                                validator: (e) => !Util.emailValidate(e)
+                                validator: (e) => !Util.emailValidate(e!)
                                     ? "Please enter valid email"
                                     : null,
                                 onSaved: (e) => email = e,
@@ -400,9 +400,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                               )),
                                         );
                                       }).toList(),
-                                      onChanged: (String newValue) {
+                                      onChanged: (String? newValue) {
                                         setState(() {
-                                          countryDropdownValue = newValue;
+                                          countryDropdownValue = newValue!;
                                         });
                                       }),
                                 ),
@@ -474,9 +474,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                               )),
                                         );
                                       }).toList(),
-                                      onChanged: (String newValue) {
+                                      onChanged: (String? newValue) {
                                         setState(() {
-                                          timeZoneDropdownValue = newValue;
+                                          timeZoneDropdownValue = newValue!;
                                         });
                                       }),
                                 ),
@@ -523,9 +523,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                               )),
                                         );
                                       }).toList(),
-                                      onChanged: (String newValue) {
+                                      onChanged: (String? newValue) {
                                         setState(() {
-                                          langDropdownValue = newValue;
+                                          langDropdownValue = newValue!;
                                         });
                                       }),
                                 ),
@@ -670,7 +670,7 @@ class CountryCodeItemState extends State<CountryCodeItem> {
           flex: 5,
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 12),
-            child: Text(widget.name,
+            child: Text(widget.name!,
                 maxLines: 2,
                 style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15)),
           ),
@@ -678,9 +678,9 @@ class CountryCodeItemState extends State<CountryCodeItem> {
         Expanded(
             child: InkWell(
           onTap: () {
-            var items = widget.name.split(' ');
+            var items = widget.name!.split(' ');
             var item = items[items.length - 1];
-            widget.callback(item.substring(1, item.length - 1));
+            widget.callback!(item.substring(1, item.length - 1));
             // dropdownValue =
             //     dropdownValue.substring(1, dropdownValue.length - 1);
             setState(() {

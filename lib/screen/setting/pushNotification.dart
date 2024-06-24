@@ -17,12 +17,12 @@ class PushNotification extends StatefulWidget{
 }
 class _PushNotificationState extends State<PushNotification> {
   FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
-  var? inboxMessages;
-  var? orderMessages;
-  var? orderUpdates;
-  var? buyerRequests;
-  var? myProposals;
-  var? myAccounts;
+  var inboxMessages;
+  var orderMessages;
+  var orderUpdates;
+  var buyerRequests;
+  var myProposals;
+  var myAccounts;
   String token = "";
   @override
   void initState() {
@@ -32,12 +32,12 @@ class _PushNotificationState extends State<PushNotification> {
     var android = const AndroidInitializationSettings('@mipmap/ic_launcher');
    // var iOS = new IOSInitializationSettings();
     var initSetttings = InitializationSettings(android: android);
-    flutterLocalNotificationsPlugin.initialize(initSetttings);
+    flutterLocalNotificationsPlugin!.initialize(initSetttings);
   }
   Future<Null> getData() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     final getdataresponse = await http.post(Uri.parse(baseurl + version + getnotifaction), headers: {
       'auth':token
@@ -69,7 +69,7 @@ class _PushNotificationState extends State<PushNotification> {
   Future<Null> updateData() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     final responseValue = await http.post(Uri.parse(baseurl + version + postnotifaction), body: {
       "inbox_push_notification_status": inboxMessages ? "1" : "0",
@@ -91,13 +91,13 @@ class _PushNotificationState extends State<PushNotification> {
     }
   }
 
-  Future<Null> updateEachData({String key, bool value}) async{
+  Future<Null> updateEachData({String? key, bool? value}) async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     final responseValue = await http.post(Uri.parse(baseurl + version + postnotifaction), body: {
-      key : value ? "1" : "0",
+      key : value! ? "1" : "0",
     }, headers: {
       'auth': token
     });
@@ -111,9 +111,11 @@ class _PushNotificationState extends State<PushNotification> {
   }
 
 
-  Future onSelectNotification(String payload) {
+  Future<void> onSelectNotification(String payload) {
     debugPrint("payload : $payload");
+    return Future.value(null);
   }
+
   @override
   Widget build(BuildContext context) {
     print(inboxMessages);
@@ -376,7 +378,7 @@ class _PushNotificationState extends State<PushNotification> {
         priority: Priority.high,importance: Importance.max
     );
     var platform = NotificationDetails(android: android);
-    await flutterLocalNotificationsPlugin.show(
+    await flutterLocalNotificationsPlugin!.show(
         0, 'Push Test', 'Push Test Success', platform,
         payload: 'Push Test Success');
   }

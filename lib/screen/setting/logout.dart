@@ -22,13 +22,13 @@ class logoutState extends State<logout>
     controller =
         AnimationController(vsync: this, duration: const Duration(milliseconds: 450));
     scaleAnimation =
-        CurvedAnimation(parent: controller, curve: Curves.elasticInOut);
+        CurvedAnimation(parent: controller!, curve: Curves.elasticInOut);
 
-    controller.addListener(() {
+    controller!.addListener(() {
       setState(() {});
     });
 
-    controller.forward();
+    controller!.forward();
   }
 
   @override
@@ -37,7 +37,7 @@ class logoutState extends State<logout>
       body: Container(
         color: Colors.transparent,
         child: ScaleTransition(
-          scale: scaleAnimation,
+          scale: scaleAnimation!,
           child: Center(
             child: Container(
               margin: const EdgeInsets.all(20.0),

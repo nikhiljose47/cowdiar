@@ -53,7 +53,7 @@ class _supportState extends State<support>{
   }
   check() {
     final form = _key.currentState;
-    if (form.validate()) {
+    if (form!.validate()) {
       form.save();
       save();
     }
@@ -61,7 +61,7 @@ class _supportState extends State<support>{
    save() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
    final response = await http
           .post(Uri.parse(baseurl +version+ sendfeedback), body: {
@@ -91,7 +91,7 @@ class _supportState extends State<support>{
   }
   check1() {
     final form = _key.currentState;
-    if (form.validate()) {
+    if (form!.validate()) {
       form.save();
       save1();
     }
@@ -99,7 +99,7 @@ class _supportState extends State<support>{
   save1() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     final response = await http
         .post(Uri.parse(baseurl +version+ sendfeedback), body: {
@@ -126,7 +126,7 @@ class _supportState extends State<support>{
   }
   check2() {
     final form = _key.currentState;
-    if (form.validate()) {
+    if (form!.validate()) {
       form.save();
       save2();
     }
@@ -134,7 +134,7 @@ class _supportState extends State<support>{
   save2() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     final response = await http
         .post(Uri.parse(baseurl +version+ sendfeedback), body: {
@@ -161,7 +161,7 @@ class _supportState extends State<support>{
   }
   check3() {
     final form = _key.currentState;
-    if (form.validate()) {
+    if (form!.validate()) {
       form.save();
       save3();
     }
@@ -169,7 +169,7 @@ class _supportState extends State<support>{
   save3() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     final response = await http
         .post(Uri.parse(baseurl +version+ sendfeedback), body: {
@@ -205,7 +205,7 @@ class _supportState extends State<support>{
   Future<Null> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     setState(() {
       loading = true;
@@ -218,7 +218,7 @@ class _supportState extends State<support>{
       var listservices = jsonDecode(data)['content']['typesArr'] as List;
       setState(() {
         for (Map i in listservices) {
-          listService.add(TypesArr.fromMap(i));
+          listService.add(TypesArr.fromMap(i as Map<String, dynamic>));
         }
         loading = false;
       });
@@ -259,7 +259,7 @@ class _supportState extends State<support>{
 
                     value: item.enquiryType.toString(),
 
-                    child: Text(item.enquiryTitle),
+                    child: Text(item.enquiryTitle!),
 
                   );
                 }).toList(),
@@ -294,7 +294,7 @@ class _supportState extends State<support>{
                               controller: subjectHolder,
                               focusNode: subjectFocusNode,
                               validator: (e) {
-                                if (e.isEmpty) {
+                                if (e!.isEmpty) {
                                   return "Please Enter field";
                                 }
                                 return null;
@@ -327,7 +327,7 @@ class _supportState extends State<support>{
                               maxLines: 5,
                               focusNode: messageFocusNode,
                               validator: (e) {
-                                if (e.isEmpty) {
+                                if (e!.isEmpty) {
                                   return "Please Enter field";
                                 }
                                 return null;
@@ -357,7 +357,7 @@ class _supportState extends State<support>{
                               controller: ordernumberHolder,
                               focusNode: ordernumberFocusNode,
                               validator: (e) {
-                                if (e.isEmpty) {
+                                if (e!.isEmpty) {
                                   return "Please Enter field";
                                 }
                                 return null;
@@ -388,7 +388,7 @@ class _supportState extends State<support>{
                               controller: rollHolder,
                               focusNode: rollFocusNode,
                               validator: (e) {
-                                if (e.isEmpty) {
+                                if (e!.isEmpty) {
                                   return "Please Enter field";
                                 }
                                 return null;
@@ -428,7 +428,7 @@ class _supportState extends State<support>{
                                       gradient: LinearGradient(
                                           begin: Alignment.topRight,
                                           end: Alignment.topLeft,
-                                          colors: [primarycolor[600], primarycolor])),
+                                          colors: [primarycolor[600]!, primarycolor])),
                                   child: SizedBox(
                                     width: double.infinity,
                                     child:TextButton(
@@ -471,7 +471,7 @@ class _supportState extends State<support>{
                               controller: subjectHolder,
                               focusNode: subjectFocusNode,
                               validator: (e) {
-                                if (e.isEmpty) {
+                                if (e!.isEmpty) {
                                   return "Please Enter field";
                                 }
                                 return null;
@@ -504,7 +504,7 @@ class _supportState extends State<support>{
                               maxLines: 5,
                               focusNode: messageFocusNode,
                               validator: (e) {
-                                if (e.isEmpty) {
+                                if (e!.isEmpty) {
                                   return "Please Enter field";
                                 }
                                 return null;
@@ -545,7 +545,7 @@ class _supportState extends State<support>{
                                       gradient: LinearGradient(
                                           begin: Alignment.topRight,
                                           end: Alignment.topLeft,
-                                          colors: [primarycolor[600], primarycolor])),
+                                          colors: [primarycolor[600]!, primarycolor])),
                                   child: SizedBox(
                                     width: double.infinity,
                                     child:TextButton(
@@ -589,7 +589,7 @@ class _supportState extends State<support>{
                               controller: subjectHolder,
                               focusNode: subjectFocusNode,
                               validator: (e) {
-                                if (e.isEmpty) {
+                                if (e!.isEmpty) {
                                   return "Please Enter field";
                                 }
                                 return null;
@@ -622,7 +622,7 @@ class _supportState extends State<support>{
                               maxLines: 5,
                               focusNode: messageFocusNode,
                               validator: (e) {
-                                if (e.isEmpty) {
+                                if (e!.isEmpty) {
                                   return "Please Enter field";
                                 }
                                 return null;
@@ -663,7 +663,7 @@ class _supportState extends State<support>{
                                       gradient: LinearGradient(
                                           begin: Alignment.topRight,
                                           end: Alignment.topLeft,
-                                          colors: [primarycolor[600], primarycolor])),
+                                          colors: [primarycolor[600]!, primarycolor])),
                                   child: SizedBox(
                                     width: double.infinity,
                                     child:TextButton(
@@ -707,7 +707,7 @@ class _supportState extends State<support>{
                               controller: subjectHolder,
                               focusNode: subjectFocusNode,
                               validator: (e) {
-                                if (e.isEmpty) {
+                                if (e!.isEmpty) {
                                   return "Please Enter field";
                                 }
                                 return null;
@@ -740,7 +740,7 @@ class _supportState extends State<support>{
                               maxLines: 5,
                               focusNode: messageFocusNode,
                               validator: (e) {
-                                if (e.isEmpty) {
+                                if (e!.isEmpty) {
                                   return "Please Enter field";
                                 }
                                 return null;
@@ -781,7 +781,7 @@ class _supportState extends State<support>{
                                       gradient: LinearGradient(
                                           begin: Alignment.topRight,
                                           end: Alignment.topLeft,
-                                          colors: [primarycolor[600], primarycolor])),
+                                          colors: [primarycolor[600]!, primarycolor])),
                                   child: SizedBox(
                                     width: double.infinity,
                                     child:TextButton(
