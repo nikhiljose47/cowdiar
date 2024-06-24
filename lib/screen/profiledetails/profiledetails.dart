@@ -56,7 +56,7 @@ class _profiledetailpageState extends State<profiledetailpage> {
   addcart(String package, String product, String quenty) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     setState(() {
       loading = true;
@@ -109,7 +109,7 @@ print(response);
   Future<Null> reviewgetData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     setState(() {
       loading = true;
@@ -133,7 +133,7 @@ print(response);
   Future<Null> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     setState(() {
       loading = true;
@@ -875,7 +875,7 @@ print(response);
                               Container(
                                 padding: const EdgeInsets.only(left: 25.00),
                                 width: MediaQuery.of(context).size.width / 1.3,
-                                child: Text(datapass.buyerReview,
+                                child: Text(datapass.buyerReview!,
                                     textAlign: TextAlign.left),
                               ),
                             ],
@@ -970,7 +970,7 @@ print(response);
                                       Container(
                                         padding: const EdgeInsets.only(left: 5.00),
                                         child:
-                                            Text(nplacesList.sellerName),
+                                            Text(nplacesList.sellerName!),
                                       ),
                                     ],
                                   ),
@@ -988,7 +988,7 @@ print(response);
                                       child: Padding(
                                         padding: const EdgeInsets.only(
                                             left: 10.0, top: 5),
-                                        child: Text(nplacesList.sellerLevel),
+                                        child: Text(nplacesList.sellerLevel!),
                                       ),
                                     ),
                                   ],

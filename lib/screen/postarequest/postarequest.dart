@@ -47,7 +47,7 @@ class _postarequestState extends State<postarequest> {
   save() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print(token);
     print(_mySelection);
@@ -352,7 +352,7 @@ class _postarequestState extends State<postarequest> {
 
                                     value: item.catId.toString(),
 
-                                    child: Text(item.title),
+                                    child: Text(item.title!),
 
                                   );
                                 }).toList(),
@@ -381,7 +381,7 @@ class _postarequestState extends State<postarequest> {
                                 items: listsubcat.map((item) {
                                   return DropdownMenuItem(
                                     value: item.childId,
-                                    child: Text(item.title),
+                                    child: Text(item.title!),
 
 
                                   );
@@ -441,7 +441,7 @@ class _postarequestState extends State<postarequest> {
 
                                         value: item.deliveryProposalTitle,
 
-                                        child: Text(item.deliveryProposalTitle),
+                                        child: Text(item.deliveryProposalTitle!),
 
                                       );
                                     }).toList(),

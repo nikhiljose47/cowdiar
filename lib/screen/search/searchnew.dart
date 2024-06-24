@@ -49,7 +49,7 @@ class _searchnewPageState extends State<searchnew> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //title: new Text(widget.title),
+        //title: new Text(widget.title!),
       ),
       body: Container(
         child: Column(

@@ -59,7 +59,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
     print(filePath);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     setState(() {
       loading = true;
@@ -133,7 +133,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
   Future<Null> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     final linkdata = widget.messagegropid;
     print(baseurl + version + contactuspage);
@@ -171,7 +171,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
                     .of(context)
                     .size
                     .width / 1.8,
-                child: Center(child: Text(widget.sellname)
+                child: Center(child: Text(widget.sellname!)
                 )
             ),
 
@@ -217,19 +217,19 @@ class _contactdetailpageState extends State<contactdetailpage> {
                                         children: <Widget>[
                                           Container(
                                             padding: const EdgeInsets.only(right: 10),
-                                            child: Text(listcat.senderName,
+                                            child: Text(listcat.senderName!,
                                               style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 16,
                                               ),),),
                                           Container(
-                                              child: Text(listcat.dateTime,
+                                              child: Text(listcat.dateTime!,
                                                 style: const TextStyle(
                                                   color: Colors.grey,
                                                   fontSize: 14,
                                                 ),)),
                                         ]),
-                                    Text(listcat.message, style: const TextStyle(
+                                    Text(listcat.message!, style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
                                     ),),

@@ -31,8 +31,8 @@ class ShowAlertDialog extends StatelessWidget {
   
   // Create AlertDialog  
   AlertDialog alert = AlertDialog(  
-    title: Text(title),  
-    content: Text(content),  
+    title: Text(title!),  
+    content: Text(content!),  
     actions: [  
       okButton,  
     ],  

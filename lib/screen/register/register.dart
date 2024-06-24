@@ -441,7 +441,7 @@ class _RegisterState extends State<Register> {
                                               children: [
                                                 Expanded(
                                                   flex: 5,
-                                                  child: Text(dropdownValue,
+                                                  child: Text(dropdownValue!,
                                                       textAlign:
                                                           TextAlign.right,
                                                       style: const TextStyle(
@@ -748,7 +748,7 @@ class CountryCodeItemState extends State<CountryCodeItem> {
           flex: 5,
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 12),
-            child: Text(widget.name,
+            child: Text(widget.name!,
                 maxLines: 2,
                 style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15)),
           ),

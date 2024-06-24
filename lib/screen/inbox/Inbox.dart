@@ -25,7 +25,7 @@ class _InboxpageState extends State<Inboxpage> {
   Future<Null> getData(String choice) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print("index");
     print(token);
@@ -52,7 +52,7 @@ class _InboxpageState extends State<Inboxpage> {
   Future<Null> action(String messageGroupId, String actionval) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print("index");
     print(token);
@@ -174,7 +174,7 @@ class _InboxpageState extends State<Inboxpage> {
               return Constants.choices.map((String choice){
                 return PopupMenuItem<String>(
                   value: choice,
-                  child: Text(choice),
+                  child: Text(choice!),
                 );
               }).toList();
             },

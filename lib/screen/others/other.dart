@@ -54,7 +54,7 @@ class _OthersState extends State<Others> {
   getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print(token);
     setState(() {
@@ -80,7 +80,7 @@ class _OthersState extends State<Others> {
   getstatus() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print(token);
 

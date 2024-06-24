@@ -26,7 +26,7 @@ class cartPage extends State<cart> {
   addquenty(String productid, String count) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print("index");
     print(count);
@@ -56,7 +56,7 @@ class cartPage extends State<cart> {
   delete(String productid) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print("index");
     print(token);
@@ -92,7 +92,7 @@ class cartPage extends State<cart> {
   Future<Null> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print("index");
     print(token);

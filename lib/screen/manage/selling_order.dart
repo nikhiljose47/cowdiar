@@ -56,7 +56,7 @@ class _SellingOrderState extends State<SellingOrder> {
   Future<Null> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print(token);
 
@@ -143,7 +143,7 @@ class _SellingOrderState extends State<SellingOrder> {
                             height: 80,
                             alignment: const Alignment(0.0, 1.0),
                             child: Text(
-                              "${nDataList.status.substring(0,1).toUpperCase()}${nDataList.status.substring(1)} (${nDataList.count})",
+                              "${nDataList.status!.substring(0,1).toUpperCase()}${nDataList.status!.substring(1)} (${nDataList.count})",
                               style: TextStyle(
                                 color: _selectedIndex == i
                                     ? primarycolor
@@ -156,7 +156,7 @@ class _SellingOrderState extends State<SellingOrder> {
                         ),
                       ),
                       onTap: () {
-                        getListViewItems(nDataList.status);
+                        getListViewItems(nDataList.status!);
                         _onSelected(i);
                       },
                     );
@@ -221,7 +221,7 @@ class _SellingOrderState extends State<SellingOrder> {
                                                         image: DecorationImage(
                                                             fit: BoxFit.fill,
                                                             image: NetworkImage(
-                                                                datacard2.postImage)
+                                                                datacard2.postImage!)
                                                         )
                                                     )),
                                               ],
@@ -234,7 +234,7 @@ class _SellingOrderState extends State<SellingOrder> {
                                                     Container(
                                                         width: MediaQuery.of(context).size.width/3.6,
                                                         margin:  const EdgeInsets.only(left: 10, top: 8.00),
-                                                        child: Text(datacard2.sellerName,style: const TextStyle(
+                                                        child: Text(datacard2.sellerName!,style: const TextStyle(
                                                           color: Colors.black,
 
                                                           fontSize: 16,
@@ -242,7 +242,7 @@ class _SellingOrderState extends State<SellingOrder> {
                                                     Container(
                                                         width: MediaQuery.of(context).size.width/2.8,
                                                         margin:  const EdgeInsets.only(left: 10, top: 8.00),
-                                                        child: Text(datacard2.orderDate,style: const TextStyle(
+                                                        child: Text(datacard2.orderDate!,style: const TextStyle(
                                                           color: Colors.grey,
 
                                                           fontSize: 14,
@@ -256,7 +256,7 @@ class _SellingOrderState extends State<SellingOrder> {
                                                         padding: const EdgeInsets.only(top:13,bottom: 13),
                                                         width: MediaQuery.of(context).size.width/1.6,
                                                         margin:  const EdgeInsets.only(left: 10, top: 0.00),
-                                                        child: Text(datacard2.postTitle,style: const TextStyle(
+                                                        child: Text(datacard2.postTitle!,style: const TextStyle(
                                                           color: Colors.black,
                                                           fontWeight: FontWeight.w300,
                                                           fontSize: 16,
@@ -277,7 +277,7 @@ class _SellingOrderState extends State<SellingOrder> {
 
                                                         ),
 
-                                                        child: Text(datacard2.orderStatus == "cancellation requested" ? "cancellation" :datacard2.orderStatus,style: const TextStyle(
+                                                        child: Text(datacard2.orderStatus == "cancellation requested" ? "cancellation" :datacard2.orderStatus!,style: const TextStyle(
                                                           color: primarycolor,
 
                                                           fontSize: 16,
@@ -287,7 +287,7 @@ class _SellingOrderState extends State<SellingOrder> {
                                                     ),
                                                     SizedBox(
                                                         width: MediaQuery.of(context).size.width/7,
-                                                        child: Text(datacard2.orderPrice,style: const TextStyle(
+                                                        child: Text(datacard2.orderPrice!,style: const TextStyle(
                                                           color: primarycolor,
 
                                                           fontSize: 16,
@@ -342,7 +342,7 @@ class _SellingOrderState extends State<SellingOrder> {
                                                         image: DecorationImage(
                                                             fit: BoxFit.fill,
                                                             image: NetworkImage(
-                                                                datacard.postImage)
+                                                                datacard.postImage!)
                                                         )
                                                     )),
                                               ],
@@ -355,7 +355,7 @@ class _SellingOrderState extends State<SellingOrder> {
                                                     Container(
                                                         width: MediaQuery.of(context).size.width/3.6,
                                                         margin:  const EdgeInsets.only(left: 10, top: 8.00),
-                                                        child: Text(datacard.sellerName.length > 12 ? datacard.sellerName.substring(0,12) : datacard.sellerName,style: const TextStyle(
+                                                        child: Text(datacard.sellerName!.length > 12 ? datacard.sellerName!.substring(0,12) : datacard.sellerName!,style: const TextStyle(
                                                           color: Colors.black,
 
                                                           fontSize: 16,
@@ -363,7 +363,7 @@ class _SellingOrderState extends State<SellingOrder> {
                                                     Container(
                                                         width: MediaQuery.of(context).size.width/2.8,
                                                         margin:  const EdgeInsets.only(left: 10, top: 8.00),
-                                                        child: Text(datacard.orderDate,style: const TextStyle(
+                                                        child: Text(datacard.orderDate!,style: const TextStyle(
                                                           color: Colors.grey,
 
                                                           fontSize: 14,
@@ -377,7 +377,7 @@ class _SellingOrderState extends State<SellingOrder> {
                                                         padding: const EdgeInsets.only(top:13,bottom: 13),
                                                         width: MediaQuery.of(context).size.width/1.6,
                                                         margin:  const EdgeInsets.only(left: 10, top: 0.00),
-                                                        child: Text(datacard.postTitle,style: const TextStyle(
+                                                        child: Text(datacard.postTitle!,style: const TextStyle(
                                                           color: Colors.black,
                                                           fontWeight: FontWeight.w300,
                                                           fontSize: 16,
@@ -397,7 +397,7 @@ class _SellingOrderState extends State<SellingOrder> {
 
                                                         ),
 
-                                                        child: Text(datacard.orderStatus == "cancellation requested" ? "cancellation" :datacard.orderStatus,style: const TextStyle(
+                                                        child: Text(datacard.orderStatus == "cancellation requested" ? "cancellation" :datacard.orderStatus!,style: const TextStyle(
                                                           color: primarycolor,
 
                                                           fontSize: 16,
@@ -407,7 +407,7 @@ class _SellingOrderState extends State<SellingOrder> {
                                                     ),
                                                     SizedBox(
                                                         width: MediaQuery.of(context).size.width/7,
-                                                        child: Text(datacard.orderPrice,style: const TextStyle(
+                                                        child: Text(datacard.orderPrice!,style: const TextStyle(
                                                           color: primarycolor,
 
                                                           fontSize: 16,

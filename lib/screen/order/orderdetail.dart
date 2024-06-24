@@ -55,7 +55,7 @@ class _orderpageState extends State<orderpage> {
     print(filePath);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     setState(() {
       loading = true;
@@ -128,7 +128,7 @@ class _orderpageState extends State<orderpage> {
     friendsLists.clear();
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print(token);
     setState(() {

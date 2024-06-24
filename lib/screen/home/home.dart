@@ -115,7 +115,7 @@ class _HomeState extends State<Home> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     bool seen =  await preferences.setBool('seen', true);
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     setState(() {
       loading = true;
@@ -306,8 +306,8 @@ class _HomeState extends State<Home> {
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
-                                                  Text(nplacesList.sellerName),
-                                                  Text(nplacesList.sellerLevel),
+                                                  Text(nplacesList.sellerName!),
+                                                  Text(nplacesList.sellerLevel!),
                                                 ]
                                             )
                                         ),
@@ -546,13 +546,13 @@ class _HomeState extends State<Home> {
                                         ),
                                         Container(
                                           padding: const EdgeInsets.only(left: 5.00),
-                                          child: Text(nplacesList.sellerName),
+                                          child: Text(nplacesList.sellerName!),
                                         ),
                                       ],
                                     ),
                                     Row(children: <Widget>[
                                       Container(
-                                        child: Text(nplacesList.offerBudget, style: const TextStyle(
+                                        child: Text(nplacesList.offerBudget!, style: const TextStyle(
                                           color: primarycolor,
                                           fontSize: 20,
                                         ),),
@@ -778,8 +778,8 @@ class _HomeState extends State<Home> {
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
-                                                  Text(nplacesList.sellerName),
-                                                  Text(nplacesList.sellerLevel),
+                                                  Text(nplacesList.sellerName!),
+                                                  Text(nplacesList.sellerLevel!),
                                                 ]
                                             )
                                         ),

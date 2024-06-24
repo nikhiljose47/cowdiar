@@ -24,7 +24,7 @@ class _onlinestatusState extends State<onlinestatus> {
 
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print(token);
 
@@ -54,7 +54,7 @@ class _onlinestatusState extends State<onlinestatus> {
   save() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
 
     if( _isSwitched == true ) {

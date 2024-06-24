@@ -82,7 +82,7 @@ class _subcatDetailsState extends State<subcatDetails> {
               onPressed: () =>  Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (BuildContext context) => const category())),
             ),
-          title: Text(widget.title),
+          title: Text(widget.title!),
           centerTitle: true,
 
         ),
@@ -123,7 +123,7 @@ class _subcatDetailsState extends State<subcatDetails> {
                           ),
                         ),
                         child: ListTile(
-                          title: Text(nDataList.title),
+                          title: Text(nDataList.title!),
                           trailing: const Icon(Icons.keyboard_arrow_right),
                           onTap: () {
                             print("nikil${nDataList.link}");

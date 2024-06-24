@@ -122,7 +122,7 @@ class _categoryState extends State<category> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: <Widget>[
-                                            Text(nDataList.title),
+                                            Text(nDataList.title!),
                                             Text(
                                               listService[i]
                                                           .sCArr[0]

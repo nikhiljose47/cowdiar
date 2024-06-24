@@ -47,7 +47,7 @@ class _manageeqState extends State<manageeq> {
   Future<Null> getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token")!;
+      token = preferences.getString("token")!!;
     });
     print(token);
     setState(() {
@@ -82,7 +82,7 @@ print(listdeafult);
     print(requestId);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token")!;
+      token = preferences.getString("token")!!;
     });
     print(baseurl + version  + manage);
     final responseData = await http.post(Uri.parse(baseurl + version  + requestlink),

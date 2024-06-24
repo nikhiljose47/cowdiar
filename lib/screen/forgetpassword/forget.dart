@@ -104,8 +104,8 @@ class _forgetpassState extends State<forgetpass> {
 
     // Create AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text(title),
-      content: Text(content),
+      title: Text(title!),
+      content: Text(content!),
       actions: [
         okButton,
       ],

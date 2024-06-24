@@ -84,7 +84,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
     print(filePath);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     setState(() {
       loading = true;
@@ -159,7 +159,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
     friendsLists.clear();
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
-      token = preferences.getString("token");
+      token = preferences.getString("token")!;
     });
     print(token);
     setState(() {
@@ -211,7 +211,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
         elevation: 0.0,
         title: SizedBox(
             width: MediaQuery.of(context).size.width / 1.8,
-            child: Center(child: Text(widget.sellname))),
+            child: Center(child: Text(widget.sellname!))),
       ),
       body: loading
           ? const Center(

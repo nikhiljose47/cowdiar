@@ -90,7 +90,7 @@ class _catdetailState extends State<catdetail> {
                                 widget.prelink, widget.pretitle))),
                   )
                 : true,
-        title: Text(widget.title),
+        title: Text(widget.title!),
         centerTitle: true,
       ),
       body: loading
