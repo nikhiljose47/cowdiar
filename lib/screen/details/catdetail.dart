@@ -89,7 +89,7 @@ class _catdetailState extends State<catdetail> {
                             builder: (BuildContext context) => subcatDetails(
                                 widget.prelink, widget.pretitle))),
                   )
-                : true,
+                : Container(),
         title: Text(widget.title),
         centerTitle: true,
       ),
@@ -150,7 +150,7 @@ class _catdetailState extends State<catdetail> {
                                                     left: 4.0),
                                                 child: Text(
                                                   nplacesList
-                                                      .rating.averageRatting,
+                                                      .rating!.averageRatting!,
                                                   style: const TextStyle(
                                                     color: Colors.amber,
                                                   ),
@@ -160,7 +160,7 @@ class _catdetailState extends State<catdetail> {
                                                 padding: const EdgeInsets.only(
                                                     left: 4.0),
                                                 child: Text(
-                                                  "(${nplacesList.rating.totalReviews})",
+                                                  "(${nplacesList.rating!.totalReviews})",
                                                   style: const TextStyle(
                                                     color: Colors.grey,
                                                   ),
@@ -193,9 +193,9 @@ class _catdetailState extends State<catdetail> {
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 0.35,
-                                        child: nplacesList.title.length >= 50
+                                        child: nplacesList.title!.length >= 50
                                             ? Text(
-                                                "${nplacesList.title
+                                                "${nplacesList.title!
                                                         .substring(0, 30)}...",
                                                 style: const TextStyle(
                                                   color: Colors.black,
@@ -240,7 +240,7 @@ class _catdetailState extends State<catdetail> {
                       MaterialPageRoute(
                         builder: (BuildContext context) {
                           return profiledetailpage(
-                              nplacesList.link,
+                              nplacesList.link!,
                               widget.subcatlink,
                               widget.title,
                               widget.pretitle,

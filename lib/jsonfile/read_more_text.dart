@@ -9,8 +9,7 @@ enum TrimMode {
 
 class ReadMoreText extends StatefulWidget {
   const ReadMoreText(
-      this.data, {super.key}!, {
-        super.key,
+      this.data, {
         this.trimExpandedText = ' read less',
         this.trimCollapsedText = ' ...read more',
          this.colorClickableText,
@@ -23,6 +22,7 @@ class ReadMoreText extends StatefulWidget {
          this.locale,
          this.textScaleFactor,
          this.semanticsLabel,
+         super.key
       });
 
   final String? data;
@@ -57,8 +57,8 @@ class ReadMoreTextState extends State<ReadMoreText> {
   @override
   Widget build(BuildContext context) {
     final DefaultTextStyle defaultTextStyle = DefaultTextStyle.of(context);
-    TextStyle effectiveTextStyle = widget.style;
-    if (widget.style.inherit) {
+    TextStyle effectiveTextStyle = widget.style!;
+    if (widget.style!.inherit) {
       effectiveTextStyle = defaultTextStyle.style.merge(widget.style);
     }
 
@@ -132,14 +132,14 @@ class ReadMoreTextState extends State<ReadMoreText> {
           linkLongerThanLine = true;
         }
 
-        var? textSpan;
+        var textSpan;
         switch (widget.trimMode) {
           case TrimMode.Length:
-            if (widget.trimLength < widget.data.length) {
+            if (widget.trimLength! < widget.data!.length) {
               textSpan = TextSpan(
                 style: effectiveTextStyle,
                 text: _readMore
-                    ? widget.data.substring(0, widget.trimLength)
+                    ? widget.data!.substring(0, widget.trimLength)
                     : widget.data,
                 children: <TextSpan>[link],
               );
@@ -155,7 +155,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
               textSpan = TextSpan(
                 style: effectiveTextStyle,
                 text: _readMore
-                    ? widget.data.substring(0, endIndex) +
+                    ? widget.data!.substring(0, endIndex) +
                     (linkLongerThanLine ? _kLineSeparator : '')
                     : widget.data,
                 children: <TextSpan>[link],
