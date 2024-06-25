@@ -95,7 +95,6 @@ class _ExpansionTileState extends State<ExpansionTile>
   Animation<Color>? _borderColor;
   Animation<Color>? _headerColor;
   Animation<Color>? _iconColor;
-  Animation<Color>? _backgroundColor;
 
   bool _isExpanded = false;
 
@@ -103,22 +102,17 @@ class _ExpansionTileState extends State<ExpansionTile>
   void initState() {
     super.initState();
     _controller = AnimationController(duration: _kExpand, vsync: this);
-    _heightFactor = _controller.drive(_easeInTween);
-    _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
-    _borderColor = _controller.drive(_borderColorTween.chain(_easeOutTween));
-    _headerColor = _controller.drive(_headerColorTween.chain(_easeInTween));
-    _iconColor = _controller.drive(_iconColorTween.chain(_easeInTween));
-    _backgroundColor =
-        _controller.drive(_backgroundColorTween.chain(_easeOutTween));
+    _heightFactor = _controller!.drive(_easeInTween);
+    _iconTurns = _controller!.drive(_halfTween.chain(_easeInTween));
 
     _isExpanded =
         PageStorage.of(context).readState(context) ?? widget.initiallyExpanded;
-    if (_isExpanded) _controller.value = 1.0;
+    if (_isExpanded) _controller!.value = 1.0;
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller!.dispose();
     super.dispose();
   }
 
@@ -126,9 +120,9 @@ class _ExpansionTileState extends State<ExpansionTile>
     setState(() {
       _isExpanded = !_isExpanded;
       if (_isExpanded) {
-        _controller.forward();
+        _controller!.forward();
       } else {
-        _controller.reverse().then<void>((void value) {
+        _controller!.reverse().then<void>((void value) {
           if (!mounted) return;
           setState(() {
             // Rebuild without widget.children.
@@ -137,16 +131,15 @@ class _ExpansionTileState extends State<ExpansionTile>
       }
       PageStorage.of(context).writeState(context, _isExpanded);
     });
-    widget.onExpansionChanged(_isExpanded);
+    widget.onExpansionChanged!(_isExpanded);
   }
 
   Widget _buildChildren(BuildContext context, Widget child) {
-    final Color borderSideColor = _borderColor.value ?? Colors.transparent;
-    final Color titleColor = _headerColor.value;
+    final Color borderSideColor = _borderColor!.value ?? Colors.transparent;
+    final Color titleColor = _headerColor!.value;
 
     return Container(
       decoration: BoxDecoration(
-          color: _backgroundColor.value ?? Colors.transparent,
           border: Border(
             top: BorderSide(color: borderSideColor),
             bottom: BorderSide(color: borderSideColor),
@@ -155,7 +148,7 @@ class _ExpansionTileState extends State<ExpansionTile>
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           IconTheme.merge(
-            data: IconThemeData(color: _iconColor.value),
+            data: IconThemeData(color: _iconColor!.value),
             child: Container(
               color: widget.headerBackgroundColor ?? Colors.black,
               child: ListTile(
@@ -165,13 +158,13 @@ class _ExpansionTileState extends State<ExpansionTile>
                   style: Theme.of(context)
                       .textTheme
                       //N-.subhead
-                      .titleSmall
+                      .titleSmall!
                       .copyWith(color: titleColor),
-                  child: widget.title,
+                  child: widget.title!,
                 ),
                 trailing: widget.trailing ??
                     RotationTransition(
-                      turns: _iconTurns,
+                      turns: _iconTurns!,
                       child: Icon(
                         Icons.expand_more,
                         color: widget.iconColor ?? Colors.grey,
@@ -182,7 +175,7 @@ class _ExpansionTileState extends State<ExpansionTile>
           ),
           ClipRect(
             child: Align(
-              heightFactor: _heightFactor.value,
+              heightFactor: _heightFactor!.value,
               child: child,
             ),
           ),
@@ -197,7 +190,7 @@ class _ExpansionTileState extends State<ExpansionTile>
     _borderColorTween.end = theme.dividerColor;
     _headerColorTween
     //N-..begin = theme.textTheme.subhead.color
-      ..begin = theme.textTheme.titleSmall.color
+      ..begin = theme.textTheme.titleSmall!.color
       ..end = theme.colorScheme.secondary;
     _iconColorTween
       ..begin = theme.unselectedWidgetColor
@@ -208,11 +201,11 @@ class _ExpansionTileState extends State<ExpansionTile>
 
   @override
   Widget build(BuildContext context) {
-    final bool closed = !_isExpanded && _controller.isDismissed;
+    final bool closed = !_isExpanded && _controller!.isDismissed;
     return AnimatedBuilder(
-      animation: _controller.view,
-      builder: _buildChildren,
-      child: closed ? null : Column(children: widget.children),
+      animation: _controller!.view,
+      builder: _buildChildren as Widget Function(BuildContext, Widget?),
+      child: closed ? null : Column(children: widget.children!),
     );
   }
 }

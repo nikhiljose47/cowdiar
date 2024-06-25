@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       .copyWith(bodySmall: const TextStyle(color: Colors.black))),
               child: BottomNavigationBar(
                 onTap: (newIndex) => setState(() => menuvalue = newIndex),
-                currentIndex: menuvalue,
+                currentIndex: menuvalue!,
                 type: BottomNavigationBarType.fixed,
                 fixedColor: primarycolor,
                 items: [

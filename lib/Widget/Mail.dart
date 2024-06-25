@@ -8,11 +8,11 @@ class MailContent {
 
 
   MailContent(this.image ,this.subject, this.sender, this.time, this.message, this.status);
-  String getimage() => image;
-  String getSubject() => subject;
-  String getSender() => sender;
-  String getTime() => time;
-  String getMessage() => message;
-  String getstatus() => status;
+  String getimage() => image!;
+  String getSubject() => subject!;
+  String getSender() => sender!;
+  String getTime() => time!;
+  String getMessage() => message!;
+  String getstatus() => status!;
 
 }
