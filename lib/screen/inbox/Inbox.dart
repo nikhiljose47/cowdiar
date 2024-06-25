@@ -72,7 +72,7 @@ class _InboxpageState extends State<Inboxpage> {
     if(value=="1"){
       loginToast(message);
       listSCArr.clear();
-      getData(choice);
+      getData(choice!);
     }else{
       loginToast(message);
     }
@@ -105,7 +105,7 @@ class _InboxpageState extends State<Inboxpage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getData(choice);
+    getData(choice!);
 
   }
   Widget slideRightBackground() {
@@ -188,9 +188,9 @@ class _InboxpageState extends State<Inboxpage> {
           itemCount: listSCArr.length,
           itemBuilder: (context, i) {
             final nDataList = listSCArr[i];
-            String statusin =  nDataList.onlineStatus;
+            String statusin =  nDataList.onlineStatus!;
             return Dismissible(
-              key: Key(nDataList.senderName),
+              key: Key(nDataList.senderName!),
               background: slideRightBackground(),
               secondaryBackground: slideLeftBackground(),
               confirmDismiss: (direction) async {
@@ -219,7 +219,7 @@ class _InboxpageState extends State<Inboxpage> {
                               onPressed: () {
                                 // TODO: Delete the item from DB etc..
                                 setState(() {
-                                  action(nDataList.messageGroupId,"delete");
+                                  action(nDataList.messageGroupId!,"delete");
                                 });
                                 Navigator.of(context).pop();
                               },
@@ -256,7 +256,7 @@ class _InboxpageState extends State<Inboxpage> {
                               onPressed: () {
                                 // TODO: Delete the item from DB etc..
                                 setState(() {
-                                  action(nDataList.messageGroupId,"archive");
+                                  action(nDataList.messageGroupId!,"archive");
                                 });
                                 Navigator.of(context).pop();
                               },
@@ -288,7 +288,7 @@ class _InboxpageState extends State<Inboxpage> {
                                       image: DecorationImage(
                                           fit: BoxFit.fill,
                                           image: NetworkImage(
-                                              nDataList.senderImage)
+                                              nDataList.senderImage!)
                                       )
                                   ),
                                     child: Stack(
@@ -327,7 +327,7 @@ class _InboxpageState extends State<Inboxpage> {
                                               .spaceBetween,
                                           children: <Widget>[
                                             Text(
-                                              nDataList.senderName.length > 21 ? nDataList.senderName.substring(0,21): nDataList.senderName,
+                                              nDataList.senderName!.length > 21 ? nDataList.senderName!.substring(0,21): nDataList.senderName!,
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   color: Colors.black87,
@@ -405,7 +405,7 @@ class _InboxpageState extends State<Inboxpage> {
                                   onPressed: () {
                                     // TODO: Delete the item from DB etc..
                                     setState(() {
-                                      action(nDataList.messageGroupId,"unread");
+                                      action(nDataList.messageGroupId!,"unread");
                                     });
                                     Navigator.of(context).pop();
                                   },
@@ -413,14 +413,14 @@ class _InboxpageState extends State<Inboxpage> {
                               ],
                             );
                           });
-                      return res;
+                      return Future.value(res);
                     },
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) {
                             return Inboxdetailpage(
-                                nDataList.messageGroupId, nDataList.senderName);
+                                nDataList.messageGroupId!, nDataList.senderName!);
                           },
                         ),
                       );

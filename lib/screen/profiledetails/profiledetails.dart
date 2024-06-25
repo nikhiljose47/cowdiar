@@ -43,7 +43,7 @@ class _profiledetailpageState extends State<profiledetailpage> {
   List<RView> listreviews = [];
   bool readmore = true;
   bool readless = false;
-  var? descriptionLength;
+  var descriptionLength;
 
   myBoxDecorationfirst() {
     return BoxDecoration(
@@ -170,7 +170,7 @@ print(response);
     setState(() {
       _showPersBottomSheetCallBack = null;
     });
-    _scaffoldKey.currentState
+    _scaffoldKey.currentState!
         .showBottomSheet((context) {
           return SingleChildScrollView(
             child: Container(
@@ -197,11 +197,11 @@ print(response);
                                         image: DecorationImage(
                                             fit: BoxFit.fill,
                                             image: NetworkImage(listdata[0]
-                                                .seller
-                                                .sellerImage))),
+                                                .seller!
+                                                .sellerImage!))),
                                     child: Stack(
                                       children: <Widget>[
-                                        if (listdata[0].seller.onlineStatus ==
+                                        if (listdata[0].seller!.onlineStatus! ==
                                             'online')
                                           const Positioned(
                                             right: 0.0,
@@ -212,7 +212,7 @@ print(response);
                                               color: primarycolor,
                                             ),
                                           ),
-                                        if (listdata[0].seller.onlineStatus ==
+                                        if (listdata[0].seller!.onlineStatus ==
                                             'offline')
                                           const Positioned(
                                             right: 0.0,
@@ -245,9 +245,9 @@ print(response);
                                                   padding:
                                                       const EdgeInsets.only(left: 0),
                                                   child: Text(
-                                                    listdata[0]
-                                                        .seller
-                                                        .sellerName,
+                                                    listdata![0]
+                                                        .seller!
+                                                        .sellerName!,
                                                     style: const TextStyle(),
                                                     textAlign: TextAlign.left,
                                                   )),
@@ -264,8 +264,8 @@ print(response);
                                                       ),
                                                       Text(
                                                         listdata[0]
-                                                            .rating
-                                                            .averageRatting,
+                                                            .rating!
+                                                            .averageRatting!,
                                                         style: const TextStyle(
                                                           fontSize: 14,
                                                           color: Colors.orange,
@@ -275,7 +275,7 @@ print(response);
                                                       ),
                                                       Text(
                                                         " (${listdata[0]
-                                                                .rating
+                                                                .rating!
                                                                 .totalReviews})",
                                                         style: const TextStyle(
                                                           fontSize: 14,
@@ -361,8 +361,8 @@ print(response);
                                                 children: <Widget>[
                                                   Text(
                                                     listdata[0]
-                                                        .seller
-                                                        .sellerLevel,
+                                                        .seller!
+                                                        .sellerLevel!,
                                                     style: const TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.black,
@@ -428,8 +428,8 @@ print(response);
                                                 children: <Widget>[
                                                   Text(
                                                     listdata[0]
-                                                        .seller
-                                                        .sellerCountry,
+                                                        .seller!
+                                                        .sellerCountry!,
                                                     style: const TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.black,
@@ -495,8 +495,8 @@ print(response);
                                                 children: <Widget>[
                                                   Text(
                                                     listdata[0]
-                                                        .seller
-                                                        .recentDelivery,
+                                                        .seller!
+                                                        .recentDelivery!,
                                                     style: const TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.black,
@@ -562,8 +562,8 @@ print(response);
                                                 children: <Widget>[
                                                   Text(
                                                     listdata[0]
-                                                        .seller
-                                                        .sellerSince,
+                                                        .seller!
+                                                        .sellerSince!,
                                                     style: const TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.black,
@@ -629,8 +629,8 @@ print(response);
                                                 children: <Widget>[
                                                   Text(
                                                     listdata[0]
-                                                        .seller
-                                                        .sellerLastActivity,
+                                                        .seller!
+                                                        .sellerLastActivity!,
                                                     style: const TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.black,
@@ -688,16 +688,16 @@ print(response);
                                 top: 0.00,
                                 bottom: 10.00),
                             child:
-                                listdata[0].seller.sellerDescription.length >=
+                                listdata[0].seller!.sellerDescription!.length >=
                                         200
                                     ? Text(
                                         listdata[0]
-                                            .seller
-                                            .sellerDescription
+                                            .seller!
+                                            .sellerDescription!
                                             .substring(0, 200),
                                       )
                                     : Text(
-                                        listdata[0].seller.sellerDescription,
+                                        listdata[0].seller!.sellerDescription!,
                                       ),
                           ),
                         ],
@@ -741,8 +741,8 @@ print(response);
             Column(
               children: <Widget>[
                 ListTile(
-                  title: Text(datapass.faqs[i].question),
-                  subtitle: Text(datapass.faqs[i].answer),
+                  title: Text(datapass.faqs![i].question!),
+                  subtitle: Text(datapass.faqs![i].answer!),
                 )
               ],
             ),
@@ -755,7 +755,7 @@ print(response);
   }
 
   Widget reviewexpendableList() {
-    return listdata[0].reviews.length == 0
+    return listdata[0].reviews!.length == 0
         ? Container()
         : custom.ExpansionTile(
             headerBackgroundColor: Colors.white,
@@ -774,9 +774,9 @@ print(response);
                   ListView.builder(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
-                      itemCount: listdata[0].reviews.length.compareTo(0),
+                      itemCount: listdata[0].reviews!.length.compareTo(0),
                       itemBuilder: (context, index) {
-                        final datapass = listdata[0].reviews[index];
+                        final datapass = listdata[0].reviews![index];
 
                         return Container(
                           alignment: const Alignment(-1.0, -1.0),
@@ -802,7 +802,7 @@ print(response);
                                               image: DecorationImage(
                                                   fit: BoxFit.fill,
                                                   image: NetworkImage(
-                                                      datapass.buyerImage)))),
+                                                      datapass.buyerImage!)))),
                                       Container(
                                         width:
                                             MediaQuery.of(context).size.width /
@@ -936,7 +936,7 @@ print(response);
                                     //height: 150,
                                     width: double.infinity,
                                     child: Image.network(
-                                      nplacesList.postImage,
+                                      nplacesList.postImage!,
                                       fit: BoxFit.contain,
                                     ),
                                   )
@@ -966,7 +966,7 @@ print(response);
                                                   fit: BoxFit.fill,
                                                   image: NetworkImage(
                                                       nplacesList
-                                                          .sellerImage)))),
+                                                          .sellerImage!)))),
                                       Container(
                                         padding: const EdgeInsets.only(left: 5.00),
                                         child:
@@ -1039,7 +1039,7 @@ print(response);
                                         color: Colors.orangeAccent,
                                       ),
                                       Text(
-                                        "${nplacesList.rating.averageRatting}",
+                                        "${nplacesList.rating!.averageRatting}",
                                         style: const TextStyle(
                                           fontSize: 15,
                                           color: Colors.orangeAccent,
@@ -1048,7 +1048,7 @@ print(response);
                                         textAlign: TextAlign.left,
                                       ),
                                       Text(
-                                        "(${nplacesList.rating.totalReviews})",
+                                        "(${nplacesList.rating!.totalReviews})",
                                         style: const TextStyle(
                                           fontSize: 15,
                                           color: Colors.black38,
@@ -1067,7 +1067,7 @@ print(response);
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (BuildContext context) {
-                                return profiledetailpage(nplacesList.link,
+                                return profiledetailpage(nplacesList.link!,
                                     "home", "home", "home", "home");
                               },
                             ),
@@ -1114,13 +1114,13 @@ print(response);
                                         horizontal: 0.0, vertical: 0.0),
                                     color: Colors.white,
                                     height: 200,
-                                    child: datapass.images.length != 1
+                                    child: datapass.images!.length != 1
                                         ? CarouselSlider.builder(
-                                            itemCount: datapass.images.length,
+                                            itemCount: datapass.images!.length,
                                             itemBuilder: (context, index, int) {
                                               return Container(
                                                   child: Image.network(
-                                                datapass.images[index],
+                                                datapass.images![index]!,
                                                 fit: BoxFit.cover,
                                                 width: 350,
                                                 height: 260,
@@ -1144,10 +1144,10 @@ print(response);
                                               scrollDirection:
                                                   Axis.horizontal,
                                             ))
-                                        : datapass.images.length != null
+                                        : datapass.images!.length != null
                                             ? Container(
                                                 child: Image.network(
-                                                datapass.images[0],
+                                                datapass.images![0],
                                                 fit: BoxFit.fill,
                                                 width: 350,
                                                 height: 260,
@@ -1161,7 +1161,7 @@ print(response);
                                         color: primarycolor,
                                         boxShadow: [
                                           BoxShadow(
-                                            color: wavesecond,
+                                            color: wavesecond!,
                                             blurRadius: 15.0,
                                           ),
                                         ]),
@@ -1250,12 +1250,12 @@ print(response);
                                                   image: DecorationImage(
                                                       fit: BoxFit.fill,
                                                       image: NetworkImage(
-                                                          datapass.seller
-                                                              .sellerImage))),
+                                                          datapass.seller!
+                                                              .sellerImage!))),
                                               child: Stack(
                                                 children: <Widget>[
-                                                  if (datapass.seller
-                                                      .onlineStatus ==
+                                                  if (datapass.seller!
+                                                      .onlineStatus! ==
                                                       'online')
                                                     const Positioned(
                                                       right: 0.0,
@@ -1267,43 +1267,7 @@ print(response);
                                                         color: primarycolor,
                                                       ),
                                                     ),
-                                                  if (datapass.seller
-                                                      .onlineStatus ==
-                                                      'offline')
-                                                    const Positioned(
-                                                      right: 0.0,
-                                                      bottom: 0.0,
-                                                      child: Icon(
-                                                        Icons
-                                                            .fiber_manual_record,
-                                                        size: 15.0,
-                                                        color: Colors.grey,
-                                                      ),
-                                                    ),
-                                                ],
-                                              )),
-                                          Container(
-                                            padding:
-                                            const EdgeInsets.only(left: 10.00),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Container(
-                                                    padding: const EdgeInsets.only(
-                                                        left: 0),
-                                                    child: Text(
-                                                      datapass
-                                                          .seller.sellerName,
-                                                      style: const TextStyle(),
-                                                      textAlign:
-                                                      TextAlign.left,
-                                                    )),
-                                                Container(
-                                                    child: Text(datapass
-                                                        .seller.sellerLevel)),
+                                                
                                               ],
                                             ),
                                           ),
@@ -1344,10 +1308,10 @@ print(response);
                                                 padding:
                                                     const EdgeInsets.only(left: 0),
                                                 child: datapass
-                                                            .title.length >=
+                                                            .title!.length >=
                                                         30
                                                     ? Text(
-                                                        "${datapass.title
+                                                        "${datapass.title!
                                                                 .substring(
                                                                     0, 30)}...",
                                                         style: const TextStyle(
@@ -1373,14 +1337,14 @@ print(response);
                                                       .size
                                                       .width *
                                                   0.90,
-                                              child: datapass.description
+                                              child: datapass.description!
                                                           .length >=
                                                       62
                                                   ? Wrap(
                                                       children: [
                                                         Text(readmore
                                                             ? '${datapass
-                                                                    .description
+                                                                    .description!
                                                                     .substring(
                                                                         0,
                                                                         62)}...'
@@ -1391,7 +1355,7 @@ print(response);
                                                               readmore = false;
                                                               descriptionLength =
                                                                   datapass
-                                                                      .description
+                                                                      .description!
                                                                       .length;
                                                             });
                                                           },
@@ -1399,7 +1363,7 @@ print(response);
                                                             readmore
                                                                 ? 'Read More'
                                                                 : datapass
-                                                                    .description,
+                                                                    .description!,
                             style: TextStyle(
                                             color: readmore? Colors
                                                 .red:Colors.black),
@@ -1495,7 +1459,7 @@ print(response);
                                       child: Align(
                                         alignment: Alignment.center,
                                         child: Text(listdata[0]
-                                            .pPackages[0]
+                                            .pPackages![0]
                                             .packageName
                                             .toString()),
                                       ),
@@ -1504,7 +1468,7 @@ print(response);
                                       child: Align(
                                         alignment: Alignment.center,
                                         child: Text(listdata[0]
-                                            .pPackages[1]
+                                            .pPackages![1]
                                             .packageName
                                             .toString()),
                                       ),
@@ -1513,7 +1477,7 @@ print(response);
                                       child: Align(
                                         alignment: Alignment.center,
                                         child: Text(listdata[0]
-                                            .pPackages[2]
+                                            .pPackages![2]
                                             .packageName
                                             .toString()),
                                       ),
@@ -1537,8 +1501,8 @@ print(response);
                                                 children: <Widget>[
                                                   Text(
                                                     listdata[0]
-                                                        .pPackages[0]
-                                                        .packageName,
+                                                        .pPackages![0]
+                                                        .packageName!,
                                                     textAlign: TextAlign.left,
                                                   )
                                                 ],
@@ -1555,19 +1519,19 @@ print(response);
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: <Widget>[
-                                                  Text(listdata[0]
-                                                              .pPackages[0]
-                                                              .description
+                                                  Text(listdata![0]
+                                                              .pPackages![0]
+                                                              .description!
                                                               .length >
                                                           30
                                                       ? '${listdata[0]
-                                                              .pPackages[0]
-                                                              .description
+                                                              .pPackages![0]
+                                                              .description!
                                                               .substring(
                                                                   0, 30)}...'
                                                       : listdata[0]
-                                                          .pPackages[0]
-                                                          .description)
+                                                          .pPackages![0]
+                                                          .description!)
                                                 ],
                                               ),
                                             ),
@@ -1583,8 +1547,8 @@ print(response);
                                                 children: <Widget>[
                                                   const Text("Revisions"),
                                                   Text(listdata[0]
-                                                      .pPackages[0]
-                                                      .revisions)
+                                                      .pPackages![0]
+                                                      .revisions!)
                                                 ],
                                               ),
                                             ),
@@ -1600,8 +1564,8 @@ print(response);
                                                 children: <Widget>[
                                                   const Text("Delivery Time"),
                                                   Text(listdata[0]
-                                                      .pPackages[0]
-                                                      .deliveryTime)
+                                                      .pPackages![0]
+                                                      .deliveryTime!)
                                                 ],
                                               ),
                                             ),
@@ -1617,8 +1581,8 @@ print(response);
                                                 children: <Widget>[
                                                   const Text("price"),
                                                   Text(listdata[0]
-                                                      .pPackages[0]
-                                                      .price)
+                                                      .pPackages![0]
+                                                      .price!)
                                                 ],
                                               ),
                                             ),
@@ -1660,16 +1624,16 @@ print(response);
                                                     child: TextButton(
                                                       child: Text(
                                                           'Add To Cart ${listdata[0]
-                                                                  .pPackages[0]
+                                                                  .pPackages![0]
                                                                   .price}'),
                                                       onPressed: () {
                                                         setState(() {
                                                           addcart(
                                                               listdata[0]
-                                                                  .proposalId,
+                                                                  .proposalId!,
                                                               listdata[0]
-                                                                  .pPackages[0]
-                                                                  .packageId,
+                                                                  .pPackages![0]
+                                                                  .packageId!,
                                                               "1");
                                                         });
                                                       },
@@ -1691,8 +1655,8 @@ print(response);
                                                     CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Text(listdata[0]
-                                                      .pPackages[1]
-                                                      .packageName)
+                                                      .pPackages![1]
+                                                      .packageName!)
                                                 ],
                                               ),
                                             ),
@@ -1708,18 +1672,18 @@ print(response);
                                                     CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Text(listdata[0]
-                                                              .pPackages[1]
-                                                              .description
+                                                              .pPackages![1]
+                                                              .description!
                                                               .length >
                                                           20
                                                       ? '${listdata[0]
-                                                              .pPackages[1]
-                                                              .description
+                                                              .pPackages![1]
+                                                              .description!
                                                               .substring(
                                                                   0, 21)}...'
                                                       : listdata[0]
-                                                          .pPackages[1]
-                                                          .description)
+                                                          .pPackages![1]
+                                                          .description!)
                                                 ],
                                               ),
                                             ),
@@ -1733,14 +1697,14 @@ print(response);
                                                 children: <Widget>[
                                                   const Text("Revisions"),
                                                   listdata[0]
-                                                              .pPackages[1]
-                                                              .revisions
+                                                              .pPackages![1]
+                                                              .revisions!
                                                               .length ==
                                                           0
                                                       ? const Text("--")
                                                       : Text(listdata[0]
-                                                          .pPackages[1]
-                                                          .revisions)
+                                                          .pPackages![1]
+                                                          .revisions!)
                                                 ],
                                               ),
                                             ),
@@ -1756,8 +1720,8 @@ print(response);
                                                 children: <Widget>[
                                                   const Text("Delivery Time"),
                                                   Text(listdata[0]
-                                                      .pPackages[1]
-                                                      .deliveryTime)
+                                                      .pPackages![1]
+                                                      .deliveryTime!)
                                                 ],
                                               ),
                                             ),
@@ -1773,8 +1737,8 @@ print(response);
                                                 children: <Widget>[
                                                   const Text("price"),
                                                   Text(listdata[0]
-                                                      .pPackages[1]
-                                                      .price)
+                                                      .pPackages![1]
+                                                      .price!)
                                                 ],
                                               ),
                                             ),
@@ -1816,16 +1780,16 @@ print(response);
                                                     child: TextButton(
                                                       child: Text(
                                                           'Add To Cart ${listdata[0]
-                                                                  .pPackages[1]
+                                                                  .pPackages![1]
                                                                   .price}'),
                                                       onPressed: () {
                                                         setState(() {
                                                           addcart(
                                                               listdata[0]
-                                                                  .proposalId,
+                                                                  .proposalId!,
                                                               listdata[0]
-                                                                  .pPackages[1]
-                                                                  .packageId,
+                                                                  .pPackages![1]
+                                                                  .packageId!,
                                                               "1");
                                                         });
                                                       },
@@ -1847,8 +1811,8 @@ print(response);
                                                     CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Text(listdata[0]
-                                                      .pPackages[2]
-                                                      .packageName)
+                                                      .pPackages![2]
+                                                      .packageName!)
                                                 ],
                                               ),
                                             ),
@@ -1864,18 +1828,18 @@ print(response);
                                                     CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Text(listdata[0]
-                                                              .pPackages[2]
-                                                              .description
+                                                              .pPackages![2]
+                                                              .description!
                                                               .length >
                                                           38
                                                       ? '${listdata[0]
-                                                              .pPackages[2]
-                                                              .description
+                                                              .pPackages![2]
+                                                              .description!
                                                               .substring(
                                                                   0, 38)}...'
                                                       : listdata[0]
-                                                          .pPackages[2]
-                                                          .description)
+                                                          .pPackages![2]
+                                                          .description!)
                                                 ],
                                               ),
                                             ),
@@ -1891,8 +1855,8 @@ print(response);
                                                 children: <Widget>[
                                                   const Text("Revisions"),
                                                   Text(listdata[0]
-                                                      .pPackages[2]
-                                                      .revisions)
+                                                      .pPackages![2]
+                                                      .revisions!)
                                                 ],
                                               ),
                                             ),
@@ -1908,8 +1872,8 @@ print(response);
                                                 children: <Widget>[
                                                   const Text("Delivery Time"),
                                                   Text(listdata[0]
-                                                      .pPackages[2]
-                                                      .deliveryTime)
+                                                      .pPackages![2]
+                                                      .deliveryTime!)
                                                 ],
                                               ),
                                             ),
@@ -1925,8 +1889,8 @@ print(response);
                                                 children: <Widget>[
                                                   const Text("price"),
                                                   Text(listdata[0]
-                                                      .pPackages[2]
-                                                      .price)
+                                                      .pPackages![2]
+                                                      .price!)
                                                 ],
                                               ),
                                             ),
@@ -1968,16 +1932,16 @@ print(response);
                                                     child: TextButton(
                                                       child: Text(
                                                           'Add To Cart ${listdata[0]
-                                                                  .pPackages[2]
+                                                                  .pPackages![2]
                                                                   .price}'),
                                                       onPressed: () {
                                                         setState(() {
                                                           addcart(
                                                               listdata[0]
-                                                                  .proposalId,
+                                                                  .proposalId!,
                                                               listdata[0]
-                                                                  .pPackages[2]
-                                                                  .packageId,
+                                                                  .pPackages![2]
+                                                                  .packageId!,
                                                               "1");
                                                         });
                                                       },
@@ -2016,7 +1980,7 @@ print(response);
                             child: CircularProgressIndicator(
                                 valueColor: AlwaysStoppedAnimation<Color>(
                                     primarycolor)))
-                        : listdata[0].reviews.length != 0
+                        : listdata[0].reviews!.length != 0
                             ? const SizedBox(
                                 height: 20,
                               )
@@ -2033,23 +1997,23 @@ print(response);
                 )),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          listdata[0].seller.messagegroupid.toString().isNotEmpty
+          listdata[0].seller!.messagegroupid!.toString().isNotEmpty
               ? Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) {
-                      return Inboxdetailpage(listdata[0].seller.messagegroupid,
-                          listdata[0].seller.sellerName);
+                      return Inboxdetailpage(listdata[0].seller!.messagegroupid!,
+                          listdata[0].seller!.sellerName!);
                     },
                   ),
                 )
-              : listdata[0].seller.messagegroupid.toString().isEmpty
+              : listdata[0].seller!.messagegroupid.toString().isEmpty
                   ? Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return contactdetailpage(listdata[0].seller.sellerId,
-                              listdata[0].seller.sellerName);
+                          return contactdetailpage(listdata[0].seller!.sellerId!,
+                              listdata[0].seller!.sellerName!);
                         },
                       ),
                     )
@@ -2080,10 +2044,10 @@ print(response);
                                 image: DecorationImage(
                                     fit: BoxFit.fill,
                                     image: NetworkImage(
-                                        listdata[0].seller.sellerImage))),
+                                        listdata[0].seller!.sellerImage!))),
                             child: Stack(
                               children: <Widget>[
-                                if (listdata[0].seller.onlineStatus == 'online')
+                                if (listdata[0].seller!.onlineStatus == 'online')
                                   const Positioned(
                                     right: 0.0,
                                     bottom: 0.0,
@@ -2093,7 +2057,7 @@ print(response);
                                       color: primarycolor,
                                     ),
                                   ),
-                                if (listdata[0].seller.onlineStatus ==
+                                if (listdata[0].seller!.onlineStatus ==
                                     'offline')
                                   const Positioned(
                                     right: 0.0,

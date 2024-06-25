@@ -180,7 +180,7 @@ class cartPage extends State<cart> {
                                   height: 80,
                                   child: Image.network(
                                       datacart[index]
-                                          .proposalImage),
+                                          .proposalImage!),
                                 ),
                                 const SizedBox(
                                   width: 10.0,
@@ -192,7 +192,7 @@ class cartPage extends State<cart> {
                                     children: <Widget>[
                                       Text(
                                         datacart[index]
-                                            .proposalTitle,
+                                            .proposalTitle!,
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                         ),
@@ -201,7 +201,7 @@ class cartPage extends State<cart> {
                                         height: 10.0,
                                       ),
                                       Text(
-                                        datacart[index].price,
+                                        datacart[index].price!,
                                         style: const TextStyle(
                                             fontWeight:
                                             FontWeight.bold,
@@ -214,13 +214,13 @@ class cartPage extends State<cart> {
                                               ? IconButton(
                                             icon: const Icon(Icons.remove,color: primarycolor,),
                                             onPressed: () => setState(() {
-                                             String value = (int.parse(datacart[index].proposalQuantity)-1).toString();
+                                             String value = (int.parse(datacart[index].proposalQuantity!)-1).toString();
                                                 addquenty(datacart[index]
-                                                    .proposalId,
+                                                    .proposalId!,
                                                     value);}),)
                                               : Container(),
                                           Text(datacart[index]
-                                              .proposalQuantity ,
+                                              .proposalQuantity! ,
                                             style: const TextStyle(
                                                 fontWeight:
                                                 FontWeight.bold,
@@ -229,8 +229,8 @@ class cartPage extends State<cart> {
                                               icon: const Icon(Icons.add,color: primarycolor),
                                               onPressed: () =>
                                                   setState(() {
-                                                    String value = (int.parse(datacart[index].proposalQuantity)+1).toString();
-                                                    addquenty(datacart[index].proposalId, value
+                                                    String value = (int.parse(datacart[index].proposalQuantity!)+1).toString();
+                                                    addquenty(datacart[index].proposalId!, value
                                                     );
                                                   }))
                                         ],
@@ -263,7 +263,7 @@ class cartPage extends State<cart> {
                             onPressed: () {
                               print(datavalue.proposalId);
                               setState(() {
-                                delete(datavalue.proposalId);
+                                delete(datavalue.proposalId!);
                               });
                             },
                           ),
@@ -295,7 +295,7 @@ class cartPage extends State<cart> {
                             color: Colors.grey.shade700, fontSize: 16.0),
                       ),
                       directcontent.isNotEmpty? Text(
-                        directcontent[0].subTotalPrice,
+                        directcontent[0].subTotalPrice!,
                         style: TextStyle(
                             color: Colors.grey.shade700, fontSize: 16.0),
                       ):const Text(''),
@@ -313,7 +313,7 @@ class cartPage extends State<cart> {
                             color: Colors.grey.shade700, fontSize: 16.0),
                       ),
                       directcontent.isNotEmpty?  Text(
-                        directcontent[0].processingFee,
+                        directcontent[0].processingFee!,
                         style: TextStyle(
                             color: Colors.grey.shade700, fontSize: 16.0),
                       ):const Text(''),
@@ -331,7 +331,7 @@ class cartPage extends State<cart> {
                             color: Colors.grey.shade700, fontSize: 16.0),
                       ),
                       directcontent.isNotEmpty?  Text(
-                        directcontent[0].totalPrice,
+                        directcontent[0].totalPrice!,
                         style: TextStyle(
                             color: Colors.grey.shade700, fontSize: 16.0),
                       ):const Text(''),
@@ -352,7 +352,7 @@ class cartPage extends State<cart> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => checkout( directcontent[0].paymentUrl, token)),
+                                  builder: (context) => checkout( directcontent[0].paymentUrl!, token)),
                             );
                           }))
                 ],

@@ -30,7 +30,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
   final TextEditingController _controller = TextEditingController();
   Color myGreen = const Color(0xff4bb17b);
   LoginStatus _loginStatus = LoginStatus.newmessage;
-  var? textvalue;
+  var textvalue;
   List<ConversationArr> friendsLists = [];
   var loading = false;
   String? topimage;
@@ -38,8 +38,8 @@ class _contactdetailpageState extends State<contactdetailpage> {
   String? friendsList;
 
   Future getFile() async {
-        FilePickerResult result = await FilePicker.platform.pickFiles();
-    File file = File(result.files.single.path);
+        FilePickerResult? result = await FilePicker.platform.pickFiles();
+    File file = File(result!.files.single.path!);
 
     setState(() {
       _file = file;
@@ -52,7 +52,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
 
   void _uploadFile(filePath) async {
     final form = _key.currentState;
-    form.save();
+    form!.save();
 
     print("textvalue");
     print(textvalue);
@@ -205,7 +205,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
                                     image: DecorationImage(
                                         fit: BoxFit.fill,
                                         image: NetworkImage(
-                                            listcat.senderImage)))),
+                                            listcat.senderImage!)))),
                             title: Container(
                                 padding: const EdgeInsets.only(top: 10, bottom: 0),
 
@@ -253,7 +253,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
                                                 fit: BoxFit.fill,
                                                 image: NetworkImage(
                                                     listcat
-                                                        .messageFile))))
+                                                        .messageFile!))))
                                         : Container(
                                       height: 0,
                                     ),
@@ -356,8 +356,7 @@ class _contactdetailpageState extends State<contactdetailpage> {
         break;
       case LoginStatus.messagesend:
         return Inboxdetailpage(
-            friendsList, widget.sellname);
-              break;
+            friendsList!, widget.sellname);
     }
 
   }

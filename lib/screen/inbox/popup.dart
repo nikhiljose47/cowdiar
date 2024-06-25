@@ -12,7 +12,7 @@ class _PopupMenuButtonState extends State<PopupMenuButtonPage> {
   Widget build(BuildContext context) {
     Widget threeItemPopup() => PopupMenuButton(
       itemBuilder: (context) {
-        var list = List<PopupMenuEntry<Object>>();
+        var list = [];
         list.add(
           const PopupMenuItem(
             value: "1",
@@ -34,7 +34,7 @@ class _PopupMenuButtonState extends State<PopupMenuButtonPage> {
             ),
           ),
         );
-        return list;
+        return list as List<PopupMenuEntry>;
 
       },
       icon: const Icon(

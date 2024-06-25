@@ -6,8 +6,8 @@ class CustomDialog extends StatelessWidget {
   final Icon? image;
   final Color? colors;
   const CustomDialog({super.key, 
-    this.title,
-    this.content,
+    required this.title,
+    required this.content,
     this.image,
     this.colors
   });

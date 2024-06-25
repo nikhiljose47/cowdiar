@@ -33,7 +33,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
   final TextEditingController _controller = TextEditingController();
   Color myGreen = const Color(0xff4bb17b);
 
-  var? textvalue;
+  var textvalue;
   List<ConversationArr> friendsLists = [];
 
   var loading = false;
@@ -67,8 +67,8 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
   }
 
   Future getFile() async {
-    FilePickerResult result = await FilePicker.platform.pickFiles();
-    File file = File(result.files.single.path);
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    File file = File(result!.files.single.path!);
 
     setState(() {
       _file = file;
@@ -77,7 +77,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
 
   void _uploadFile(filePath) async {
     final form = _key.currentState;
-    form.save();
+    form!.save();
 
     print("textvalue");
     print(textvalue);
@@ -241,7 +241,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                       image: DecorationImage(
                                           fit: BoxFit.fill,
                                           image: NetworkImage(
-                                              listcat.senderImage)))),
+                                              listcat.senderImage!)))),
                               title: Container(
                                   padding: const EdgeInsets.only(top: 10, bottom: 0),
                                   child: Column(
@@ -295,7 +295,7 @@ class _InboxdetailpageState extends State<Inboxdetailpage> {
                                                       fit: BoxFit.fill,
                                                       image: NetworkImage(
                                                           listcat
-                                                              .messageFile))))
+                                                              .messageFile!))))
                                           : Container(
                                               height: 0,
                                             ),

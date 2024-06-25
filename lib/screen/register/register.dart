@@ -20,7 +20,7 @@ enum regStatus { register, login }
 
 class _RegisterState extends State<Register> {
   regStatus _regStatus = regStatus.register;
-  String name, username, email, phoneNumber, password, confirm_password;
+  String? name, username, email, phoneNumber, password, confirm_password;
   FocusNode nameFocusNode = FocusNode();
   FocusNode usernameFocusNode = FocusNode();
   FocusNode emailFocusNode = FocusNode();
@@ -52,11 +52,11 @@ class _RegisterState extends State<Register> {
 
   check() {
     final form = _key.currentState;
-    if (form.validate()) {
+    if (form!.validate()) {
       form.save();
       if (password != confirm_password) {
         registerToast("Passwords not match");
-      } else if (!Util.emailValidate(email)) {
+      } else if (!Util.emailValidate(email!)) {
         registerToast("Incorrect Email");
       } else {
         print(name);
@@ -76,7 +76,7 @@ class _RegisterState extends State<Register> {
     final response = await http.post(Uri.parse(baseurl + version + register), body: {
       "fullname": name,
       "username": username,
-      "phone_number": phoneNumber.isEmpty?'':dropdownValue+phoneNumber,
+      "phone_number": phoneNumber!.isEmpty?'':dropdownValue+phoneNumber!,
       "email": email,
       "password": password,
       "confirm_password": confirm_password,
@@ -267,8 +267,8 @@ class _RegisterState extends State<Register> {
                               child: TextFormField(
                                 key: _fnameKey,
                                 focusNode: nameFocusNode,
-                                validator: (e) => e.isEmpty?"Please enter Full Name":null                                                             ,
-                                onSaved: (e) => name = e,
+                                validator: (e) => e!.isEmpty?"Please enter Full Name":null                                                             ,
+                                onSaved: (e) => name = e!,
                                // onChanged: (e) => _fnameKey.currentState.validate(),
                                 style: const TextStyle(
                                   color: primarycolor,
@@ -318,12 +318,12 @@ class _RegisterState extends State<Register> {
                                 ],
                                 focusNode: usernameFocusNode,
                                 validator: (e) {
-                                  if (e.isEmpty) {
+                                  if (e!.isEmpty) {
                                     return "Please Enter User Name";
                                   }
                                   return null;
                                 },
-                                onSaved: (e) => username = e,
+                                onSaved: (e) => username = e!,
                                 style: const TextStyle(
                                   color: primarycolor,
                                   fontSize: 16,
@@ -369,12 +369,12 @@ class _RegisterState extends State<Register> {
                               child: TextFormField(
                                 focusNode: emailFocusNode,
                                 validator: (e) {
-                                  if (e.isEmpty) {
+                                  if (e!.isEmpty) {
                                     return "Please Enter Email";
                                   }
                                   return null;
                                 },
-                                onSaved: (e) => email = e,
+                                onSaved: (e) => email = e!,
                                 style: const TextStyle(
                                   color: primarycolor,
                                   fontSize: 16,
@@ -474,10 +474,10 @@ class _RegisterState extends State<Register> {
                                       FilteringTextInputFormatter.digitsOnly
                                     ],
                                     focusNode: phoneNumberFocusNode,
-                                    validator: (e) => e.isNotEmpty
+                                    validator: (e) => e!.isNotEmpty
                                         ? null
                                         : null,
-                                    onSaved: (e) => phoneNumber = e,
+                                    onSaved: (e) => phoneNumber = e!,
                                     style: const TextStyle(
                                       color: primarycolor,
                                       fontSize: 16,
@@ -530,12 +530,12 @@ class _RegisterState extends State<Register> {
                                 focusNode: passwordFocusNode,
                                 obscureText: _secureText,
                                 validator: (e) {
-                                  if (e.isEmpty) {
+                                  if (e!.isEmpty) {
                                     return "Please Enter Password";
                                   }
                                   return null;
                                 },
-                                onSaved: (e) => password = e,
+                                onSaved: (e) => password = e!,
                                 style: const TextStyle(
                                   color: primarycolor,
                                   fontSize: 16,
@@ -590,12 +590,12 @@ class _RegisterState extends State<Register> {
                                 focusNode: confirmpasswordFocusNode,
                                 obscureText: _secureText2,
                                 validator: (e) {
-                                  if (e.isEmpty) {
+                                  if (e!.isEmpty) {
                                     return "Please Enter Password";
                                   }
                                   return null;
                                 },
-                                onSaved: (e) => confirm_password = e,
+                                onSaved: (e) => confirm_password = e!,
                                 style: const TextStyle(
                                   color: primarycolor,
                                   fontSize: 16,
@@ -648,7 +648,7 @@ class _RegisterState extends State<Register> {
                               Checkbox(
                                   value: checkBoxVal,
                                   onChanged: (val) =>
-                                      setState(() => checkBoxVal = val)),
+                                      setState(() => checkBoxVal = val!)),
                               const Text("I accept terms and conditions"),
                             ],
                           ),
@@ -756,9 +756,9 @@ class CountryCodeItemState extends State<CountryCodeItem> {
         Expanded(
             child: InkWell(
           onTap: () {
-            var items = widget.name.split(' ');
+            var items = widget.name!.split(' ');
             var item = items[items.length - 1];
-            widget.callback(item.substring(1, item.length - 1));
+            widget.callback!(item.substring(1, item.length - 1));
             // dropdownValue =
             //     dropdownValue.substring(1, dropdownValue.length - 1);
             setState(() {
