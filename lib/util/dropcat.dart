@@ -35,8 +35,8 @@ class Dropdowncat {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -64,11 +64,11 @@ class Content {
   });
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    cArr: List<CArr>.from(json["cArr"].map((x) => CArr.fromMap(x))),
+    cArr: List<CArr>.from(json["cArr"]!.map((x) => CArr.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "cArr": List<dynamic>.from(cArr.map((x) => x.toMap())),
+    "cArr": List<dynamic>.from(cArr!.map((x) => x.toMap())),
   };
 }
 

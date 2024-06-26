@@ -35,8 +35,8 @@ class Cartpagesec {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -66,13 +66,13 @@ class Content {
   List<Payment>? payments;
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    cartDetails: List<CartDetail>.from(json["cartDetails"].map((x) => CartDetail.fromMap(x))),
-    payments: List<Payment>.from(json["payments"].map((x) => Payment.fromMap(x))),
+    cartDetails: List<CartDetail>.from(json["cartDetails"]!.map((x) => CartDetail.fromMap(x))),
+    payments: List<Payment>.from(json["payments"]!.map((x) => Payment.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "cartDetails": List<dynamic>.from(cartDetails.map((x) => x.toMap())),
-    "payments": List<dynamic>.from(payments.map((x) => x.toMap())),
+    "cartDetails": List<dynamic>.from(cartDetails!.map((x) => x.toMap())),
+    "payments": List<dynamic>.from(payments!.map((x) => x.toMap())),
   };
 }
 

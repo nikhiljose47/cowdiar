@@ -35,8 +35,8 @@ class Profile {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -64,11 +64,11 @@ class Content {
   List<MProfile>? mProfile;
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    mProfile: List<MProfile>.from(json["mProfile"].map((x) => MProfile.fromMap(x))),
+    mProfile: List<MProfile>.from(json["mProfile"]!.map((x) => MProfile.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "mProfile": List<dynamic>.from(mProfile.map((x) => x.toMap())),
+    "mProfile": List<dynamic>.from(mProfile!.map((x) => x.toMap())),
   };
 }
 
@@ -116,7 +116,7 @@ class MProfile {
     "seller_level": sellerLevel,
     "online_status": onlineStatus,
     "seller_verification_status": sellerVerificationStatus,
-    "rating": rating.toMap(),
+    "rating": rating!.toMap(),
   };
 }
 

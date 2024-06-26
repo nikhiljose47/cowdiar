@@ -42,7 +42,7 @@ class ShowAlertDialog extends StatelessWidget {
   showDialog(  
     context: context,  
     builder: (BuildContext context) {  
-      return? alert;  
+      return alert;  
     },  
   );  
 }  

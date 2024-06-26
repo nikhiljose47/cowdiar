@@ -32,7 +32,7 @@ class Infoapp {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
+    "content": content!.toMap(),
   };
 }
 
@@ -44,11 +44,11 @@ class Content {
   List<AppInfo>? appInfo;
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    appInfo: List<AppInfo>.from(json["app_info"].map((x) => AppInfo.fromMap(x))),
+    appInfo: List<AppInfo>.from(json["app_info"]!.map((x) => AppInfo.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "app_info": List<dynamic>.from(appInfo.map((x) => x.toMap())),
+    "app_info": List<dynamic>.from(appInfo!.map((x) => x.toMap())),
   };
 }
 

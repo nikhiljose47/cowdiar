@@ -35,8 +35,8 @@ class Managreq {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -66,13 +66,13 @@ class Content {
   List<MRequestsArr>? mRequestsArr;
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    statusArr: List<StatusArr>.from(json["statusArr"].map((x) => StatusArr.fromMap(x))),
-    mRequestsArr: List<MRequestsArr>.from(json["mRequestsArr"].map((x) => MRequestsArr.fromMap(x))),
+    statusArr: List<StatusArr>.from(json["statusArr"]!.map((x) => StatusArr.fromMap(x))),
+    mRequestsArr: List<MRequestsArr>.from(json["mRequestsArr"]!.map((x) => MRequestsArr.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "statusArr": List<dynamic>.from(statusArr.map((x) => x.toMap())),
-    "mRequestsArr": List<dynamic>.from(mRequestsArr.map((x) => x.toMap())),
+    "statusArr": List<dynamic>.from(statusArr!.map((x) => x.toMap())),
+    "mRequestsArr": List<dynamic>.from(mRequestsArr!.map((x) => x.toMap())),
   };
 }
 

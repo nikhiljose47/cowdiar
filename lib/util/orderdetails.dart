@@ -35,8 +35,8 @@ class Orderdetails {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -66,13 +66,13 @@ class Content {
   });
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    oDetails: List<ODetail>.from(json["oDetails"].map((x) => ODetail.fromMap(x))),
-    conversationArr: List<ConversationArr>.from(json["conversationArr"].map((x) => ConversationArr.fromMap(x))),
+    oDetails: List<ODetail>.from(json["oDetails"]!.map((x) => ODetail.fromMap(x))),
+    conversationArr: List<ConversationArr>.from(json["conversationArr"]!.map((x) => ConversationArr.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "oDetails": List<dynamic>.from(oDetails.map((x) => x.toMap())),
-    "conversationArr": List<dynamic>.from(conversationArr.map((x) => x.toMap())),
+    "oDetails": List<dynamic>.from(oDetails!.map((x) => x.toMap())),
+    "conversationArr": List<dynamic>.from(conversationArr!.map((x) => x.toMap())),
   };
 }
 

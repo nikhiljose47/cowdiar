@@ -31,8 +31,8 @@ class Formsupport {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -60,11 +60,11 @@ class Content {
   List<TypesArr>? typesArr;
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    typesArr: List<TypesArr>.from(json["typesArr"].map((x) => TypesArr.fromMap(x))),
+    typesArr: List<TypesArr>.from(json["typesArr"]!.map((x) => TypesArr.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "typesArr": List<dynamic>.from(typesArr.map((x) => x.toMap())),
+    "typesArr": List<dynamic>.from(typesArr!.map((x) => x.toMap())),
   };
 }
 
@@ -82,12 +82,12 @@ class TypesArr {
   factory TypesArr.fromMap(Map<String, dynamic> json) => TypesArr(
     enquiryType: json["enquiry_type"],
     enquiryTitle: json["enquiry_title"],
-    fields: List<String>.from(json["fields"].map((x) => x)),
+    fields: List<String>.from(json["fields"]!.map((x) => x)),
   );
 
   Map<String, dynamic> toMap() => {
     "enquiry_type": enquiryType,
     "enquiry_title": enquiryTitle,
-    "fields": List<dynamic>.from(fields.map((x) => x)),
+    "fields": List<dynamic>.from(fields!.map((x) => x)),
   };
 }

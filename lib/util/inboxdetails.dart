@@ -35,8 +35,8 @@ class Inboxdetails {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -64,11 +64,11 @@ class Content {
   });
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    conversationArr: List<ConversationArr>.from(json["conversationArr"].map((x) => ConversationArr.fromMap(x))),
+    conversationArr: List<ConversationArr>.from(json["conversationArr"]!.map((x) => ConversationArr.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "conversationArr": List<dynamic>.from(conversationArr.map((x) => x.toMap())),
+    "conversationArr": List<dynamic>.from(conversationArr!.map((x) => x.toMap())),
   };
 }
 
@@ -140,7 +140,7 @@ final senderNameValues = EnumValues({
 
 class EnumValues<T> {
   Map<String, T> map;
-  Map<T, String> reverseMap;
+  Map<T, String> reverseMap = {};
 
   EnumValues(this.map);
 

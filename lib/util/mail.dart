@@ -35,8 +35,8 @@ class MailContent {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -64,11 +64,11 @@ class Content {
   });
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    notificationsArr: List<NotificationsArr>.from(json["notificationsArr"].map((x) => NotificationsArr.fromMap(x))),
+    notificationsArr: List<NotificationsArr>.from(json["notificationsArr"]!.map((x) => NotificationsArr.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "notificationsArr": List<dynamic>.from(notificationsArr.map((x) => x.toMap())),
+    "notificationsArr": List<dynamic>.from(notificationsArr!.map((x) => x.toMap())),
   };
 }
 

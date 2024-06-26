@@ -32,7 +32,7 @@ class Proposal {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
+    "content": content!.toMap(),
   };
 }
 
@@ -44,11 +44,11 @@ class Content {
   List<PDetail>? pDetails;
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    pDetails: List<PDetail>.from(json["pDetails"].map((x) => PDetail.fromMap(x))),
+    pDetails: List<PDetail>.from(json["pDetails"]!.map((x) => PDetail.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "pDetails": List<dynamic>.from(pDetails.map((x) => x.toMap())),
+    "pDetails": List<dynamic>.from(pDetails!.map((x) => x.toMap())),
   };
 }
 
@@ -83,28 +83,28 @@ class PDetail {
     proposalId: json["proposal_id"],
     title: json["title"],
     seller: Seller.fromMap(json["seller"]),
-    images: List<String>.from(json["images"].map((x) => x)),
-    pPackages: List<PPackage>.from(json["pPackages"].map((x) => PPackage.fromMap(x))),
+    images: List<String>.from(json["images"]!.map((x) => x)),
+    pPackages: List<PPackage>.from(json["pPackages"]!.map((x) => PPackage.fromMap(x))),
     description: json["description"],
     rating: Rating.fromMap(json["rating"]),
-    reviews: List<Review>.from(json["reviews"].map((x) => Review.fromMap(x))),
-    proposalTags: List<String>.from(json["proposal_tags"].map((x) => x)),
-    faqs: List<Faq>.from(json["faqs"].map((x) => Faq.fromMap(x))),
-    sellersProposals: List<SellersProposal>.from(json["sellers_proposals"].map((x) => SellersProposal.fromMap(x))),
+    reviews: List<Review>.from(json["reviews"]!.map((x) => Review.fromMap(x))),
+    proposalTags: List<String>.from(json["proposal_tags"]!.map((x) => x)),
+    faqs: List<Faq>.from(json["faqs"]!.map((x) => Faq.fromMap(x))),
+    sellersProposals: List<SellersProposal>.from(json["sellers_proposals"]!.map((x) => SellersProposal.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
     "proposal_id": proposalId,
     "title": title,
-    "seller": seller.toMap(),
-    "images": List<dynamic>.from(images.map((x) => x)),
-    "pPackages": List<dynamic>.from(pPackages.map((x) => x.toMap())),
+    "seller": seller!.toMap(),
+    "images": List<dynamic>.from(images!.map((x) => x)),
+    "pPackages": List<dynamic>.from(pPackages!.map((x) => x.toMap())),
     "description": description,
-    "rating": rating.toMap(),
-    "reviews": List<dynamic>.from(reviews.map((x) => x.toMap())),
-    "proposal_tags": List<dynamic>.from(proposalTags.map((x) => x)),
-    "faqs": List<dynamic>.from(faqs.map((x) => x.toMap())),
-    "sellers_proposals": List<dynamic>.from(sellersProposals.map((x) => x.toMap())),
+    "rating": rating!.toMap(),
+    "reviews": List<dynamic>.from(reviews!.map((x) => x.toMap())),
+    "proposal_tags": List<dynamic>.from(proposalTags!.map((x) => x)),
+    "faqs": List<dynamic>.from(faqs!.map((x) => x.toMap())),
+    "sellers_proposals": List<dynamic>.from(sellersProposals!.map((x) => x.toMap())),
   };
 }
 
@@ -280,7 +280,7 @@ class Seller {
     sellerSince: json["seller_since"],
     sellerLastActivity: json["seller_last_activity"],
     sellerLevel: json["seller_level"],
-    sellerLanguages: List<dynamic>.from(json["seller_languages"].map((x) => x)),
+    sellerLanguages: List<dynamic>.from(json["seller_languages"]!.map((x) => x)),
   );
 
   Map<String, dynamic> toMap() => {
@@ -296,7 +296,7 @@ class Seller {
     "seller_since": sellerSince,
     "seller_last_activity": sellerLastActivity,
     "seller_level": sellerLevel,
-    "seller_languages": List<dynamic>.from(sellerLanguages.map((x) => x)),
+    "seller_languages": List<dynamic>.from(sellerLanguages!.map((x) => x)),
   };
 }
 
@@ -343,7 +343,7 @@ class SellersProposal {
     "seller_image": sellerImage,
     "online_status": onlineStatus,
     "seller_level": sellerLevel,
-    "rating": rating.toMap(),
+    "rating": rating!.toMap(),
     "link": link,
   };
 }

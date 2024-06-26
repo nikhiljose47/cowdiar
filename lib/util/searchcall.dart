@@ -35,8 +35,8 @@ class Search {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -64,11 +64,11 @@ class Content {
   });
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    pList: List<PList>.from(json["pList"].map((x) => PList.fromMap(x))),
+    pList: List<PList>.from(json["pList"]!.map((x) => PList.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "pList": List<dynamic>.from(pList.map((x) => x.toMap())),
+    "pList": List<dynamic>.from(pList!.map((x) => x.toMap())),
   };
 }
 
@@ -111,7 +111,7 @@ class PList {
     "seller_name": sellerName,
     "seller_image": sellerImage,
     "seller_level": sellerLevel,
-    "rating": rating.toMap(),
+    "rating": rating!.toMap(),
     "link": link,
   };
 }

@@ -35,8 +35,8 @@ class Delivertime {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -66,13 +66,13 @@ class Content {
   List<CurrencyArr>? currencyArr;
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    deliveryArr: List<DeliveryArr>.from(json["deliveryArr"].map((x) => DeliveryArr.fromMap(x))),
-    currencyArr: List<CurrencyArr>.from(json["currencyArr"].map((x) => CurrencyArr.fromMap(x))),
+    deliveryArr: List<DeliveryArr>.from(json["deliveryArr"]!.map((x) => DeliveryArr.fromMap(x))),
+    currencyArr: List<CurrencyArr>.from(json["currencyArr"]!.map((x) => CurrencyArr.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "deliveryArr": List<dynamic>.from(deliveryArr.map((x) => x.toMap())),
-    "currencyArr": List<dynamic>.from(currencyArr.map((x) => x.toMap())),
+    "deliveryArr": List<dynamic>.from(deliveryArr!.map((x) => x.toMap())),
+    "currencyArr": List<dynamic>.from(currencyArr!.map((x) => x.toMap())),
   };
 }
 

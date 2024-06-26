@@ -35,8 +35,8 @@ class Managaorder {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -66,13 +66,13 @@ class Content {
   List<MOrdersArr>? mOrdersArr;
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    statusArr: List<StatusArr>.from(json["statusArr"].map((x) => StatusArr.fromMap(x))),
-    mOrdersArr: List<MOrdersArr>.from(json["mOrdersArr"].map((x) => MOrdersArr.fromMap(x))),
+    statusArr: List<StatusArr>.from(json["statusArr"]!.map((x) => StatusArr.fromMap(x))),
+    mOrdersArr: List<MOrdersArr>.from(json["mOrdersArr"]!.map((x) => MOrdersArr.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "statusArr": List<dynamic>.from(statusArr.map((x) => x.toMap())),
-    "mOrdersArr": List<dynamic>.from(mOrdersArr.map((x) => x.toMap())),
+    "statusArr": List<dynamic>.from(statusArr!.map((x) => x.toMap())),
+    "mOrdersArr": List<dynamic>.from(mOrdersArr!.map((x) => x.toMap())),
   };
 }
 

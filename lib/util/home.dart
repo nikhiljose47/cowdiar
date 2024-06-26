@@ -36,8 +36,8 @@ class Homepage {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -73,19 +73,19 @@ class Content {
   });
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    pServices: List<PService>.from(json["pServices"].map((x) => PService.fromMap(x))),
-    mPlaces: List<MPlace>.from(json["mPlaces"].map((x) => MPlace.fromMap(x))),
-    fProposals: List<FProposal>.from(json["fProposals"].map((x) => FProposal.fromMap(x))),
-    rViews: List<RView>.from(json["rViews"].map((x) => RView.fromMap(x))),
-	oDetails: List<ODetail>.from(json["oDetails"].map((x) => ODetail.fromMap(x))),
+    pServices: List<PService>.from(json["pServices"]!.map((x) => PService.fromMap(x))),
+    mPlaces: List<MPlace>.from(json["mPlaces"]!.map((x) => MPlace.fromMap(x))),
+    fProposals: List<FProposal>.from(json["fProposals"]!.map((x) => FProposal.fromMap(x))),
+    rViews: List<RView>.from(json["rViews"]!.map((x) => RView.fromMap(x))),
+	oDetails: List<ODetail>.from(json["oDetails"]!.map((x) => ODetail.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "pServices": List<dynamic>.from(pServices.map((x) => x.toMap())),
-    "mPlaces": List<dynamic>.from(mPlaces.map((x) => x.toMap())),
-    "fProposals": List<dynamic>.from(fProposals.map((x) => x.toMap())),
-    "rViews": List<dynamic>.from(rViews.map((x) => x.toMap())),
-	 "oDetails": List<dynamic>.from(oDetails.map((x) => x.toMap())),
+    "pServices": List<dynamic>.from(pServices!.map((x) => x.toMap())),
+    "mPlaces": List<dynamic>.from(mPlaces!.map((x) => x.toMap())),
+    "fProposals": List<dynamic>.from(fProposals!.map((x) => x.toMap())),
+    "rViews": List<dynamic>.from(rViews!.map((x) => x.toMap())),
+	 "oDetails": List<dynamic>.from(oDetails!.map((x) => x.toMap())),
   };
 }
 
@@ -135,7 +135,7 @@ class FProposal {
     "seller_image": sellerImage,
     "online_status": onlineStatus,
     "seller_level": sellerLevel,
-    "rating": rating.toMap(),
+    "rating": rating!.toMap(),
     "link": link,
     "isFavourite":isFavourite
   };
@@ -238,7 +238,7 @@ class RView {
     "seller_image": sellerImage,
     "online_status": onlineStatus,
     "seller_level": sellerLevel,
-    "rating": rating.toMap(),
+    "rating": rating!.toMap(),
     "link": link,
     "isFavourite":isFavourite
   };

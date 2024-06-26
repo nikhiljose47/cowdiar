@@ -35,8 +35,8 @@ class Viewoffersec {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -66,13 +66,13 @@ class Content {
   List<ODetail>? oDetails;
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    rDetails: List<RDetail>.from(json["rDetails"].map((x) => RDetail.fromMap(x))),
-    oDetails: List<ODetail>.from(json["oDetails"].map((x) => ODetail.fromMap(x))),
+    rDetails: List<RDetail>.from(json["rDetails"]!.map((x) => RDetail.fromMap(x))),
+    oDetails: List<ODetail>.from(json["oDetails"]!.map((x) => ODetail.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "rDetails": List<dynamic>.from(rDetails.map((x) => x.toMap())),
-    "oDetails": List<dynamic>.from(oDetails.map((x) => x.toMap())),
+    "rDetails": List<dynamic>.from(rDetails!.map((x) => x.toMap())),
+    "oDetails": List<dynamic>.from(oDetails!.map((x) => x.toMap())),
   };
 }
 

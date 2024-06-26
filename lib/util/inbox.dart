@@ -35,8 +35,8 @@ class Inbox {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
-    "commonArr": commonArr.toMap(),
+    "content": content!.toMap(),
+    "commonArr": commonArr!.toMap(),
   };
 }
 
@@ -66,13 +66,13 @@ class Content {
   });
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    filtersArr: List<FiltersArr>.from(json["filtersArr"].map((x) => FiltersArr.fromMap(x))),
-    inboxArr: List<InboxArr>.from(json["inboxArr"].map((x) => InboxArr.fromMap(x))),
+    filtersArr: List<FiltersArr>.from(json["filtersArr"]!.map((x) => FiltersArr.fromMap(x))),
+    inboxArr: List<InboxArr>.from(json["inboxArr"]!.map((x) => InboxArr.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "filtersArr": List<dynamic>.from(filtersArr.map((x) => x.toMap())),
-    "inboxArr": List<dynamic>.from(inboxArr.map((x) => x.toMap())),
+    "filtersArr": List<dynamic>.from(filtersArr!.map((x) => x.toMap())),
+    "inboxArr": List<dynamic>.from(inboxArr!.map((x) => x.toMap())),
   };
 }
 

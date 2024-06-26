@@ -32,7 +32,7 @@ class Category {
     "response_code": responseCode,
     "message": message,
     "status": status,
-    "content": content.toMap(),
+    "content": content!.toMap(),
   };
 }
 
@@ -44,11 +44,11 @@ class Content {
   });
 
   factory Content.fromMap(Map<String, dynamic> json) => Content(
-    cArr: List<CArr>.from(json["cArr"].map((x) => CArr.fromMap(x))),
+    cArr: List<CArr>.from(json["cArr"]!.map((x) => CArr.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
-    "cArr": List<dynamic>.from(cArr.map((x) => x.toMap())),
+    "cArr": List<dynamic>.from(cArr!.map((x) => x.toMap())),
   };
 }
 
@@ -69,14 +69,14 @@ class CArr {
     link: json["link"],
     title: json["title"],
     image: json["image"],
-    sCArr: List<SCArr>.from(json["sCArr"].map((x) => SCArr.fromMap(x))),
+    sCArr: List<SCArr>.from(json["sCArr"]!.map((x) => SCArr.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
     "link": link,
     "title": title,
     "image": image,
-    "sCArr": List<dynamic>.from(sCArr.map((x) => x.toMap())),
+    "sCArr": List<dynamic>.from(sCArr!.map((x) => x.toMap())),
   };
 }
 
